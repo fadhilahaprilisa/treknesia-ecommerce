@@ -1,0 +1,44 @@
+[
+    {
+        "id": 1,
+        "name": "Running",
+        "slug": "running",
+        "icon": "running",
+        "description": "Perlengkapan lari trail dan marathon"
+    },
+    {
+        "id": 2,
+        "name": "Hiking",
+        "slug": "hiking",
+        "icon": "hiking",
+        "description": "Peralatan hiking dan pendakian"
+    },
+    {
+        "id": 3,
+        "name": "Camping",
+        "slug": "camping",
+        "icon": "camping",
+        "description": "Perlengkapan camping dan berkemah"
+    },
+    {
+        "id": 4,
+        "name": "Cycling",
+        "slug": "cycling",
+        "icon": "cycling",
+        "description": "Aksesoris dan perlengkapan sepeda"
+    },
+    {
+        "id": 5,
+        "name": "Training",
+        "slug": "training",
+        "icon": "training",
+        "description": "Peralatan latihan dan fitness outdoor"
+    },
+    {
+        "id": 6,
+        "name": "Recovery",
+        "slug": "recovery",
+        "icon": "recovery",
+        "description": "Alat pemulihan dan relaksasi otot"
+    }
+]

@@ -1,0 +1,19 @@
+{
+    "zones": [
+        {
+            "name": "Jabodetabek",
+            "cities": ["Jakarta", "Bogor", "Depok", "Tangerang", "Bekasi"],
+            "cost": 20000
+        },
+        {
+            "name": "Jawa (Luar Jabodetabek)",
+            "cities": ["Bandung", "Semarang", "Yogyakarta", "Surabaya", "Malang", "Cirebon", "Tegal", "Pekalongan", "Solo", "Madiun", "Kediri", "Blitar"],
+            "cost": 30000
+        },
+        {
+            "name": "Luar Jawa",
+            "cities": ["Medan", "Palembang", "Padang", "Pekanbaru", "Banda Aceh", "Makassar", "Manado", "Bali", "Lombok", "Kupang", "Pontianak", "Banjarmasin", "Samarinda"],
+            "cost": 50000
+        }
+    ]
+}

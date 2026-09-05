@@ -1,0 +1,352 @@
+[
+    {
+        "id": 1,
+        "name": "Sepatu Trail Running Pro",
+        "category": "Running",
+        "gender": "Pria",
+        "price": 1299000,
+        "description": "Sepatu trail running dengan grip sempurna untuk medan ekstrim. Dilengkapi teknologi anti-slip dan bantalan empuk.",
+        "image": "sepatu-trail-running.jpg",
+        "rating": 4.7,
+        "stock": 25,
+        "brand": "PeakStride",
+        "specs": {
+            "berat": "280gr",
+            "material": "Mesh + Rubber",
+            "warna": ["Hitam", "Merah", "Biru"]
+        }
+    },
+    {
+        "id": 2,
+        "name": "Carrier 40L Summit",
+        "category": "Hiking",
+        "gender": "Unisex",
+        "price": 1599000,
+        "description": "Tas carrier 40L dengan frame aluminium ringan. Cocok untuk pendakian 3-5 hari.",
+        "image": "carrier-40l.jpg",
+        "rating": 4.8,
+        "stock": 15,
+        "brand": "Northridge",
+        "specs": {
+            "berat": "1.2kg",
+            "material": "Nylon 210D",
+            "kapasitas": "40L",
+            "warna": ["Hijau", "Biru", "Hitam"]
+        }
+    },
+    {
+        "id": 3,
+        "name": "Tenda Ultralight 2P",
+        "category": "Camping",
+        "gender": "Unisex",
+        "price": 1999000,
+        "description": "Tenda 2 orang super ringan hanya 1.8kg. Anti air dan mudah dipasang.",
+        "image": "tenda-ultralight.jpg",
+        "rating": 4.6,
+        "stock": 10,
+        "brand": "Wildsphere",
+        "specs": {
+            "berat": "1.8kg",
+            "material": "Polyester 20D",
+            "kapasitas": "2 Orang",
+            "warna": ["Hijau Army", "Orange"]
+        }
+    },
+    {
+        "id": 4,
+        "name": "GPS Watch Altitude",
+        "category": "Training",
+        "gender": "Unisex",
+        "price": 2499000,
+        "description": "Jam tangan GPS dengan altimeter, barometer, dan kompas. Tahan air 100m.",
+        "image": "gps-watch.jpg",
+        "rating": 4.7,
+        "stock": 8,
+        "brand": "Altitude",
+        "specs": {
+            "berat": "65gr",
+            "baterai": "14 hari",
+            "fitur": ["GPS", "Altimeter", "HR Monitor"],
+            "warna": ["Hitam", "Putih"]
+        }
+    },
+    {
+        "id": 5,
+        "name": "Jaket Hardshell Weatherguard",
+        "category": "Hiking",
+        "gender": "Pria",
+        "price": 1799000,
+        "description": "Jaket anti-angin dan anti-air dengan membran breathable. Ideal untuk cuaca ekstrim.",
+        "image": "jaket-hardshell.jpg",
+        "rating": 4.7,
+        "stock": 12,
+        "brand": "Weatherguard",
+        "specs": {
+            "berat": "450gr",
+            "material": "Gore-Tex",
+            "warna": ["Hitam", "Biru Navy", "Merah"]
+        }
+    },
+    {
+        "id": 6,
+        "name": "Sepatu Hiking Wanita",
+        "category": "Hiking",
+        "gender": "Wanita",
+        "price": 1499000,
+        "description": "Sepatu hiking khusus wanita dengan desain ergonomis dan sol anti-slip.",
+        "image": "sepatu-hiking-wanita.jpg",
+        "rating": 4.8,
+        "stock": 20,
+        "brand": "PeakStride",
+        "specs": {
+            "berat": "320gr",
+            "material": "Leather + Rubber",
+            "warna": ["Coklat", "Hitam", "Pink"]
+        }
+    },
+    {
+        "id": 7,
+        "name": "Trekking Pole Carbon",
+        "category": "Hiking",
+        "gender": "Unisex",
+        "price": 899000,
+        "description": "Tongkat trekking karbon ringan dengan grip kayu. Adjustable 100-130cm.",
+        "image": "trekking-pole.jpg",
+        "rating": 4.5,
+        "stock": 30,
+        "brand": "Nordic",
+        "specs": {
+            "berat": "220gr/pcs",
+            "material": "Carbon Fiber",
+            "warna": ["Hitam", "Silver"]
+        }
+    },
+    {
+        "id": 8,
+        "name": "Running Vest 12L",
+        "category": "Running",
+        "gender": "Unisex",
+        "price": 799000,
+        "description": "Vest running ringan dengan 12L kapasitas. Cocok untuk ultra marathon.",
+        "image": "running-vest.jpg",
+        "rating": 4.6,
+        "stock": 18,
+        "brand": "TrailReady",
+        "specs": {
+            "berat": "200gr",
+            "material": "Nylon",
+            "kapasitas": "12L",
+            "warna": ["Hitam", "Biru", "Merah"]
+        }
+    },
+    {
+        "id": 9,
+        "name": "Carrier 60L Ekspedisi",
+        "category": "Camping",
+        "gender": "Pria",
+        "price": 2499000,
+        "description": "Tas carrier besar untuk ekspedisi panjang. Kapasitas 60L dengan frame kuat.",
+        "image": "carrier-60l.jpg",
+        "rating": 4.9,
+        "stock": 7,
+        "brand": "Northridge",
+        "specs": {
+            "berat": "1.8kg",
+            "material": "Nylon 420D",
+            "kapasitas": "60L",
+            "warna": ["Hijau Army", "Coklat"]
+        }
+    },
+    {
+        "id": 10,
+        "name": "Headlamp 1000 Lumen",
+        "category": "Camping",
+        "gender": "Unisex",
+        "price": 399000,
+        "description": "Lampu kepala 1000 lumen dengan baterai tahan lama. 3 mode cahaya.",
+        "image": "headlamp.jpg",
+        "rating": 4.5,
+        "stock": 40,
+        "brand": "LightPro",
+        "specs": {
+            "berat": "120gr",
+            "baterai": "Li-ion 18650",
+            "lumen": "1000",
+            "warna": ["Hitam", "Orange"]
+        }
+    },
+    {
+        "id": 11,
+        "name": "Sleeping Bag Winter -5°C",
+        "category": "Camping",
+        "gender": "Unisex",
+        "price": 899000,
+        "description": "Sleeping bag untuk suhu -5°C hingga 10°C. Material down premium.",
+        "image": "sleeping-bag.jpg",
+        "rating": 4.4,
+        "stock": 15,
+        "brand": "DreamSleep",
+        "specs": {
+            "berat": "1.5kg",
+            "material": "Nylon + Down",
+            "suhu": "-5°C",
+            "warna": ["Biru", "Hijau"]
+        }
+    },
+    {
+        "id": 12,
+        "name": "Hydration Bladder 2L",
+        "category": "Running",
+        "gender": "Unisex",
+        "price": 299000,
+        "description": "Kantong air 2L untuk hiking dan running. BPA-free dan anti-bocor.",
+        "image": "hydration-bladder.jpg",
+        "rating": 4.3,
+        "stock": 50,
+        "brand": "HydraPack",
+        "specs": {
+            "kapasitas": "2L",
+            "material": "TPU",
+            "warna": ["Transparan"]
+        }
+    },
+    {
+        "id": 13,
+        "name": "Kaos Running Teknologi",
+        "category": "Running",
+        "gender": "Pria",
+        "price": 299000,
+        "description": "Kaos running dengan teknologi quick-dry dan anti-bau.",
+        "image": "kaos-running.jpg",
+        "rating": 4.2,
+        "stock": 35,
+        "brand": "RunTech",
+        "specs": {
+            "material": "Polyester 100%",
+            "ukuran": ["S", "M", "L", "XL"],
+            "warna": ["Hitam", "Biru", "Merah"]
+        }
+    },
+    {
+        "id": 14,
+        "name": "Celana Hiking Wanita",
+        "category": "Hiking",
+        "gender": "Wanita",
+        "price": 499000,
+        "description": "Celana hiking stretch untuk wanita. Water-resistant dan cepat kering.",
+        "image": "celana-hiking-wanita.jpg",
+        "rating": 4.6,
+        "stock": 22,
+        "brand": "TrailReady",
+        "specs": {
+            "material": "Nylon + Spandex",
+            "ukuran": ["S", "M", "L"],
+            "warna": ["Hitam", "Coklat", "Hijau"]
+        }
+    },
+    {
+        "id": 15,
+        "name": "Cycling Gloves Gel",
+        "category": "Cycling",
+        "gender": "Unisex",
+        "price": 199000,
+        "description": "Sarung tangan cycling dengan gel padding untuk kenyamanan ekstra.",
+        "image": "cycling-gloves.jpg",
+        "rating": 4.3,
+        "stock": 28,
+        "brand": "BikePro",
+        "specs": {
+            "material": "Synthetic Leather",
+            "ukuran": ["S", "M", "L"],
+            "warna": ["Hitam", "Merah"]
+        }
+    },
+    {
+        "id": 16,
+        "name": "Recovery Roller Set",
+        "category": "Recovery",
+        "gender": "Unisex",
+        "price": 599000,
+        "description": "Set foam roller + massage ball untuk pemulihan otot setelah aktivitas.",
+        "image": "recovery-roller.jpg",
+        "rating": 4.7,
+        "stock": 12,
+        "brand": "RecoverPro",
+        "specs": {
+            "ukuran": "45cm",
+            "material": "EVA Foam",
+            "warna": ["Hitam", "Biru"]
+        }
+    },
+    {
+        "id": 17,
+        "name": "Compression Socks Pria",
+        "category": "Training",
+        "gender": "Pria",
+        "price": 149000,
+        "description": "Kaos kaki kompresi untuk meningkatkan sirkulasi darah saat olahraga.",
+        "image": "compression-socks.jpg",
+        "rating": 4.4,
+        "stock": 40,
+        "brand": "CompressTech",
+        "specs": {
+            "material": "Nylon + Spandex",
+            "ukuran": ["S", "M", "L"],
+            "warna": ["Hitam", "Putih"]
+        }
+    },
+    {
+        "id": 18,
+        "name": "Carrier Daypack 25L",
+        "category": "Hiking",
+        "gender": "Wanita",
+        "price": 699000,
+        "description": "Tas daypack 25L desain ergonomis untuk wanita. Cocok untuk one-day hike.",
+        "image": "daypack-wanita.jpg",
+        "rating": 4.5,
+        "stock": 20,
+        "brand": "Northridge",
+        "specs": {
+            "berat": "450gr",
+            "material": "Nylon 210D",
+            "kapasitas": "25L",
+            "warna": ["Pink", "Biru Muda", "Hitam"]
+        }
+    },
+    {
+        "id": 19,
+        "name": "Cycling Helmet Aero",
+        "category": "Cycling",
+        "gender": "Unisex",
+        "price": 899000,
+        "description": "Helm cycling aerodinamis dengan ventilasi maksimal dan perlindungan MIPS.",
+        "image": "cycling-helmet.jpg",
+        "rating": 4.8,
+        "stock": 10,
+        "brand": "AeroSafe",
+        "specs": {
+            "berat": "240gr",
+            "material": "Polycarbonate",
+            "ukuran": ["S", "M", "L"],
+            "warna": ["Hitam", "Putih", "Merah"]
+        }
+    },
+    {
+        "id": 20,
+        "name": "Matras Camping Self-Inflating",
+        "category": "Camping",
+        "gender": "Unisex",
+        "price": 599000,
+        "description": "Matras camping self-inflating tebal 5cm untuk kenyamanan maksimal.",
+        "image": "matras-camping.jpg",
+        "rating": 4.5,
+        "stock": 15,
+        "brand": "ComfortCamp",
+        "specs": {
+            "berat": "800gr",
+            "material": "PU Foam",
+            "ukuran": "183 x 51cm",
+            "warna": ["Hijau", "Biru"]
+        }
+    }
+]

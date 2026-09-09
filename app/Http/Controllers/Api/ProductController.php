@@ -69,4 +69,15 @@ class ProductController extends Controller
             'data' => $product
         ]);
     }
+
+    // Method baru untuk mendapatkan semua kategori
+    public function categories()
+    {
+        $categories = $this->dataService->getCategories();
+        
+        return response()->json([
+            'status' => 'success',
+            'data' => $categories
+        ]);
+    }
 }

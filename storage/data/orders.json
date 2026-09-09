@@ -1,0 +1,32 @@
+[
+    {
+        "id": "TRK-000001",
+        "customer_name": "Ahmad Fadhilah",
+        "customer_whatsapp": "081234567890",
+        "customer_address": "Jl. Merdeka No. 10, RT 01 RW 02",
+        "customer_city": "Jakarta",
+        "items": [
+            {
+                "product_id": 1,
+                "product_name": "Sepatu Trail Running Pro",
+                "price": 1299000,
+                "quantity": 2,
+                "subtotal": 2598000
+            },
+            {
+                "product_id": 3,
+                "product_name": "Tenda Ultralight 2P",
+                "price": 1999000,
+                "quantity": 1,
+                "subtotal": 1999000
+            }
+        ],
+        "total_price": 4597000,
+        "shipping_cost": 20000,
+        "total_amount": 4617000,
+        "status": "PAID",
+        "payment": null,
+        "created_at": "2026-09-09 13:14:16",
+        "updated_at": "2026-09-09 13:14:16"
+    }
+]

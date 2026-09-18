@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Str;
 
 class DataService
 {
@@ -11,6 +10,7 @@ class DataService
     protected $orderFile;
     protected $categoryFile;
     protected $shippingFile;
+    protected $userFile;
 
     public function __construct()
     {
@@ -18,6 +18,7 @@ class DataService
         $this->orderFile = storage_path('data/orders.json');
         $this->categoryFile = storage_path('data/categories.json');
         $this->shippingFile = storage_path('data/shipping.json');
+        $this->userFile = storage_path('data/users.json');
     }
 
     // ============ PRODUCT METHODS ============
@@ -76,7 +77,7 @@ class DataService
             }
         }
 
-        return 50000; // Default Luar Jawa
+        return 50000;
     }
 
     // ============ ORDER METHODS ============
@@ -111,6 +112,7 @@ class DataService
 
         if ($index !== false) {
             $orders[$index]['status'] = $status;
+            $orders[$index]['updated_at'] = now()->toDateTimeString();
             File::put($this->orderFile, json_encode($orders, JSON_PRETTY_PRINT));
             return true;
         }
@@ -127,6 +129,7 @@ class DataService
 
         if ($index !== false) {
             $orders[$index]['payment'] = $paymentData;
+            $orders[$index]['updated_at'] = now()->toDateTimeString();
             File::put($this->orderFile, json_encode($orders, JSON_PRETTY_PRINT));
             return true;
         }
@@ -139,5 +142,52 @@ class DataService
         $orders = $this->getOrders();
         $count = count($orders) + 1;
         return 'TRK-' . str_pad($count, 6, '0', STR_PAD_LEFT);
+    }
+
+    // ============ USER METHODS ============
+    public function getUsers()
+    {
+        if (!File::exists($this->userFile)) {
+            return [];
+        }
+        return json_decode(File::get($this->userFile), true) ?? [];
+    }
+
+    public function getUserByEmail($email)
+    {
+        $users = $this->getUsers();
+        return collect($users)->firstWhere('email', $email);
+    }
+
+    public function getUserById($id)
+    {
+        $users = $this->getUsers();
+        return collect($users)->firstWhere('id', (int)$id);
+    }
+
+    public function saveUser($user)
+    {
+        $users = $this->getUsers();
+        
+        $maxId = collect($users)->max('id') ?? 0;
+        $user['id'] = $maxId + 1;
+        $user['created_at'] = now()->toDateTimeString();
+        
+        $users[] = $user;
+        File::put($this->userFile, json_encode($users, JSON_PRETTY_PRINT));
+        return $user;
+    }
+
+    public function updateUser($id, $data)
+    {
+        $users = $this->getUsers();
+        $index = collect($users)->search(fn($u) => $u['id'] === (int)$id);
+        
+        if ($index !== false) {
+            $users[$index] = array_merge($users[$index], $data);
+            File::put($this->userFile, json_encode($users, JSON_PRETTY_PRINT));
+            return true;
+        }
+        return false;
     }
 }

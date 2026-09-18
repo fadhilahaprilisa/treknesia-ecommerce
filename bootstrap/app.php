@@ -12,6 +12,10 @@ return Application::configure(basePath: dirname(__DIR__))
         api: __DIR__.'/../routes/api.php',
     )
     ->withMiddleware(function (Middleware $middleware) {
+         $middleware->alias([
+        'user.auth' => \App\Http\Middleware\UserAuth::class,
+        'admin.auth' => \App\Http\Middleware\AdminAuth::class,
+    ]);
         //
     })
     ->withExceptions(function (Exceptions $exceptions) {

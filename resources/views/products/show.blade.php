@@ -98,9 +98,46 @@
     }
     
     function addToCart(productId) {
-        const qty = parseInt(document.getElementById('qtyInput').value);
-        // Akan diimplementasikan di Fase 4
-        alert(`Produk ${productId} dengan jumlah ${qty} ditambahkan ke keranjang!`);
-    }
+    const qty = parseInt(document.getElementById('qtyInput').value);
+    
+    // Fetch product data
+    fetch(`/api/products/${productId}`)
+        .then(res => res.json())
+        .then(data => {
+            const product = data.data;
+            let cart = JSON.parse(localStorage.getItem('treknesia_cart') || '[]');
+            
+            // Cek apakah produk sudah ada di keranjang
+            const existingIndex = cart.findIndex(item => item.id === product.id);
+            
+            if (existingIndex !== -1) {
+                cart[existingIndex].quantity += qty;
+            } else {
+                cart.push({
+                    id: product.id,
+                    name: product.name,
+                    price: product.price,
+                    category: product.category,
+                    gender: product.gender,
+                    image: product.image,
+                    quantity: qty
+                });
+            }
+            
+            localStorage.setItem('treknesia_cart', JSON.stringify(cart));
+            
+            // Update cart count di navbar
+            const total = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const badge = document.getElementById('cartCount');
+            if (badge) badge.textContent = total;
+            
+            alert(`✅ ${product.name} (${qty}x) berhasil ditambahkan ke keranjang!`);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Gagal menambahkan ke keranjang');
+        });
+}
+
 </script>
 @endpush

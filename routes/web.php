@@ -7,6 +7,7 @@ use App\Http\Controllers\Web\CartController;
 use App\Http\Controllers\Web\CheckoutController;
 use App\Http\Controllers\Web\InvoiceController;
 use App\Http\Controllers\Web\AuthController;
+use App\Http\Controllers\Web\AdminController;
 
 // ============ PUBLIC ROUTES ============
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -34,7 +35,21 @@ Route::middleware(['user.auth'])->group(function () {
 
 // ============ ADMIN ROUTES ============
 Route::middleware(['admin.auth'])->prefix('admin')->group(function () {
-    Route::get('/dashboard', function () {
-        return 'Dashboard Admin - Akan dibuat di Fase 5';
-    })->name('admin.dashboard');
+    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+    
+    // Produk
+    Route::get('/products', [AdminController::class, 'products'])->name('admin.products');
+    Route::get('/products/create', [AdminController::class, 'createProduct'])->name('admin.products.create');
+    Route::post('/products', [AdminController::class, 'storeProduct'])->name('admin.products.store');
+    Route::get('/products/{id}/edit', [AdminController::class, 'editProduct'])->name('admin.products.edit');
+    Route::put('/products/{id}', [AdminController::class, 'updateProduct'])->name('admin.products.update');
+    Route::delete('/products/{id}', [AdminController::class, 'deleteProduct'])->name('admin.products.delete');
+    
+    // Pesanan
+    Route::get('/orders', [AdminController::class, 'orders'])->name('admin.orders');
+    Route::get('/orders/{id}', [AdminController::class, 'showOrder'])->name('admin.orders.show');
+    Route::post('/orders/{id}/status', [AdminController::class, 'updateOrderStatus'])->name('admin.orders.status');
+    
+    // Laporan
+    Route::get('/reports', [AdminController::class, 'reports'])->name('admin.reports');
 });

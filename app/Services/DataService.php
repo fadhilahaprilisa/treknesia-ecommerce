@@ -137,6 +137,44 @@ class DataService
         return false;
     }
 
+    // ============ PRODUCT CRUD (ADMIN) ============
+    public function addProduct($data)
+    {
+        $products = $this->getProducts();
+        
+        $maxId = collect($products)->max('id') ?? 0;
+        $data['id'] = $maxId + 1;
+        
+        $products[] = $data;
+        File::put($this->productFile, json_encode($products, JSON_PRETTY_PRINT));
+        return $data;
+    }
+
+    public function updateProduct($id, $data)
+    {
+        $products = $this->getProducts();
+        $index = collect($products)->search(fn($p) => $p['id'] === (int)$id);
+        
+        if ($index !== false) {
+            $products[$index] = array_merge($products[$index], $data);
+            File::put($this->productFile, json_encode($products, JSON_PRETTY_PRINT));
+            return true;
+        }
+        return false;
+    }
+
+    public function deleteProduct($id)
+    {
+        $products = $this->getProducts();
+        $filtered = collect($products)->reject(fn($p) => $p['id'] === (int)$id)->values()->all();
+        
+        if (count($filtered) < count($products)) {
+            File::put($this->productFile, json_encode($filtered, JSON_PRETTY_PRINT));
+            return true;
+        }
+        return false;
+    }
+
     public function generateOrderId()
     {
         $orders = $this->getOrders();

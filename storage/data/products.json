@@ -13,25 +13,33 @@
         "specs": {
             "berat": "280gr",
             "material": "Mesh + Rubber",
-            "warna": ["Hitam", "Merah", "Biru"]
+            "warna": [
+                "Hitam",
+                "Merah",
+                "Biru"
+            ]
         }
     },
     {
         "id": 2,
         "name": "Carrier 40L Summit",
-        "category": "Hiking",
+        "category": "Training",
         "gender": "Unisex",
-        "price": 1599000,
+        "price": "1599000",
         "description": "Tas carrier 40L dengan frame aluminium ringan. Cocok untuk pendakian 3-5 hari.",
         "image": "carrier-40l.jpg",
-        "rating": 4.8,
-        "stock": 15,
+        "rating": "4.8",
+        "stock": "15",
         "brand": "Northridge",
         "specs": {
             "berat": "1.2kg",
             "material": "Nylon 210D",
             "kapasitas": "40L",
-            "warna": ["Hijau", "Biru", "Hitam"]
+            "warna": [
+                "Hijau",
+                "Biru",
+                "Hitam"
+            ]
         }
     },
     {
@@ -49,7 +57,10 @@
             "berat": "1.8kg",
             "material": "Polyester 20D",
             "kapasitas": "2 Orang",
-            "warna": ["Hijau Army", "Orange"]
+            "warna": [
+                "Hijau Army",
+                "Orange"
+            ]
         }
     },
     {
@@ -66,8 +77,15 @@
         "specs": {
             "berat": "65gr",
             "baterai": "14 hari",
-            "fitur": ["GPS", "Altimeter", "HR Monitor"],
-            "warna": ["Hitam", "Putih"]
+            "fitur": [
+                "GPS",
+                "Altimeter",
+                "HR Monitor"
+            ],
+            "warna": [
+                "Hitam",
+                "Putih"
+            ]
         }
     },
     {
@@ -84,7 +102,11 @@
         "specs": {
             "berat": "450gr",
             "material": "Gore-Tex",
-            "warna": ["Hitam", "Biru Navy", "Merah"]
+            "warna": [
+                "Hitam",
+                "Biru Navy",
+                "Merah"
+            ]
         }
     },
     {
@@ -101,7 +123,11 @@
         "specs": {
             "berat": "320gr",
             "material": "Leather + Rubber",
-            "warna": ["Coklat", "Hitam", "Pink"]
+            "warna": [
+                "Coklat",
+                "Hitam",
+                "Pink"
+            ]
         }
     },
     {
@@ -116,9 +142,12 @@
         "stock": 30,
         "brand": "Nordic",
         "specs": {
-            "berat": "220gr/pcs",
+            "berat": "220gr\/pcs",
             "material": "Carbon Fiber",
-            "warna": ["Hitam", "Silver"]
+            "warna": [
+                "Hitam",
+                "Silver"
+            ]
         }
     },
     {
@@ -136,7 +165,11 @@
             "berat": "200gr",
             "material": "Nylon",
             "kapasitas": "12L",
-            "warna": ["Hitam", "Biru", "Merah"]
+            "warna": [
+                "Hitam",
+                "Biru",
+                "Merah"
+            ]
         }
     },
     {
@@ -154,7 +187,10 @@
             "berat": "1.8kg",
             "material": "Nylon 420D",
             "kapasitas": "60L",
-            "warna": ["Hijau Army", "Coklat"]
+            "warna": [
+                "Hijau Army",
+                "Coklat"
+            ]
         }
     },
     {
@@ -172,16 +208,19 @@
             "berat": "120gr",
             "baterai": "Li-ion 18650",
             "lumen": "1000",
-            "warna": ["Hitam", "Orange"]
+            "warna": [
+                "Hitam",
+                "Orange"
+            ]
         }
     },
     {
         "id": 11,
-        "name": "Sleeping Bag Winter -5°C",
+        "name": "Sleeping Bag Winter -5\u00b0C",
         "category": "Camping",
         "gender": "Unisex",
         "price": 899000,
-        "description": "Sleeping bag untuk suhu -5°C hingga 10°C. Material down premium.",
+        "description": "Sleeping bag untuk suhu -5\u00b0C hingga 10\u00b0C. Material down premium.",
         "image": "sleeping-bag.jpg",
         "rating": 4.4,
         "stock": 15,
@@ -189,8 +228,11 @@
         "specs": {
             "berat": "1.5kg",
             "material": "Nylon + Down",
-            "suhu": "-5°C",
-            "warna": ["Biru", "Hijau"]
+            "suhu": "-5\u00b0C",
+            "warna": [
+                "Biru",
+                "Hijau"
+            ]
         }
     },
     {
@@ -207,7 +249,9 @@
         "specs": {
             "kapasitas": "2L",
             "material": "TPU",
-            "warna": ["Transparan"]
+            "warna": [
+                "Transparan"
+            ]
         }
     },
     {
@@ -223,8 +267,17 @@
         "brand": "RunTech",
         "specs": {
             "material": "Polyester 100%",
-            "ukuran": ["S", "M", "L", "XL"],
-            "warna": ["Hitam", "Biru", "Merah"]
+            "ukuran": [
+                "S",
+                "M",
+                "L",
+                "XL"
+            ],
+            "warna": [
+                "Hitam",
+                "Biru",
+                "Merah"
+            ]
         }
     },
     {
@@ -240,8 +293,16 @@
         "brand": "TrailReady",
         "specs": {
             "material": "Nylon + Spandex",
-            "ukuran": ["S", "M", "L"],
-            "warna": ["Hitam", "Coklat", "Hijau"]
+            "ukuran": [
+                "S",
+                "M",
+                "L"
+            ],
+            "warna": [
+                "Hitam",
+                "Coklat",
+                "Hijau"
+            ]
         }
     },
     {
@@ -257,8 +318,15 @@
         "brand": "BikePro",
         "specs": {
             "material": "Synthetic Leather",
-            "ukuran": ["S", "M", "L"],
-            "warna": ["Hitam", "Merah"]
+            "ukuran": [
+                "S",
+                "M",
+                "L"
+            ],
+            "warna": [
+                "Hitam",
+                "Merah"
+            ]
         }
     },
     {
@@ -275,7 +343,10 @@
         "specs": {
             "ukuran": "45cm",
             "material": "EVA Foam",
-            "warna": ["Hitam", "Biru"]
+            "warna": [
+                "Hitam",
+                "Biru"
+            ]
         }
     },
     {
@@ -291,8 +362,15 @@
         "brand": "CompressTech",
         "specs": {
             "material": "Nylon + Spandex",
-            "ukuran": ["S", "M", "L"],
-            "warna": ["Hitam", "Putih"]
+            "ukuran": [
+                "S",
+                "M",
+                "L"
+            ],
+            "warna": [
+                "Hitam",
+                "Putih"
+            ]
         }
     },
     {
@@ -310,7 +388,11 @@
             "berat": "450gr",
             "material": "Nylon 210D",
             "kapasitas": "25L",
-            "warna": ["Pink", "Biru Muda", "Hitam"]
+            "warna": [
+                "Pink",
+                "Biru Muda",
+                "Hitam"
+            ]
         }
     },
     {
@@ -327,8 +409,16 @@
         "specs": {
             "berat": "240gr",
             "material": "Polycarbonate",
-            "ukuran": ["S", "M", "L"],
-            "warna": ["Hitam", "Putih", "Merah"]
+            "ukuran": [
+                "S",
+                "M",
+                "L"
+            ],
+            "warna": [
+                "Hitam",
+                "Putih",
+                "Merah"
+            ]
         }
     },
     {
@@ -346,7 +436,23 @@
             "berat": "800gr",
             "material": "PU Foam",
             "ukuran": "183 x 51cm",
-            "warna": ["Hijau", "Biru"]
+            "warna": [
+                "Hijau",
+                "Biru"
+            ]
         }
+    },
+    {
+        "name": "Jaket Coqquete",
+        "category": "Camping",
+        "gender": "Wanita",
+        "price": "200.000",
+        "stock": "10",
+        "description": "Jaket wanita nyaman & lucu",
+        "brand": "Uniqlo",
+        "rating": "4.4",
+        "image": "default.jpg",
+        "specs": [],
+        "id": 21
     }
 ]

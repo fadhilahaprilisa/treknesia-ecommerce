@@ -28,5 +28,28 @@
         "payment": null,
         "created_at": "2026-09-09 13:14:16",
         "updated_at": "2026-09-09 13:14:16"
+    },
+    {
+        "id": "TRK-000002",
+        "customer_name": "Raihan",
+        "customer_whatsapp": "0126385083",
+        "customer_address": "Jalan Jakarta",
+        "customer_city": "Jakarta",
+        "items": [
+            {
+                "product_id": 13,
+                "product_name": "Kaos Running Teknologi",
+                "price": 299000,
+                "quantity": 1,
+                "subtotal": 299000
+            }
+        ],
+        "total_price": 299000,
+        "shipping_cost": 20000,
+        "total_amount": 319000,
+        "status": "CANCELLED",
+        "payment": null,
+        "created_at": "2026-09-20 14:12:16",
+        "updated_at": "2026-09-20 14:14:20"
     }
 ]

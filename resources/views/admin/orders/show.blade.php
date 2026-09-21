@@ -96,7 +96,45 @@
             </form>
             
             <hr>
-            
+            @if(isset($order['payment_proof']) && $order['payment_proof'])
+    <hr>
+    <h6 class="fw-bold"><i class="fas fa-receipt"></i> Bukti Pembayaran</h6>
+    <div class="mb-2">
+        <p class="small mb-1"><strong>Pengirim:</strong> {{ $order['payment_proof']['sender_name'] }}</p>
+        <p class="small mb-1"><strong>Waktu:</strong> {{ $order['payment_proof']['uploaded_at'] }}</p>
+    </div>
+    <div class="mb-2">
+        <img src="{{ $order['payment_proof']['path'] }}" alt="Bukti Bayar" 
+             class="img-fluid rounded border" style="max-height: 200px; cursor: pointer;"
+             onclick="window.open(this.src)">
+    </div>
+    
+    @if(($order['payment_status'] ?? '') === 'WAITING_VERIFICATION')
+        <form action="/admin/payment/verify/{{ $order['id'] }}" method="POST">
+            @csrf
+            <div class="mb-2">
+                <input type="text" name="note" class="form-control form-control-sm" 
+                       placeholder="Catatan (opsional)">
+            </div>
+            <div class="d-grid gap-2">
+                <button type="submit" name="status" value="VERIFIED" class="btn btn-success btn-sm">
+                    <i class="fas fa-check"></i> Verifikasi (Set PAID)
+                </button>
+                <button type="submit" name="status" value="REJECTED" class="btn btn-danger btn-sm">
+                    <i class="fas fa-times"></i> Tolak
+                </button>
+            </div>
+        </form>
+    @elseif(($order['payment_status'] ?? '') === 'VERIFIED')
+        <div class="alert alert-success small mb-0">
+            <i class="fas fa-check-circle"></i> Sudah diverifikasi
+        </div>
+    @elseif(($order['payment_status'] ?? '') === 'REJECTED')
+        <div class="alert alert-danger small mb-0">
+            <i class="fas fa-times-circle"></i> Ditolak: {{ $order['payment_note'] ?? '-' }}
+        </div>
+    @endif
+@endif
             <button onclick="window.print()" class="btn btn-outline-secondary w-100">
                 <i class="fas fa-print"></i> Cetak Struk
             </button>

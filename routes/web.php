@@ -8,6 +8,7 @@ use App\Http\Controllers\Web\CheckoutController;
 use App\Http\Controllers\Web\InvoiceController;
 use App\Http\Controllers\Web\AuthController;
 use App\Http\Controllers\Web\AdminController;
+use App\Http\Controllers\Web\PaymentController;
 
 // ============ PUBLIC ROUTES ============
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -31,12 +32,15 @@ Route::middleware(['user.auth'])->group(function () {
     Route::get('/cek-status', function () {
         return view('order.check');
     })->name('order.check');
+    Route::post('/payment/upload/{orderId}', [PaymentController::class, 'uploadProof'])->name('payment.upload');
+Route::get('/receipt/{orderId}', [PaymentController::class, 'receipt'])->name('receipt.show');
 });
 
 // ============ ADMIN ROUTES ============
 Route::middleware(['admin.auth'])->prefix('admin')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
-    
+    Route::post('/admin/payment/verify/{orderId}', [PaymentController::class, 'verify'])->name('admin.payment.verify');
+
     // Produk
     Route::get('/products', [AdminController::class, 'products'])->name('admin.products');
     Route::get('/products/create', [AdminController::class, 'createProduct'])->name('admin.products.create');

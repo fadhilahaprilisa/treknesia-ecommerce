@@ -175,6 +175,40 @@ class DataService
         return false;
     }
 
+    // ============ PAYMENT VERIFICATION ============
+    public function uploadPaymentProof($id, $proofData)
+    {
+        $orders = $this->getOrders();
+        $index = collect($orders)->search(fn($o) => $o['id'] === $id);
+        
+        if ($index !== false) {
+            $orders[$index]['payment_proof'] = $proofData;
+            $orders[$index]['payment_status'] = 'WAITING_VERIFICATION';
+            $orders[$index]['updated_at'] = now()->toDateTimeString();
+            File::put($this->orderFile, json_encode($orders, JSON_PRETTY_PRINT));
+            return true;
+        }
+        return false;
+    }
+
+    public function verifyPayment($id, $status, $note = null)
+    {
+        $orders = $this->getOrders();
+        $index = collect($orders)->search(fn($o) => $o['id'] === $id);
+        
+        if ($index !== false) {
+            $orders[$index]['payment_status'] = $status;
+            $orders[$index]['payment_note'] = $note;
+            if ($status === 'VERIFIED') {
+                $orders[$index]['status'] = 'PAID';
+            }
+            $orders[$index]['updated_at'] = now()->toDateTimeString();
+            File::put($this->orderFile, json_encode($orders, JSON_PRETTY_PRINT));
+            return true;
+        }
+        return false;
+    }
+
     public function generateOrderId()
     {
         $orders = $this->getOrders();

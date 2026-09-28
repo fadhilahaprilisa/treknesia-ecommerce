@@ -15,9 +15,6 @@ class PaymentController extends Controller
         $this->dataService = $dataService;
     }
 
-    /**
-     * Upload bukti bayar QRIS
-     */
     public function uploadProof(Request $request, $orderId)
     {
         $request->validate([
@@ -30,12 +27,18 @@ class PaymentController extends Controller
             return back()->with('error', 'Pesanan tidak ditemukan.');
         }
 
+        // Pastikan folder ada
+        $uploadPath = public_path('uploads/payment-proofs');
+        if (!file_exists($uploadPath)) {
+            mkdir($uploadPath, 0755, true);
+        }
+
         // Simpan file
         $file = $request->file('proof');
         $filename = 'proof_' . $orderId . '_' . time() . '.' . $file->getClientOriginalExtension();
-        $file->move(public_path('uploads/payment-proofs'), $filename);
+        $file->move($uploadPath, $filename);
 
-        // Update order
+        // Upload bukti + auto PAID
         $this->dataService->uploadPaymentProof($orderId, [
             'filename' => $filename,
             'path' => '/uploads/payment-proofs/' . $filename,
@@ -43,12 +46,9 @@ class PaymentController extends Controller
             'uploaded_at' => now()->toDateTimeString()
         ]);
 
-        return redirect('/invoice/' . $orderId)->with('success', 'Bukti pembayaran berhasil diupload! Menunggu verifikasi admin.');
+        return redirect('/invoice/' . $orderId)->with('success', '✅ Bukti pembayaran berhasil diupload! Pembayaran Anda telah dikonfirmasi.');
     }
 
-    /**
-     * Admin verifikasi pembayaran
-     */
     public function verify(Request $request, $orderId)
     {
         $request->validate([
@@ -65,9 +65,6 @@ class PaymentController extends Controller
         return redirect('/admin/orders/' . $orderId)->with('success', $message);
     }
 
-    /**
-     * Halaman struk pembelian
-     */
     public function receipt($orderId)
     {
         $order = $this->dataService->getOrderById($orderId);

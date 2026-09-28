@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/products', [ProductController::class, 'index']);
 Route::get('/products/{id}', [ProductController::class, 'show']);
 Route::get('/categories', [ProductController::class, 'categories']);
+Route::get('/brands', [ProductController::class, 'brands']);
 
 // ============ ORDER ROUTES ============
 Route::post('/orders', [OrderController::class, 'store']);

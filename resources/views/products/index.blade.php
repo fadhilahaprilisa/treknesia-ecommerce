@@ -17,6 +17,11 @@
                         <!-- Akan diisi JS -->
                     </div>
                     
+                    <h6 class="fw-bold mt-3">Brand</h6>
+                    <div id="brandFilters">
+                        <!-- Akan diisi JS -->
+                    </div>
+                    
                     <h6 class="fw-bold mt-3">Gender</h6>
                     <div>
                         <div class="form-check">
@@ -67,9 +72,10 @@
 <script>
     let allProducts = [];
     let currentCategory = '{{ request("category") }}';
+    let currentBrand = '{{ request("brand") }}';
     
     // ============================================
-    // LOAD CATEGORIES FOR FILTER
+    // LOAD CATEGORIES
     // ============================================
     fetch('/api/categories')
         .then(res => res.json())
@@ -86,33 +92,68 @@
                 `;
             });
             
-            // Event listeners untuk filter
             document.querySelectorAll('.category-filter').forEach(el => {
                 el.addEventListener('change', filterProducts);
             });
-            document.querySelectorAll('input[name="gender"]').forEach(el => {
+        })
+        .catch(error => console.error('Error categories:', error));
+    
+    // ============================================
+    // LOAD BRANDS (TERPISAH)
+    // ============================================
+    fetch('/api/brands')
+        .then(res => res.json())
+        .then(data => {
+            const brandContainer = document.getElementById('brandFilters');
+            
+            // Tambahkan opsi "Semua Brand"
+            brandContainer.innerHTML = `
+                <div class="form-check">
+                    <input class="form-check-input brand-filter" type="radio" 
+                           name="brand" value="" checked id="allBrand">
+                    <label class="form-check-label" for="allBrand">Semua</label>
+                </div>
+            `;
+            
+            data.data.forEach(brand => {
+                const checked = brand === currentBrand ? 'checked' : '';
+                const brandId = 'brand_' + brand.replace(/[^a-zA-Z0-9]/g, '_');
+                brandContainer.innerHTML += `
+                    <div class="form-check">
+                        <input class="form-check-input brand-filter" type="radio" 
+                               name="brand" value="${brand}" id="${brandId}" ${checked}>
+                        <label class="form-check-label" for="${brandId}">${brand}</label>
+                    </div>
+                `;
+            });
+            
+            document.querySelectorAll('.brand-filter').forEach(el => {
                 el.addEventListener('change', filterProducts);
             });
-            document.getElementById('sortSelect').addEventListener('change', filterProducts);
-            
-            loadProducts();
-        });
-
+        })
+        .catch(error => console.error('Error brands:', error));
+    
+    // ============================================
+    // EVENT LISTENERS
+    // ============================================
+    document.querySelectorAll('input[name="gender"]').forEach(el => {
+        el.addEventListener('change', filterProducts);
+    });
+    document.getElementById('sortSelect').addEventListener('change', filterProducts);
+    
     // ============================================
     // LOAD PRODUCTS
     // ============================================
+    loadProducts();
+    
     function loadProducts() {
-        let url = '/api/products';
-        if (currentCategory) {
-            url += `?category=${currentCategory}`;
-        }
-        
-        fetch(url)
+        fetch('/api/products')
             .then(res => res.json())
             .then(data => {
                 allProducts = data.data;
                 filterProducts();
-            });
+            })
+            .catch(error => console.error('Error products:', error));
     }
     
     // ============================================
@@ -124,8 +165,15 @@
         // Filter kategori
         const selectedCategory = document.querySelector('input[name="category"]:checked');
         if (selectedCategory && selectedCategory.value) {
-            const categoryName = selectedCategory.value;
-            products = products.filter(p => p.category.toLowerCase() === categoryName);
+            products = products.filter(p => 
+                p.category.toLowerCase() === selectedCategory.value.toLowerCase()
+            );
+        }
+        
+        // Filter brand
+        const selectedBrand = document.querySelector('input[name="brand"]:checked');
+        if (selectedBrand && selectedBrand.value) {
+            products = products.filter(p => p.brand === selectedBrand.value);
         }
         
         // Filter gender

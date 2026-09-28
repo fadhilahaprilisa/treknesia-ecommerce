@@ -160,13 +160,12 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/products">Produk</a>
-                    </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Brands</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Sale</a>
-                    </li>
+    <a class="nav-link" href="/brands">Brands</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="/sale">Sale</a>
+</li>
                     @if(session('user_id'))
                         <li class="nav-item">
                             <a class="nav-link" href="/cek-status"><i class="fas fa-search"></i> Cek Status</a>
@@ -251,9 +250,9 @@
                     <h6>Shop</h6>
                     <ul class="list-unstyled">
                         <li><a href="/products">All Products</a></li>
-                        <li><a href="#">New Arrivals</a></li>
-                        <li><a href="#">Best Sellers</a></li>
-                        <li><a href="#">Sale</a></li>
+                        <li><a href="/products">All Products</a></li>
+<li><a href="/brands">Brands</a></li>
+<li><a href="/sale">Sale</a></li>
                     </ul>
                 </div>
                 <div class="col-md-2 mb-4">

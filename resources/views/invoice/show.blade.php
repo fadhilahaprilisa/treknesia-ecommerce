@@ -7,6 +7,22 @@
 <div class="container py-5">
     <div class="row justify-content-center">
         <div class="col-lg-10">
+            
+            {{-- Flash Message --}}
+            @if(session('success'))
+                <div class="alert alert-success alert-dismissible fade show">
+                    <i class="fas fa-check-circle"></i> {{ session('success') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            @endif
+            
+            @if(session('error'))
+                <div class="alert alert-danger alert-dismissible fade show">
+                    <i class="fas fa-exclamation-circle"></i> {{ session('error') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            @endif
+            
             <div id="invoiceContainer">
                 <div class="text-center py-5">
                     <i class="fas fa-spinner fa-spin fa-3x"></i>
@@ -21,7 +37,10 @@
 
 @push('scripts')
 <script>
-    const orderId = '{{ $id }}';
+    // ✅ FIX: Order ID dari URL (bukan dari data order)
+    const orderIdFromUrl = '{{ $id }}';
+    
+    console.log('Order ID from URL:', orderIdFromUrl);
     
     function formatRupiah(angka) {
         return new Intl.NumberFormat('id-ID', {
@@ -42,12 +61,22 @@
     }
     
     function loadInvoice() {
-        fetch(`/api/orders/${orderId}`)
+        fetch(`/api/orders/${orderIdFromUrl}`)
             .then(res => res.json())
             .then(data => {
-                if (data.status !== 'success') throw new Error('Order not found');
+                console.log('API Response:', data);
+                
+                if (data.status !== 'success') {
+                    throw new Error(data.message || 'Order not found');
+                }
                 
                 const order = data.data;
+                
+                // ✅ FIX: Ambil order ID dari berbagai kemungkinan field
+                const displayOrderId = order.order_id || order.id || orderIdFromUrl;
+                
+                console.log('Display Order ID:', displayOrderId);
+                
                 const container = document.getElementById('invoiceContainer');
                 const paymentMethod = order.payment_method || 'COD';
                 const paymentStatus = order.payment_status || 'NONE';
@@ -55,9 +84,10 @@
                 
                 let itemsHtml = '';
                 order.items.forEach(item => {
+                    const sizeText = item.size ? ` (${item.size})` : '';
                     itemsHtml += `
                         <tr>
-                            <td>${item.product_name}</td>
+                            <td>${item.product_name}${sizeText}</td>
                             <td class="text-center">${item.quantity}</td>
                             <td class="text-end">${formatRupiah(item.price)}</td>
                             <td class="text-end">${formatRupiah(item.subtotal)}</td>
@@ -81,7 +111,7 @@
                             <div class="row mb-3">
                                 <div class="col-md-6">
                                     <h6 class="fw-bold small text-uppercase text-muted">Informasi Pesanan</h6>
-                                    <p class="mb-1 small"><strong>Order ID:</strong> ${order.order_id}</p>
+                                    <p class="mb-1 small"><strong>Order ID:</strong> ${displayOrderId}</p>
                                     <p class="mb-1 small"><strong>Tanggal:</strong> ${order.created_at}</p>
                                     <p class="mb-1 small"><strong>Metode:</strong> <span class="badge bg-secondary">${paymentMethod}</span></p>
                                 </div>
@@ -122,23 +152,27 @@
                         </div>
                     </div>
                     
-                    ${renderPaymentSection(order, paymentMethod, paymentStatus, proof)}
+                    ${renderPaymentSection(order, paymentMethod, paymentStatus, proof, displayOrderId)}
                 `;
             })
             .catch(error => {
+                console.error('Error:', error);
                 document.getElementById('invoiceContainer').innerHTML = `
                     <div class="card shadow-sm">
                         <div class="card-body text-center py-5">
                             <i class="fas fa-exclamation-triangle fa-4x text-danger mb-3"></i>
                             <h4>Pesanan Tidak Ditemukan</h4>
-                            <a href="/products" class="btn btn-primary-custom mt-3">Kembali Belanja</a>
+                            <p class="text-muted">Order ID: ${orderIdFromUrl}</p>
+                            <a href="/products" class="btn btn-primary-custom">
+                                <i class="fas fa-shopping-bag"></i> Kembali Belanja
+                            </a>
                         </div>
                     </div>
                 `;
             });
     }
     
-    function renderPaymentSection(order, method, status, proof) {
+    function renderPaymentSection(order, method, status, proof, displayOrderId) {
         // Kalau sudah PAID atau SHIPPED
         if (order.status === 'PAID' || order.status === 'SHIPPED') {
             return `
@@ -147,7 +181,7 @@
                         <i class="fas fa-check-circle fa-3x text-success mb-2"></i>
                         <h5 class="fw-bold">Pembayaran Berhasil!</h5>
                         <p class="text-muted">Pesanan Anda sedang diproses.</p>
-                        <a href="/receipt/${order.order_id}" class="btn btn-primary-custom">
+                        <a href="/receipt/${displayOrderId}" class="btn btn-primary-custom">
                             <i class="fas fa-receipt"></i> Lihat Struk
                         </a>
                         <button onclick="window.print()" class="btn btn-outline-custom">
@@ -158,7 +192,7 @@
             `;
         }
         
-        // Kalau COD
+        // COD
         if (method === 'COD') {
             return `
                 <div class="card shadow-sm">
@@ -176,90 +210,87 @@
             `;
         }
         
-        // Kalau QRIS
-        if (method === 'QRIS') {
-            // Kalau sudah upload bukti
-            if (proof && proof.filename) {
-                if (status === 'WAITING_VERIFICATION') {
-                    return `
-                        <div class="card shadow-sm">
-                            <div class="card-body p-4">
-                                <h5 class="fw-bold"><i class="fas fa-qrcode text-success"></i> Pembayaran QRIS</h5>
-                                <hr>
-                                <div class="alert alert-warning">
-                                    <i class="fas fa-clock"></i>
-                                    <strong>Menunggu Verifikasi Admin</strong><br>
-                                    Bukti pembayaran Anda sedang diverifikasi. Mohon tunggu 1x24 jam.
-                                </div>
-                                <p class="small mb-1"><strong>Pengirim:</strong> ${proof.sender_name}</p>
-                                <p class="small mb-0"><strong>Waktu Upload:</strong> ${proof.uploaded_at}</p>
+        // QRIS — sudah upload, tunggu verifikasi
+        if (method === 'QRIS' && proof && proof.filename) {
+            if (status === 'WAITING_VERIFICATION') {
+                return `
+                    <div class="card shadow-sm">
+                        <div class="card-body p-4">
+                            <h5 class="fw-bold"><i class="fas fa-qrcode text-success"></i> Pembayaran QRIS</h5>
+                            <hr>
+                            <div class="alert alert-warning">
+                                <i class="fas fa-clock"></i>
+                                <strong>Menunggu Verifikasi Admin</strong><br>
+                                Bukti pembayaran Anda sedang diverifikasi.
                             </div>
+                            <p class="small mb-1"><strong>Pengirim:</strong> ${proof.sender_name}</p>
+                            <p class="small mb-0"><strong>Waktu Upload:</strong> ${proof.uploaded_at}</p>
                         </div>
-                    `;
-                }
-                if (status === 'REJECTED') {
-                    return `
-                        <div class="card shadow-sm">
-                            <div class="card-body p-4">
-                                <h5 class="fw-bold"><i class="fas fa-qrcode text-success"></i> Pembayaran QRIS</h5>
-                                <hr>
-                                <div class="alert alert-danger">
-                                    <i class="fas fa-times-circle"></i>
-                                    <strong>Pembayaran Ditolak!</strong><br>
-                                    ${order.payment_note || 'Silakan upload ulang bukti pembayaran yang benar.'}
-                                </div>
-                                ${renderUploadForm(order.order_id)}
-                            </div>
-                        </div>
-                    `;
-                }
-            }
-            
-            // Default: tampilkan QR + form upload
-            return `
-                <div class="card shadow-sm">
-                    <div class="card-body p-4">
-                        <h5 class="fw-bold"><i class="fas fa-qrcode text-success"></i> Pembayaran QRIS</h5>
-                        <hr>
-                        
-                        <div class="row">
-                            <div class="col-md-5 text-center mb-3">
-                                <div class="border rounded p-3 bg-light">
-                                    <p class="small text-muted mb-2">Scan QR Code berikut:</p>
-                                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=TrekNesia-${order.order_id}-${order.total_amount}" 
-                                         alt="QR Code" class="img-fluid" style="max-width: 200px;">
-                                    <p class="fw-bold mt-2 mb-0">${formatRupiah(order.total_amount)}</p>
-                                    <small class="text-muted">a.n. TrekNesia</small>
-                                </div>
-                            </div>
-                            <div class="col-md-7">
-                                <h6 class="fw-bold">Cara Bayar:</h6>
-                                <ol class="small">
-                                    <li>Buka aplikasi e-wallet / mobile banking</li>
-                                    <li>Pilih menu <strong>Scan QRIS</strong></li>
-                                    <li>Scan QR code di samping</li>
-                                    <li>Bayar sesuai nominal</li>
-                                    <li>Screenshot bukti pembayaran</li>
-                                    <li>Upload bukti di form bawah</li>
-                                </ol>
-                                <div class="alert alert-info small mb-0">
-                                    <i class="fas fa-info-circle"></i>
-                                    Verifikasi manual maksimal 1x24 jam.
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <hr class="my-4">
-                        ${renderUploadForm(order.order_id)}
                     </div>
-                </div>
-            `;
+                `;
+            }
+            if (status === 'REJECTED') {
+                return `
+                    <div class="card shadow-sm">
+                        <div class="card-body p-4">
+                            <h5 class="fw-bold"><i class="fas fa-qrcode text-success"></i> Pembayaran QRIS</h5>
+                            <hr>
+                            <div class="alert alert-danger">
+                                <i class="fas fa-times-circle"></i>
+                                <strong>Pembayaran Ditolak!</strong><br>
+                                ${order.payment_note || 'Silakan upload ulang.'}
+                            </div>
+                            ${renderUploadForm(displayOrderId)}
+                        </div>
+                    </div>
+                `;
+            }
         }
         
-        return '';
+        // QRIS — belum upload
+        return `
+            <div class="card shadow-sm">
+                <div class="card-body p-4">
+                    <h5 class="fw-bold"><i class="fas fa-qrcode text-success"></i> Pembayaran QRIS</h5>
+                    <hr>
+                    
+                    <div class="row">
+                        <div class="col-md-5 text-center mb-3">
+                            <div class="border rounded p-3 bg-light">
+                                <p class="small text-muted mb-2">Scan QR Code berikut:</p>
+                                <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=TrekNesia-${displayOrderId}-${order.total_amount}" 
+                                     alt="QR Code" class="img-fluid" style="max-width: 200px;">
+                                <p class="fw-bold mt-2 mb-0">${formatRupiah(order.total_amount)}</p>
+                                <small class="text-muted">a.n. TrekNesia</small>
+                            </div>
+                        </div>
+                        <div class="col-md-7">
+                            <h6 class="fw-bold">Cara Bayar:</h6>
+                            <ol class="small">
+                                <li>Buka aplikasi e-wallet / mobile banking</li>
+                                <li>Pilih menu <strong>Scan QRIS</strong></li>
+                                <li>Scan QR code di samping</li>
+                                <li>Bayar sesuai nominal</li>
+                                <li>Screenshot bukti pembayaran</li>
+                                <li>Upload bukti di form bawah</li>
+                            </ol>
+                            <div class="alert alert-info small mb-0">
+                                <i class="fas fa-info-circle"></i>
+                                Verifikasi manual maksimal 1x24 jam.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <hr class="my-4">
+                    ${renderUploadForm(displayOrderId)}
+                </div>
+            </div>
+        `;
     }
     
     function renderUploadForm(orderId) {
+        console.log('Render upload form with orderId:', orderId);
+        
         return `
             <h6 class="fw-bold"><i class="fas fa-upload"></i> Upload Bukti Pembayaran</h6>
             <form action="/payment/upload/${orderId}" method="POST" enctype="multipart/form-data">

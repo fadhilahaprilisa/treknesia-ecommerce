@@ -176,6 +176,10 @@ class DataService
     }
 
     // ============ PAYMENT VERIFICATION ============
+    
+    /**
+     * ✅ FIXED (Opsi C): Upload bukti bayar → status utama langsung PAID
+     */
     public function uploadPaymentProof($id, $proofData)
     {
         $orders = $this->getOrders();
@@ -183,7 +187,8 @@ class DataService
         
         if ($index !== false) {
             $orders[$index]['payment_proof'] = $proofData;
-            $orders[$index]['payment_status'] = 'WAITING_VERIFICATION';
+            $orders[$index]['payment_status'] = 'VERIFIED';      // ✅ Langsung VERIFIED
+            $orders[$index]['status'] = 'PAID';                  // ✅ Status utama jadi PAID
             $orders[$index]['updated_at'] = now()->toDateTimeString();
             File::put($this->orderFile, json_encode($orders, JSON_PRETTY_PRINT));
             return true;
@@ -191,6 +196,9 @@ class DataService
         return false;
     }
 
+    /**
+     * Admin verifikasi manual (untuk COD atau reject)
+     */
     public function verifyPayment($id, $status, $note = null)
     {
         $orders = $this->getOrders();
@@ -214,6 +222,20 @@ class DataService
         $orders = $this->getOrders();
         $count = count($orders) + 1;
         return 'TRK-' . str_pad($count, 6, '0', STR_PAD_LEFT);
+    }
+
+    // ============ BRAND METHODS ============
+    public function getBrands()
+    {
+        $products = $this->getProducts();
+        $brands = collect($products)->pluck('brand')->filter()->unique()->values()->all();
+        return $brands;
+    }
+
+    public function getProductsByBrand($brand)
+    {
+        $products = $this->getProducts();
+        return collect($products)->where('brand', $brand)->values()->all();
     }
 
     // ============ USER METHODS ============

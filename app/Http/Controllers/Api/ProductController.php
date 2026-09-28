@@ -34,6 +34,14 @@ class ProductController extends Controller
                 ->values()
                 ->all();
         }
+        
+                // Filter by brand
+        if ($request->has('brand')) {
+            $products = collect($products)
+                ->where('brand', $request->brand)
+                ->values()
+                ->all();
+        }
 
         // Search
         if ($request->has('search')) {
@@ -50,6 +58,15 @@ class ProductController extends Controller
         return response()->json([
             'status' => 'success',
             'data' => $products
+        ]);
+    }
+
+    public function brands()
+    {
+        $brands = $this->dataService->getBrands();
+        return response()->json([
+            'status' => 'success',
+            'data' => $brands
         ]);
     }
 

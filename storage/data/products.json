@@ -10,36 +10,30 @@
         "rating": 4.7,
         "stock": 25,
         "brand": "PeakStride",
+        "sizes": ["39", "40", "41", "42", "43", "44"],
         "specs": {
             "berat": "280gr",
             "material": "Mesh + Rubber",
-            "warna": [
-                "Hitam",
-                "Merah",
-                "Biru"
-            ]
+            "warna": ["Hitam", "Merah", "Biru"]
         }
     },
     {
         "id": 2,
         "name": "Carrier 40L Summit",
-        "category": "Training",
+        "category": "Hiking",
         "gender": "Unisex",
-        "price": "1599000",
+        "price": 1599000,
         "description": "Tas carrier 40L dengan frame aluminium ringan. Cocok untuk pendakian 3-5 hari.",
         "image": "carrier-40l.jpg",
-        "rating": "4.8",
-        "stock": "15",
+        "rating": 4.8,
+        "stock": 15,
         "brand": "Northridge",
+        "sizes": ["40L", "50L", "60L"],
         "specs": {
             "berat": "1.2kg",
             "material": "Nylon 210D",
             "kapasitas": "40L",
-            "warna": [
-                "Hijau",
-                "Biru",
-                "Hitam"
-            ]
+            "warna": ["Hijau", "Biru", "Hitam"]
         }
     },
     {
@@ -53,14 +47,12 @@
         "rating": 4.6,
         "stock": 10,
         "brand": "Wildsphere",
+        "sizes": ["2 Orang", "4 Orang"],
         "specs": {
             "berat": "1.8kg",
             "material": "Polyester 20D",
             "kapasitas": "2 Orang",
-            "warna": [
-                "Hijau Army",
-                "Orange"
-            ]
+            "warna": ["Hijau Army", "Orange"]
         }
     },
     {
@@ -77,15 +69,8 @@
         "specs": {
             "berat": "65gr",
             "baterai": "14 hari",
-            "fitur": [
-                "GPS",
-                "Altimeter",
-                "HR Monitor"
-            ],
-            "warna": [
-                "Hitam",
-                "Putih"
-            ]
+            "fitur": ["GPS", "Altimeter", "HR Monitor"],
+            "warna": ["Hitam", "Putih"]
         }
     },
     {
@@ -99,14 +84,11 @@
         "rating": 4.7,
         "stock": 12,
         "brand": "Weatherguard",
+        "sizes": ["S", "M", "L", "XL", "XXL"],
         "specs": {
             "berat": "450gr",
             "material": "Gore-Tex",
-            "warna": [
-                "Hitam",
-                "Biru Navy",
-                "Merah"
-            ]
+            "warna": ["Hitam", "Biru Navy", "Merah"]
         }
     },
     {
@@ -120,14 +102,11 @@
         "rating": 4.8,
         "stock": 20,
         "brand": "PeakStride",
+        "sizes": ["36", "37", "38", "39", "40"],
         "specs": {
             "berat": "320gr",
             "material": "Leather + Rubber",
-            "warna": [
-                "Coklat",
-                "Hitam",
-                "Pink"
-            ]
+            "warna": ["Coklat", "Hitam", "Pink"]
         }
     },
     {
@@ -141,13 +120,11 @@
         "rating": 4.5,
         "stock": 30,
         "brand": "Nordic",
+        "sizes": ["100cm", "110cm", "120cm"],
         "specs": {
-            "berat": "220gr\/pcs",
+            "berat": "220gr/pcs",
             "material": "Carbon Fiber",
-            "warna": [
-                "Hitam",
-                "Silver"
-            ]
+            "warna": ["Hitam", "Silver"]
         }
     },
     {
@@ -161,15 +138,12 @@
         "rating": 4.6,
         "stock": 18,
         "brand": "TrailReady",
+        "sizes": ["S", "M", "L", "XL"],
         "specs": {
             "berat": "200gr",
             "material": "Nylon",
             "kapasitas": "12L",
-            "warna": [
-                "Hitam",
-                "Biru",
-                "Merah"
-            ]
+            "warna": ["Hitam", "Biru", "Merah"]
         }
     },
     {
@@ -183,14 +157,12 @@
         "rating": 4.9,
         "stock": 7,
         "brand": "Northridge",
+        "sizes": ["40L", "50L", "60L"],
         "specs": {
             "berat": "1.8kg",
             "material": "Nylon 420D",
             "kapasitas": "60L",
-            "warna": [
-                "Hijau Army",
-                "Coklat"
-            ]
+            "warna": ["Hijau Army", "Coklat"]
         }
     },
     {
@@ -208,31 +180,25 @@
             "berat": "120gr",
             "baterai": "Li-ion 18650",
             "lumen": "1000",
-            "warna": [
-                "Hitam",
-                "Orange"
-            ]
+            "warna": ["Hitam", "Orange"]
         }
     },
     {
         "id": 11,
-        "name": "Sleeping Bag Winter -5\u00b0C",
+        "name": "Sleeping Bag Winter -5°C",
         "category": "Camping",
         "gender": "Unisex",
         "price": 899000,
-        "description": "Sleeping bag untuk suhu -5\u00b0C hingga 10\u00b0C. Material down premium.",
+        "description": "Sleeping bag untuk suhu -5°C hingga 10°C. Material down premium.",
         "image": "sleeping-bag.jpg",
         "rating": 4.4,
         "stock": 15,
         "brand": "DreamSleep",
+        "sizes": ["-5°C", "0°C", "5°C"],
         "specs": {
             "berat": "1.5kg",
             "material": "Nylon + Down",
-            "suhu": "-5\u00b0C",
-            "warna": [
-                "Biru",
-                "Hijau"
-            ]
+            "warna": ["Biru", "Hijau"]
         }
     },
     {
@@ -249,9 +215,7 @@
         "specs": {
             "kapasitas": "2L",
             "material": "TPU",
-            "warna": [
-                "Transparan"
-            ]
+            "warna": ["Transparan"]
         }
     },
     {
@@ -265,19 +229,10 @@
         "rating": 4.2,
         "stock": 35,
         "brand": "RunTech",
+        "sizes": ["S", "M", "L", "XL"],
         "specs": {
             "material": "Polyester 100%",
-            "ukuran": [
-                "S",
-                "M",
-                "L",
-                "XL"
-            ],
-            "warna": [
-                "Hitam",
-                "Biru",
-                "Merah"
-            ]
+            "warna": ["Hitam", "Biru", "Merah"]
         }
     },
     {
@@ -291,18 +246,10 @@
         "rating": 4.6,
         "stock": 22,
         "brand": "TrailReady",
+        "sizes": ["S", "M", "L", "XL"],
         "specs": {
             "material": "Nylon + Spandex",
-            "ukuran": [
-                "S",
-                "M",
-                "L"
-            ],
-            "warna": [
-                "Hitam",
-                "Coklat",
-                "Hijau"
-            ]
+            "warna": ["Hitam", "Coklat", "Hijau"]
         }
     },
     {
@@ -316,17 +263,10 @@
         "rating": 4.3,
         "stock": 28,
         "brand": "BikePro",
+        "sizes": ["S", "M", "L"],
         "specs": {
             "material": "Synthetic Leather",
-            "ukuran": [
-                "S",
-                "M",
-                "L"
-            ],
-            "warna": [
-                "Hitam",
-                "Merah"
-            ]
+            "warna": ["Hitam", "Merah"]
         }
     },
     {
@@ -343,10 +283,7 @@
         "specs": {
             "ukuran": "45cm",
             "material": "EVA Foam",
-            "warna": [
-                "Hitam",
-                "Biru"
-            ]
+            "warna": ["Hitam", "Biru"]
         }
     },
     {
@@ -360,17 +297,10 @@
         "rating": 4.4,
         "stock": 40,
         "brand": "CompressTech",
+        "sizes": ["S", "M", "L"],
         "specs": {
             "material": "Nylon + Spandex",
-            "ukuran": [
-                "S",
-                "M",
-                "L"
-            ],
-            "warna": [
-                "Hitam",
-                "Putih"
-            ]
+            "warna": ["Hitam", "Putih"]
         }
     },
     {
@@ -384,15 +314,12 @@
         "rating": 4.5,
         "stock": 20,
         "brand": "Northridge",
+        "sizes": ["25L"],
         "specs": {
             "berat": "450gr",
             "material": "Nylon 210D",
             "kapasitas": "25L",
-            "warna": [
-                "Pink",
-                "Biru Muda",
-                "Hitam"
-            ]
+            "warna": ["Pink", "Biru Muda", "Hitam"]
         }
     },
     {
@@ -406,19 +333,11 @@
         "rating": 4.8,
         "stock": 10,
         "brand": "AeroSafe",
+        "sizes": ["S", "M", "L"],
         "specs": {
             "berat": "240gr",
             "material": "Polycarbonate",
-            "ukuran": [
-                "S",
-                "M",
-                "L"
-            ],
-            "warna": [
-                "Hitam",
-                "Putih",
-                "Merah"
-            ]
+            "warna": ["Hitam", "Putih", "Merah"]
         }
     },
     {
@@ -436,23 +355,24 @@
             "berat": "800gr",
             "material": "PU Foam",
             "ukuran": "183 x 51cm",
-            "warna": [
-                "Hijau",
-                "Biru"
-            ]
+            "warna": ["Hijau", "Biru"]
         }
     },
     {
-        "name": "Jaket Coqquete",
+        "id": 21,
+        "name": "Jaket Coquette",
         "category": "Camping",
         "gender": "Wanita",
-        "price": "200.000",
-        "stock": "10",
-        "description": "Jaket wanita nyaman & lucu",
-        "brand": "Uniqlo",
-        "rating": "4.4",
+        "price": 200000,
+        "description": "Jaket wanita nyaman & lucu dengan desain modern.",
         "image": "default.jpg",
-        "specs": [],
-        "id": 21
+        "rating": 4.4,
+        "stock": 10,
+        "brand": "Uniqlo",
+        "sizes": ["S", "M", "L", "XL", "XXL"],
+        "specs": {
+            "material": "Polyester",
+            "warna": ["Pink", "Hitam"]
+        }
     }
 ]

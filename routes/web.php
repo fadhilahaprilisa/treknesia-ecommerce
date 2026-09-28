@@ -15,6 +15,15 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
 Route::get('/product/{id}', [ProductController::class, 'show'])->name('products.show');
 
+// ============ BRANDS & SALE ============
+Route::get('/brands', function () {
+    return view('brands.index');
+})->name('brands.index');
+
+Route::get('/sale', function () {
+    return view('sale.index');
+})->name('sale.index');
+
 // ============ AUTH ROUTES ============
 Route::get('/login-user', [AuthController::class, 'showUserLogin'])->name('login.user');
 Route::post('/login-user', [AuthController::class, 'userLogin']);
@@ -32,15 +41,16 @@ Route::middleware(['user.auth'])->group(function () {
     Route::get('/cek-status', function () {
         return view('order.check');
     })->name('order.check');
+
+    // Payment & Receipt
     Route::post('/payment/upload/{orderId}', [PaymentController::class, 'uploadProof'])->name('payment.upload');
-Route::get('/receipt/{orderId}', [PaymentController::class, 'receipt'])->name('receipt.show');
+    Route::get('/receipt/{orderId}', [PaymentController::class, 'receipt'])->name('receipt.show');
 });
 
 // ============ ADMIN ROUTES ============
 Route::middleware(['admin.auth'])->prefix('admin')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
-    Route::post('/admin/payment/verify/{orderId}', [PaymentController::class, 'verify'])->name('admin.payment.verify');
-
+    
     // Produk
     Route::get('/products', [AdminController::class, 'products'])->name('admin.products');
     Route::get('/products/create', [AdminController::class, 'createProduct'])->name('admin.products.create');
@@ -53,6 +63,9 @@ Route::middleware(['admin.auth'])->prefix('admin')->group(function () {
     Route::get('/orders', [AdminController::class, 'orders'])->name('admin.orders');
     Route::get('/orders/{id}', [AdminController::class, 'showOrder'])->name('admin.orders.show');
     Route::post('/orders/{id}/status', [AdminController::class, 'updateOrderStatus'])->name('admin.orders.status');
+    
+    // Verifikasi pembayaran
+    Route::post('/payment/verify/{orderId}', [PaymentController::class, 'verify'])->name('admin.payment.verify');
     
     // Laporan
     Route::get('/reports', [AdminController::class, 'reports'])->name('admin.reports');

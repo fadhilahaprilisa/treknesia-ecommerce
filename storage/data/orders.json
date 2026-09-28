@@ -93,9 +93,177 @@
         "total_price": 2499000,
         "shipping_cost": 20000,
         "total_amount": 2519000,
-        "status": "PENDING",
+        "status": "CANCELLED",
         "payment": null,
         "created_at": "2026-09-21 03:10:13",
-        "updated_at": "2026-09-21 03:10:13"
+        "updated_at": "2026-09-21 03:58:40"
+    },
+    {
+        "id": "TRK-000005",
+        "customer_name": "Naila",
+        "customer_whatsapp": "081298765432",
+        "customer_address": "Jalan",
+        "customer_city": "Depok",
+        "payment_method": "QRIS",
+        "items": [
+            {
+                "product_id": 14,
+                "product_name": "Celana Hiking Wanita",
+                "price": 499000,
+                "quantity": 1,
+                "size": null,
+                "subtotal": 499000
+            }
+        ],
+        "total_price": 499000,
+        "shipping_cost": 20000,
+        "total_amount": 519000,
+        "status": "PENDING",
+        "payment": null,
+        "payment_status": "NONE",
+        "payment_proof": null,
+        "created_at": "2026-09-21 03:56:14",
+        "updated_at": "2026-09-21 03:56:14"
+    },
+    {
+        "id": "TRK-000006",
+        "customer_name": "Naya",
+        "customer_whatsapp": "081298765432",
+        "customer_address": "Jalan",
+        "customer_city": "Bekasi",
+        "payment_method": "COD",
+        "items": [
+            {
+                "product_id": 3,
+                "product_name": "Tenda Ultralight 2P",
+                "price": 1999000,
+                "quantity": 1,
+                "size": null,
+                "subtotal": 1999000
+            }
+        ],
+        "total_price": 1999000,
+        "shipping_cost": 20000,
+        "total_amount": 2019000,
+        "status": "PAID",
+        "payment": null,
+        "payment_status": "NONE",
+        "payment_proof": null,
+        "created_at": "2026-09-21 03:57:05",
+        "updated_at": "2026-09-21 03:58:22"
+    },
+    {
+        "id": "TRK-000007",
+        "customer_name": "dila",
+        "customer_whatsapp": "0897654686",
+        "customer_address": "jalan curug",
+        "customer_city": "Jakarta",
+        "payment_method": "QRIS",
+        "items": [
+            {
+                "product_id": 13,
+                "product_name": "Kaos Running Teknologi",
+                "price": 299000,
+                "quantity": 2,
+                "size": "S",
+                "subtotal": 598000
+            }
+        ],
+        "total_price": 598000,
+        "shipping_cost": 20000,
+        "total_amount": 618000,
+        "status": "PENDING",
+        "payment": null,
+        "payment_status": "NONE",
+        "payment_proof": null,
+        "created_at": "2026-09-28 10:12:47",
+        "updated_at": "2026-09-28 10:12:47"
+    },
+    {
+        "id": "TRK-000008",
+        "customer_name": "dila",
+        "customer_whatsapp": "0897654686",
+        "customer_address": "jalan bogor",
+        "customer_city": "Depok",
+        "payment_method": "QRIS",
+        "items": [
+            {
+                "product_id": 14,
+                "product_name": "Celana Hiking Wanita",
+                "price": 499000,
+                "quantity": 1,
+                "size": "S",
+                "subtotal": 499000
+            }
+        ],
+        "total_price": 499000,
+        "shipping_cost": 20000,
+        "total_amount": 519000,
+        "status": "PENDING",
+        "payment": null,
+        "payment_status": "NONE",
+        "payment_proof": null,
+        "created_at": "2026-09-28 10:28:51",
+        "updated_at": "2026-09-28 10:28:51"
+    },
+    {
+        "id": "TRK-000009",
+        "customer_name": "dila",
+        "customer_whatsapp": "0897654686",
+        "customer_address": "jalan depok",
+        "customer_city": "Depok",
+        "payment_method": "QRIS",
+        "items": [
+            {
+                "product_id": 21,
+                "product_name": "Jaket Coquette",
+                "price": 200000,
+                "quantity": 1,
+                "size": "XL",
+                "subtotal": 200000
+            }
+        ],
+        "total_price": 200000,
+        "shipping_cost": 20000,
+        "total_amount": 220000,
+        "status": "PAID",
+        "payment": null,
+        "payment_status": "NONE",
+        "payment_proof": null,
+        "created_at": "2026-09-28 10:30:28",
+        "updated_at": "2026-09-28 10:38:49"
+    },
+    {
+        "id": "TRK-000010",
+        "order_id": "TRK-000010",
+        "customer_name": "dila",
+        "customer_whatsapp": "0897654686",
+        "customer_address": "jalan depok",
+        "customer_city": "Depok",
+        "payment_method": "QRIS",
+        "items": [
+            {
+                "product_id": 6,
+                "product_name": "Sepatu Hiking Wanita",
+                "price": 1499000,
+                "quantity": 1,
+                "size": "36",
+                "subtotal": 1499000
+            }
+        ],
+        "total_price": 1499000,
+        "shipping_cost": 20000,
+        "total_amount": 1519000,
+        "status": "PAID",
+        "payment": null,
+        "payment_status": "VERIFIED",
+        "payment_proof": {
+            "filename": "proof_TRK-000010_1790591839.png",
+            "path": "\/uploads\/payment-proofs\/proof_TRK-000010_1790591839.png",
+            "sender_name": "dila",
+            "uploaded_at": "2026-09-28 10:37:19"
+        },
+        "created_at": "2026-09-28 10:37:04",
+        "updated_at": "2026-09-28 10:37:19"
     }
 ]

@@ -51,7 +51,12 @@
                 <tbody>
                     @foreach($order['items'] as $item)
                     <tr>
-                        <td>{{ $item['product_name'] }}</td>
+                        <td>
+    {{ $item['product_name'] }}
+    @if(!empty($item['size']))
+        <small class="text-muted">({{ $item['size'] }})</small>
+    @endif
+</td>
                         <td class="text-center">{{ $item['quantity'] }}</td>
                         <td class="text-end">Rp {{ number_format($item['price'], 0, ',', '.') }}</td>
                         <td class="text-end">Rp {{ number_format($item['subtotal'], 0, ',', '.') }}</td>

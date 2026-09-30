@@ -28,6 +28,10 @@ class OrderController extends Controller
             'items.*.product_id' => 'required|integer',
             'items.*.quantity' => 'required|integer|min:1',
             'items.*.size' => 'nullable|string|max:20',
+            // ✅ Tambahan: terima harga dari frontend
+            'items.*.price' => 'nullable|numeric|min:0',
+            'items.*.original_price' => 'nullable|numeric|min:0',
+            'items.*.bundle_name' => 'nullable|string|max:50',
         ]);
 
         $totalPrice = 0;
@@ -43,15 +47,22 @@ class OrderController extends Controller
                 ], 404);
             }
 
-            $subtotal = $product['price'] * $item['quantity'];
+            // ✅ PRIORITAS: Pakai harga dari frontend (kalau ada), fallback ke harga produk
+            $finalPrice = isset($item['price']) && $item['price'] > 0 
+                ? $item['price'] 
+                : $product['price'];
+
+            $subtotal = $finalPrice * $item['quantity'];
             $totalPrice += $subtotal;
 
             $orderItems[] = [
                 'product_id' => $product['id'],
                 'product_name' => $product['name'],
-                'price' => $product['price'],
+                'price' => $finalPrice,                           // ✅ Harga dari frontend
+                'original_price' => $item['original_price'] ?? null,  // ✅ Simpan harga asli
                 'quantity' => $item['quantity'],
                 'size' => $item['size'] ?? null,
+                'bundle_name' => $item['bundle_name'] ?? null,    // ✅ Tag bundle
                 'subtotal' => $subtotal
             ];
         }
@@ -60,7 +71,6 @@ class OrderController extends Controller
         $totalAmount = $totalPrice + $shippingCost;
         $orderId = $this->dataService->generateOrderId();
 
-        // ✅ FIX: Field "id" DAN "order_id" DUA-DUANYA ADA
         $order = [
             'id' => $orderId,
             'order_id' => $orderId,
@@ -107,7 +117,6 @@ class OrderController extends Controller
             ], 404);
         }
 
-        // ✅ FIX: Pastikan field "order_id" ada di response
         if (!isset($order['order_id']) && isset($order['id'])) {
             $order['order_id'] = $order['id'];
         }
@@ -132,13 +141,11 @@ class OrderController extends Controller
     public function webhook(Request $request)
     {
         $payload = $request->all();
-        
         Log::info('Webhook received:', $payload);
 
         if (isset($payload['order_id'])) {
             $orderId = $payload['order_id'];
             $status = $payload['transaction_status'] ?? 'PAID';
-            
             $updated = $this->dataService->updateOrderStatus($orderId, $status);
             
             if ($updated) {

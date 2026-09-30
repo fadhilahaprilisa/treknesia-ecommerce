@@ -5,49 +5,47 @@
 @section('content')
 
 <div class="container py-5">
-    <h2 class="fw-bold mb-4"><i class="fas fa-shopping-cart"></i> Keranjang Belanja</h2>
-    
-    <div id="cartContainer">
-        <!-- Akan diisi JavaScript -->
-    </div>
+    <h2 class="section-title mb-4">Keranjang Belanja</h2>
+    <div id="cartContainer"></div>
 </div>
 
 @endsection
 
 @push('scripts')
 <script>
-    // ============================================
-    // LOAD CART DARI LOCALSTORAGE
-    // ============================================
     function getCart() {
         return JSON.parse(localStorage.getItem('treknesia_cart') || '[]');
     }
     
     function saveCart(cart) {
         localStorage.setItem('treknesia_cart', JSON.stringify(cart));
-        updateCartCount();
+        updateCount();
     }
     
-    function updateCartCount() {
+    function updateCount() {
         const cart = getCart();
-        const total = cart.reduce((sum, item) => sum + item.quantity, 0);
-        document.getElementById('cartCount').textContent = total;
+        const total = cart.reduce((s, i) => s + i.quantity, 0);
+        const badge = document.getElementById('cartCount');
+        if (badge) badge.textContent = total;
     }
     
-    // ============================================
-    // RENDER CART
-    // ============================================
+    function formatRupiah(a) {
+        return new Intl.NumberFormat('id-ID', {
+            style: 'currency', currency: 'IDR', minimumFractionDigits: 0
+        }).format(a);
+    }
+    
     function renderCart() {
         const cart = getCart();
-        const container = document.getElementById('cartContainer');
+        const c = document.getElementById('cartContainer');
         
         if (cart.length === 0) {
-            container.innerHTML = `
-                <div class="text-center py-5">
-                    <i class="fas fa-shopping-cart fa-4x text-muted mb-3"></i>
-                    <h4>Keranjang Anda Kosong</h4>
-                    <p class="text-muted">Yuk, mulai belanja alat outdoor!</p>
-                    <a href="/products" class="btn btn-primary-custom mt-3">
+            c.innerHTML = `
+                <div class="card-trek text-center p-5">
+                    <i class="fas fa-shopping-cart fa-3x" style="color:var(--trek-text-muted); margin-bottom:16px;"></i>
+                    <h5 style="font-family:Manrope; font-weight:700; margin-bottom:8px;">Keranjang Anda Kosong</h5>
+                    <p style="color:var(--trek-text-muted); margin-bottom:24px;">Yuk, mulai belanja alat outdoor!</p>
+                    <a href="/products" class="btn btn-primary-custom">
                         <i class="fas fa-shopping-bag"></i> Mulai Belanja
                     </a>
                 </div>
@@ -55,145 +53,113 @@
             return;
         }
         
-        let html = `
-            <div class="row">
-                <div class="col-lg-8">
-                    <div class="card shadow-sm">
-                        <div class="card-body">
-        `;
-        
-        cart.forEach((item, index) => {
-            const priceFormatted = new Intl.NumberFormat('id-ID', {
-                style: 'currency',
-                currency: 'IDR',
-                minimumFractionDigits: 0
-            }).format(item.price);
+        let itemsHtml = '';
+        cart.forEach((item, idx) => {
+            const sizeText = item.size ? ` <small style="color:var(--trek-text-muted);">(Ukuran: ${item.size})</small>` : '';
+            const bundleTag = item.bundleName 
+                ? `<span style="display:inline-block; font-size:0.65rem; background:#dc2626; color:#fff; padding:2px 8px; border-radius:4px; margin-bottom:4px; font-weight:700;">
+                    <i class="fas fa-tag"></i> BUNDLE ${item.bundleName}
+                </span><br>` 
+                : '';
             
-            const subtotalFormatted = new Intl.NumberFormat('id-ID', {
-                style: 'currency',
-                currency: 'IDR',
-                minimumFractionDigits: 0
-            }).format(item.price * item.quantity);
+            // ✅ Kalau harga size beda dari base price
+const basePriceDiff = item.basePrice && item.basePrice !== item.price;
+const originalPriceHtml = item.originalPrice && item.originalPrice !== item.price
+    ? `<span style="font-size:0.72rem; color:var(--trek-text-muted); text-decoration:line-through; margin-left:6px;">${formatRupiah(item.originalPrice)}</span>`
+    : (basePriceDiff
+        ? `<span style="font-size:0.72rem; color:var(--trek-text-muted); margin-left:6px;">(dari ${formatRupiah(item.basePrice)})</span>`
+        : '');
             
-            html += `
-                <div class="d-flex align-items-center border-bottom py-3">
-                    <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?w=100&h=100&fit=crop" 
-                         class="rounded" style="width: 80px; height: 80px; object-fit: cover;">
-                    <div class="ms-3 flex-grow-1">
-                        <h6 class="fw-bold mb-1">${item.name}</h6>
-                        <small class="text-muted">${item.category}</small>
-                        <div class="text-success fw-bold">${priceFormatted}</div>
+            itemsHtml += `
+                <div style="display:flex; align-items:center; gap:16px; padding:16px 0; border-bottom:1px solid var(--trek-border-soft);">
+                    <div style="width:80px; height:80px; border-radius:var(--radius-md); background:var(--trek-bg-soft); overflow:hidden; flex-shrink:0;">
+                        <img src="${item.image}" style="width:100%; height:100%; object-fit:cover;" onerror="this.src='https://placehold.co/80x80/f0f9f4/1a472a?text=T'">
                     </div>
-                    <div class="d-flex align-items-center">
-                        <button class="btn btn-sm btn-outline-secondary" onclick="updateQty(${index}, -1)">-</button>
-                        <input type="number" class="form-control form-control-sm text-center mx-2" 
-                               value="${item.quantity}" min="1" style="width: 60px;"
-                               onchange="setQty(${index}, this.value)">
-                        <button class="btn btn-sm btn-outline-secondary" onclick="updateQty(${index}, 1)">+</button>
+                    <div style="flex-grow:1; min-width:0;">
+                        ${bundleTag}
+                        <h6 style="font-family:Manrope; font-size:0.9rem; font-weight:700; margin-bottom:4px;">${item.name}${sizeText}</h6>
+                        <div style="font-size:0.78rem; color:var(--trek-text-muted); margin-bottom:6px;">${item.category}</div>
+                        <div style="font-family:Manrope; font-size:0.9rem; font-weight:700; color:var(--trek-primary);">
+                            ${formatRupiah(item.price)}${originalPriceHtml}
+                        </div>
                     </div>
-                    <div class="ms-3 text-end" style="min-width: 120px;">
-                        <div class="fw-bold">${subtotalFormatted}</div>
-                        <button class="btn btn-sm btn-link text-danger" onclick="removeItem(${index})">
-                            <i class="fas fa-trash"></i>
+                    <div style="display:flex; align-items:center; border:1px solid var(--trek-border); border-radius:var(--radius-md); overflow:hidden; flex-shrink:0;">
+                        <button type="button" onclick="updateQty(${idx}, -1)" style="width:32px; height:32px; border:none; background:#fff;"><i class="fas fa-minus" style="font-size:0.7rem;"></i></button>
+                        <input type="number" value="${item.quantity}" min="1" onchange="setQty(${idx}, this.value)" style="width:42px; height:32px; border:none; text-align:center; font-weight:600; font-size:0.85rem; outline:none;">
+                        <button type="button" onclick="updateQty(${idx}, 1)" style="width:32px; height:32px; border:none; background:#fff;"><i class="fas fa-plus" style="font-size:0.7rem;"></i></button>
+                    </div>
+                    <div style="text-align:right; min-width:110px; flex-shrink:0;">
+                        <div style="font-family:Manrope; font-size:0.9rem; font-weight:700; color:var(--trek-dark);">${formatRupiah(item.price * item.quantity)}</div>
+                        <button onclick="removeItem(${idx})" style="background:none; border:none; color:var(--trek-danger); font-size:0.75rem; padding:4px 0; margin-top:4px;">
+                            <i class="fas fa-trash"></i> Hapus
                         </button>
                     </div>
                 </div>
             `;
         });
         
-        html += `
-                        </div>
-                    </div>
+        const subtotal = cart.reduce((s, i) => s + (i.price * i.quantity), 0);
+        const totalItems = cart.reduce((s, i) => s + i.quantity, 0);
+        
+        c.innerHTML = `
+            <div class="row g-4">
+                <div class="col-lg-8">
+                    <div class="card-trek p-4">${itemsHtml}</div>
                 </div>
                 <div class="col-lg-4">
-                    <div class="card shadow-sm">
-                        <div class="card-body">
-                            <h5 class="fw-bold mb-3">Ringkasan Pesanan</h5>
-                            <div class="d-flex justify-content-between mb-2">
-                                <span>Total Item</span>
-                                <span id="totalItems">0</span>
-                            </div>
-                            <div class="d-flex justify-content-between mb-2">
-                                <span>Subtotal</span>
-                                <span id="subtotal">Rp 0</span>
-                            </div>
-                            <hr>
-                            <div class="d-flex justify-content-between fw-bold fs-5">
-                                <span>Total</span>
-                                <span class="text-success" id="grandTotal">Rp 0</span>
-                            </div>
-                            <a href="/checkout" class="btn btn-primary-custom w-100 mt-3">
-                                <i class="fas fa-arrow-right"></i> Lanjut ke Checkout
-                            </a>
-                            <a href="/products" class="btn btn-outline-custom w-100 mt-2">
-                                <i class="fas fa-arrow-left"></i> Lanjut Belanja
-                            </a>
+                    <div class="card-trek p-4 sticky-top" style="top:90px;">
+                        <h5 style="font-family:Manrope; font-size:1rem; font-weight:700; margin-bottom:20px;">Ringkasan Pesanan</h5>
+                        <div style="display:flex; justify-content:space-between; font-size:0.85rem; margin-bottom:10px;">
+                            <span style="color:var(--trek-text-muted);">Total Item</span>
+                            <span style="font-weight:600;">${totalItems}</span>
                         </div>
+                        <div style="display:flex; justify-content:space-between; font-size:0.85rem; margin-bottom:16px;">
+                            <span style="color:var(--trek-text-muted);">Subtotal</span>
+                            <span style="font-weight:600;">${formatRupiah(subtotal)}</span>
+                        </div>
+                        <hr style="border-color:var(--trek-border-soft); margin:16px 0;">
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+                            <span style="font-weight:700; color:var(--trek-dark);">Total</span>
+                            <span style="font-family:Manrope; font-size:1.2rem; font-weight:800; color:var(--trek-primary);">${formatRupiah(subtotal)}</span>
+                        </div>
+                        <a href="/checkout" class="btn btn-primary-custom w-100 mb-2">
+                            <i class="fas fa-arrow-right"></i> Lanjut ke Checkout
+                        </a>
+                        <a href="/products" class="btn btn-ghost w-100">
+                            <i class="fas fa-arrow-left"></i> Lanjut Belanja
+                        </a>
                     </div>
                 </div>
             </div>
         `;
-        
-        container.innerHTML = html;
-        updateSummary();
     }
     
-    // ============================================
-    // UPDATE SUMMARY
-    // ============================================
-    function updateSummary() {
-        const cart = getCart();
-        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-        const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-        
-        document.getElementById('totalItems').textContent = totalItems;
-        document.getElementById('subtotal').textContent = formatRupiah(subtotal);
-        document.getElementById('grandTotal').textContent = formatRupiah(subtotal);
-    }
-    
-    function formatRupiah(angka) {
-        return new Intl.NumberFormat('id-ID', {
-            style: 'currency',
-            currency: 'IDR',
-            minimumFractionDigits: 0
-        }).format(angka);
-    }
-    
-    // ============================================
-    // UPDATE QUANTITY
-    // ============================================
-    function updateQty(index, delta) {
+    function updateQty(idx, delta) {
         let cart = getCart();
-        cart[index].quantity += delta;
-        if (cart[index].quantity < 1) cart[index].quantity = 1;
+        cart[idx].quantity += delta;
+        if (cart[idx].quantity < 1) cart[idx].quantity = 1;
         saveCart(cart);
         renderCart();
     }
     
-    function setQty(index, value) {
+    function setQty(idx, val) {
         let cart = getCart();
-        let qty = parseInt(value);
-        if (qty < 1) qty = 1;
-        cart[index].quantity = qty;
+        let q = parseInt(val);
+        if (q < 1) q = 1;
+        cart[idx].quantity = q;
         saveCart(cart);
         renderCart();
     }
     
-    // ============================================
-    // REMOVE ITEM
-    // ============================================
-    function removeItem(index) {
+    function removeItem(idx) {
         if (!confirm('Hapus produk ini dari keranjang?')) return;
         let cart = getCart();
-        cart.splice(index, 1);
+        cart.splice(idx, 1);
         saveCart(cart);
         renderCart();
     }
     
-    // ============================================
-    // INIT
-    // ============================================
     renderCart();
-    updateCartCount();
+    updateCount();
 </script>
 @endpush

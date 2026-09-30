@@ -265,5 +265,178 @@
         },
         "created_at": "2026-09-28 10:37:04",
         "updated_at": "2026-09-28 10:37:19"
+    },
+    {
+        "id": "TRK-000011",
+        "order_id": "TRK-000011",
+        "customer_name": "pahri",
+        "customer_whatsapp": "0897654686",
+        "customer_address": "jalan depok",
+        "customer_city": "Bandung",
+        "payment_method": "COD",
+        "items": [
+            {
+                "product_id": 20,
+                "product_name": "Matras Camping Self-Inflating",
+                "price": 599000,
+                "quantity": 1,
+                "size": null,
+                "subtotal": 599000
+            }
+        ],
+        "total_price": 599000,
+        "shipping_cost": 30000,
+        "total_amount": 629000,
+        "status": "PAID",
+        "payment": null,
+        "payment_status": "NONE",
+        "payment_proof": null,
+        "created_at": "2026-09-28 15:22:58",
+        "updated_at": "2026-09-28 15:24:37"
+    },
+    {
+        "id": "TRK-000012",
+        "order_id": "TRK-000012",
+        "customer_name": "ani",
+        "customer_whatsapp": "0897654686",
+        "customer_address": "jalan kodiklat",
+        "customer_city": "Tangerang",
+        "payment_method": "QRIS",
+        "items": [
+            {
+                "product_id": 2,
+                "product_name": "Carrier 40L Summit",
+                "price": 1599000,
+                "quantity": 1,
+                "size": "50L",
+                "subtotal": 1599000
+            }
+        ],
+        "total_price": 1599000,
+        "shipping_cost": 20000,
+        "total_amount": 1619000,
+        "status": "PAID",
+        "payment": null,
+        "payment_status": "VERIFIED",
+        "payment_proof": {
+            "filename": "proof_TRK-000012_1790609036.jpeg",
+            "path": "\/uploads\/payment-proofs\/proof_TRK-000012_1790609036.jpeg",
+            "sender_name": "ani",
+            "uploaded_at": "2026-09-28 15:23:56"
+        },
+        "created_at": "2026-09-28 15:23:46",
+        "updated_at": "2026-09-28 15:23:56"
+    },
+    {
+        "id": "TRK-000013",
+        "order_id": "TRK-000013",
+        "customer_name": "david",
+        "customer_whatsapp": "0897654686",
+        "customer_address": "jalan tangkot",
+        "customer_city": "Jakarta",
+        "payment_method": "COD",
+        "items": [
+            {
+                "product_id": 19,
+                "product_name": "Cycling Helmet Aero",
+                "price": 899000,
+                "quantity": 1,
+                "size": "S",
+                "subtotal": 899000
+            },
+            {
+                "product_id": 15,
+                "product_name": "Cycling Gloves Gel",
+                "price": 199000,
+                "quantity": 1,
+                "size": "S",
+                "subtotal": 199000
+            },
+            {
+                "product_id": 12,
+                "product_name": "Hydration Bladder 2L",
+                "price": 299000,
+                "quantity": 1,
+                "size": null,
+                "subtotal": 299000
+            },
+            {
+                "product_id": 8,
+                "product_name": "Running Vest 12L",
+                "price": 799000,
+                "quantity": 1,
+                "size": "S",
+                "subtotal": 799000
+            }
+        ],
+        "total_price": 2196000,
+        "shipping_cost": 20000,
+        "total_amount": 2216000,
+        "status": "PENDING",
+        "payment": null,
+        "payment_status": "NONE",
+        "payment_proof": null,
+        "created_at": "2026-09-28 16:04:21",
+        "updated_at": "2026-09-28 16:04:21"
+    },
+    {
+        "id": "TRK-000014",
+        "order_id": "TRK-000014",
+        "customer_name": "aba",
+        "customer_whatsapp": "0897654686",
+        "customer_address": "jalan parung",
+        "customer_city": "Bogor",
+        "payment_method": "COD",
+        "items": [
+            {
+                "product_id": 19,
+                "product_name": "Cycling Helmet Aero",
+                "price": 611205,
+                "original_price": 899000,
+                "quantity": 1,
+                "size": "S",
+                "bundle_name": "Bike Explorer",
+                "subtotal": 611205
+            },
+            {
+                "product_id": 15,
+                "product_name": "Cycling Gloves Gel",
+                "price": 135295,
+                "original_price": 199000,
+                "quantity": 1,
+                "size": "S",
+                "bundle_name": "Bike Explorer",
+                "subtotal": 135295
+            },
+            {
+                "product_id": 12,
+                "product_name": "Hydration Bladder 2L",
+                "price": 203282,
+                "original_price": 299000,
+                "quantity": 1,
+                "size": null,
+                "bundle_name": "Bike Explorer",
+                "subtotal": 203282
+            },
+            {
+                "product_id": 8,
+                "product_name": "Running Vest 12L",
+                "price": 543218,
+                "original_price": 799000,
+                "quantity": 1,
+                "size": "S",
+                "bundle_name": "Bike Explorer",
+                "subtotal": 543218
+            }
+        ],
+        "total_price": 1493000,
+        "shipping_cost": 20000,
+        "total_amount": 1513000,
+        "status": "PENDING",
+        "payment": null,
+        "payment_status": "NONE",
+        "payment_proof": null,
+        "created_at": "2026-09-28 16:09:32",
+        "updated_at": "2026-09-28 16:09:32"
     }
 ]

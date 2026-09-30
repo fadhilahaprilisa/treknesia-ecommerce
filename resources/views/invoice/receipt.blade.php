@@ -64,16 +64,31 @@
                     <!-- Items -->
                     <h6 class="fw-bold small text-uppercase">Item Pesanan</h6>
                     @foreach($order['items'] as $item)
-                    <div class="mb-2 small">
-                        <div class="d-flex justify-content-between">
-                            <span>{{ $item['product_name'] }}</span>
-                        </div>
-                        <div class="d-flex justify-content-between text-muted">
-                            <span>{{ $item['quantity'] }}x Rp {{ number_format($item['price'], 0, ',', '.') }}</span>
-                            <span>Rp {{ number_format($item['subtotal'], 0, ',', '.') }}</span>
-                        </div>
-                    </div>
-                    @endforeach
+<div class="mb-2 small">
+    <div class="d-flex justify-content-between align-items-center">
+        <span>
+            @if(!empty($item['bundle_name']))
+                <span style="font-size:0.6rem; background:#dc2626; color:#fff; padding:2px 6px; border-radius:4px; font-weight:700; margin-right:4px;">BUNDLE</span>
+            @endif
+            {{ $item['product_name'] }}
+            @if(!empty($item['size']))
+                <span style="color:#718096; font-size:0.8rem;">({{ $item['size'] }})</span>
+            @endif
+        </span>
+    </div>
+    <div class="d-flex justify-content-between text-muted">
+        <span>
+            {{ $item['quantity'] }}x Rp {{ number_format($item['price'], 0, ',', '.') }}
+            @if(!empty($item['original_price']) && $item['original_price'] != $item['price'])
+                <span style="text-decoration:line-through; font-size:0.75rem; margin-left:4px;">
+                    Rp {{ number_format($item['original_price'], 0, ',', '.') }}
+                </span>
+            @endif
+        </span>
+        <span>Rp {{ number_format($item['subtotal'], 0, ',', '.') }}</span>
+    </div>
+</div>
+@endforeach
                     
                     <hr style="border-style: dashed;">
                     

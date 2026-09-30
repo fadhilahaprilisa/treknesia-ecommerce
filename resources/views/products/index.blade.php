@@ -5,41 +5,41 @@
 @section('content')
 
 <div class="container py-5">
-    <div class="row">
+    <div class="row g-4">
         <!-- Sidebar Filter -->
-        <div class="col-lg-3 mb-4">
-            <div class="card shadow-sm">
-                <div class="card-body">
-                    <h5 class="fw-bold mb-3"><i class="fas fa-filter"></i> Filter</h5>
-                    
-                    <h6 class="fw-bold mt-3">Kategori</h6>
-                    <div id="categoryFilters">
-                        <!-- Akan diisi JS -->
+        <div class="col-lg-3">
+            <div class="card-trek p-4 sticky-top" style="top:90px;">
+                <h6 style="font-size:0.85rem; text-transform:uppercase; letter-spacing:0.05em; color:var(--trek-text-muted); margin-bottom:20px;">
+                    <i class="fas fa-filter me-1"></i> Filter
+                </h6>
+                
+                <div class="mb-4">
+                    <h6 style="font-size:0.78rem; font-weight:700; color:var(--trek-dark); margin-bottom:12px;">Kategori</h6>
+                    <div id="categoryFilters"></div>
+                </div>
+                
+                <div class="mb-4">
+                    <h6 style="font-size:0.78rem; font-weight:700; color:var(--trek-dark); margin-bottom:12px;">Brand</h6>
+                    <div id="brandFilters"></div>
+                </div>
+                
+                <div class="mb-2">
+                    <h6 style="font-size:0.78rem; font-weight:700; color:var(--trek-dark); margin-bottom:12px;">Gender</h6>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gender" value="" checked id="allGender">
+                        <label class="form-check-label" for="allGender" style="font-size:0.85rem;">Semua</label>
                     </div>
-                    
-                    <h6 class="fw-bold mt-3">Brand</h6>
-                    <div id="brandFilters">
-                        <!-- Akan diisi JS -->
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gender" value="Pria" id="maleGender">
+                        <label class="form-check-label" for="maleGender" style="font-size:0.85rem;">Pria</label>
                     </div>
-                    
-                    <h6 class="fw-bold mt-3">Gender</h6>
-                    <div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="gender" value="" checked id="allGender">
-                            <label class="form-check-label" for="allGender">Semua</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="gender" value="Pria" id="male">
-                            <label class="form-check-label" for="male">Pria</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="gender" value="Wanita" id="female">
-                            <label class="form-check-label" for="female">Wanita</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="gender" value="Unisex" id="unisex">
-                            <label class="form-check-label" for="unisex">Unisex</label>
-                        </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gender" value="Wanita" id="femaleGender">
+                        <label class="form-check-label" for="femaleGender" style="font-size:0.85rem;">Wanita</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gender" value="Unisex" id="unisexGender">
+                        <label class="form-check-label" for="unisexGender" style="font-size:0.85rem;">Unisex</label>
                     </div>
                 </div>
             </div>
@@ -47,21 +47,21 @@
         
         <!-- Product List -->
         <div class="col-lg-9">
-            <div class="d-flex justify-content-between align-items-center mb-4">
-                <h4 class="fw-bold" id="productCount">Memuat produk...</h4>
+            <div class="section-head">
                 <div>
-                    <select class="form-select" id="sortSelect">
-                        <option value="default">Urutkan</option>
-                        <option value="price_asc">Termurah</option>
-                        <option value="price_desc">Termahal</option>
+                    <h4 style="font-family:Manrope; font-size:1.35rem; font-weight:800;" id="productCount">Memuat...</h4>
+                </div>
+                <div style="min-width:180px;">
+                    <select class="form-select form-select-sm" id="sortSelect">
+                        <option value="default">Urutkan: Default</option>
+                        <option value="price_asc">Harga Termurah</option>
+                        <option value="price_desc">Harga Termahal</option>
                         <option value="rating">Rating Tertinggi</option>
                     </select>
                 </div>
             </div>
             
-            <div class="row g-4" id="productList">
-                <!-- Akan diisi JS -->
-            </div>
+            <div class="row g-4" id="productList"></div>
         </div>
     </div>
 </div>
@@ -74,138 +74,96 @@
     let currentCategory = '{{ request("category") }}';
     let currentBrand = '{{ request("brand") }}';
     
-    // ============================================
-    // LOAD CATEGORIES
-    // ============================================
-    fetch('/api/categories')
-        .then(res => res.json())
-        .then(data => {
-            const container = document.getElementById('categoryFilters');
-            data.data.forEach(cat => {
-                const checked = cat.slug === currentCategory ? 'checked' : '';
-                container.innerHTML += `
-                    <div class="form-check">
-                        <input class="form-check-input category-filter" type="radio" 
-                               name="category" value="${cat.slug}" id="cat_${cat.slug}" ${checked}>
-                        <label class="form-check-label" for="cat_${cat.slug}">${cat.name}</label>
-                    </div>
-                `;
-            });
-            
-            document.querySelectorAll('.category-filter').forEach(el => {
-                el.addEventListener('change', filterProducts);
-            });
-        })
-        .catch(error => console.error('Error categories:', error));
-    
-    // ============================================
-    // LOAD BRANDS (TERPISAH)
-    // ============================================
-    fetch('/api/brands')
-        .then(res => res.json())
-        .then(data => {
-            const brandContainer = document.getElementById('brandFilters');
-            
-            // Tambahkan opsi "Semua Brand"
-            brandContainer.innerHTML = `
-                <div class="form-check">
-                    <input class="form-check-input brand-filter" type="radio" 
-                           name="brand" value="" checked id="allBrand">
-                    <label class="form-check-label" for="allBrand">Semua</label>
-                </div>
-            `;
-            
-            data.data.forEach(brand => {
-                const checked = brand === currentBrand ? 'checked' : '';
-                const brandId = 'brand_' + brand.replace(/[^a-zA-Z0-9]/g, '_');
-                brandContainer.innerHTML += `
-                    <div class="form-check">
-                        <input class="form-check-input brand-filter" type="radio" 
-                               name="brand" value="${brand}" id="${brandId}" ${checked}>
-                        <label class="form-check-label" for="${brandId}">${brand}</label>
-                    </div>
-                `;
-            });
-            
-            document.querySelectorAll('.brand-filter').forEach(el => {
-                el.addEventListener('change', filterProducts);
-            });
-        })
-        .catch(error => console.error('Error brands:', error));
-    
-    // ============================================
-    // EVENT LISTENERS
-    // ============================================
-    document.querySelectorAll('input[name="gender"]').forEach(el => {
-        el.addEventListener('change', filterProducts);
-    });
-    document.getElementById('sortSelect').addEventListener('change', filterProducts);
-    
-    // ============================================
-    // LOAD PRODUCTS
-    // ============================================
-    loadProducts();
-    
-    function loadProducts() {
-        fetch('/api/products')
-            .then(res => res.json())
-            .then(data => {
-                allProducts = data.data;
-                filterProducts();
-            })
-            .catch(error => console.error('Error products:', error));
+    function formatRupiah(angka) {
+        return new Intl.NumberFormat('id-ID', {
+            style: 'currency', currency: 'IDR', minimumFractionDigits: 0
+        }).format(angka);
     }
     
-    // ============================================
-    // FILTER PRODUCTS
-    // ============================================
+    // Load categories
+    fetch('/api/categories')
+        .then(r => r.json())
+        .then(data => {
+            const c = document.getElementById('categoryFilters');
+            data.data.forEach(cat => {
+                const checked = cat.slug === currentCategory ? 'checked' : '';
+                c.innerHTML += `
+                    <div class="form-check">
+                        <input class="form-check-input category-filter" type="radio" name="category" value="${cat.slug}" id="cat_${cat.slug}" ${checked}>
+                        <label class="form-check-label" for="cat_${cat.slug}" style="font-size:0.85rem;">${cat.name}</label>
+                    </div>
+                `;
+            });
+            document.querySelectorAll('.category-filter').forEach(el => el.addEventListener('change', filterProducts));
+        });
+    
+    // Load brands
+    fetch('/api/brands')
+        .then(r => r.json())
+        .then(data => {
+            const c = document.getElementById('brandFilters');
+            c.innerHTML = `
+                <div class="form-check">
+                    <input class="form-check-input brand-filter" type="radio" name="brand" value="" checked id="allBrand">
+                    <label class="form-check-label" for="allBrand" style="font-size:0.85rem;">Semua</label>
+                </div>
+            `;
+            data.data.forEach(brand => {
+                const checked = brand === currentBrand ? 'checked' : '';
+                const bid = 'brand_' + brand.replace(/[^a-zA-Z0-9]/g, '_');
+                c.innerHTML += `
+                    <div class="form-check">
+                        <input class="form-check-input brand-filter" type="radio" name="brand" value="${brand}" id="${bid}" ${checked}>
+                        <label class="form-check-label" for="${bid}" style="font-size:0.85rem;">${brand}</label>
+                    </div>
+                `;
+            });
+            document.querySelectorAll('.brand-filter').forEach(el => el.addEventListener('change', filterProducts));
+        });
+    
+    document.querySelectorAll('input[name="gender"]').forEach(el => el.addEventListener('change', filterProducts));
+    document.getElementById('sortSelect').addEventListener('change', filterProducts);
+    
+    // Load products
+    fetch('/api/products')
+        .then(r => r.json())
+        .then(data => {
+            allProducts = data.data;
+            filterProducts();
+        });
+    
     function filterProducts() {
         let products = [...allProducts];
         
-        // Filter kategori
-        const selectedCategory = document.querySelector('input[name="category"]:checked');
-        if (selectedCategory && selectedCategory.value) {
-            products = products.filter(p => 
-                p.category.toLowerCase() === selectedCategory.value.toLowerCase()
-            );
+        const cat = document.querySelector('input[name="category"]:checked');
+        if (cat && cat.value) {
+            products = products.filter(p => p.category.toLowerCase() === cat.value.toLowerCase());
         }
         
-        // Filter brand
-        const selectedBrand = document.querySelector('input[name="brand"]:checked');
-        if (selectedBrand && selectedBrand.value) {
-            products = products.filter(p => p.brand === selectedBrand.value);
+        const brand = document.querySelector('input[name="brand"]:checked');
+        if (brand && brand.value) {
+            products = products.filter(p => p.brand === brand.value);
         }
         
-        // Filter gender
-        const selectedGender = document.querySelector('input[name="gender"]:checked');
-        if (selectedGender && selectedGender.value) {
-            products = products.filter(p => p.gender === selectedGender.value);
+        const gender = document.querySelector('input[name="gender"]:checked');
+        if (gender && gender.value) {
+            products = products.filter(p => p.gender === gender.value);
         }
         
-        // Sort
         const sort = document.getElementById('sortSelect').value;
-        if (sort === 'price_asc') {
-            products.sort((a, b) => a.price - b.price);
-        } else if (sort === 'price_desc') {
-            products.sort((a, b) => b.price - a.price);
-        } else if (sort === 'rating') {
-            products.sort((a, b) => b.rating - a.rating);
-        }
+        if (sort === 'price_asc') products.sort((a,b) => a.price - b.price);
+        else if (sort === 'price_desc') products.sort((a,b) => b.price - a.price);
+        else if (sort === 'rating') products.sort((a,b) => b.rating - a.rating);
         
         renderProducts(products);
     }
     
-    // ============================================
-    // RENDER PRODUCTS
-    // ============================================
     function renderProducts(products) {
-        const container = document.getElementById('productList');
-        const countEl = document.getElementById('productCount');
-        
-        countEl.textContent = `${products.length} produk ditemukan`;
+        const c = document.getElementById('productList');
+        document.getElementById('productCount').textContent = `${products.length} produk ditemukan`;
         
         if (products.length === 0) {
-            container.innerHTML = `
+            c.innerHTML = `
                 <div class="col-12 text-center py-5">
                     <i class="fas fa-search fa-3x text-muted mb-3"></i>
                     <p class="text-muted">Tidak ada produk yang ditemukan</p>
@@ -214,30 +172,23 @@
             return;
         }
         
-        container.innerHTML = '';
-        products.forEach(product => {
-            const priceFormatted = new Intl.NumberFormat('id-ID', {
-                style: 'currency',
-                currency: 'IDR',
-                minimumFractionDigits: 0
-            }).format(product.price);
-            
-            container.innerHTML += `
-                <div class="col-md-4 col-6">
-                    <div class="card product-card h-100">
-                        <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?w=400&h=200&fit=crop" 
-                             class="card-img-top" alt="${product.name}">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between align-items-start mb-2">
-                                <span class="badge bg-light text-dark">${product.category}</span>
-                                <span class="badge-gender">${product.gender}</span>
+        c.innerHTML = '';
+        products.forEach(p => {
+            c.innerHTML += `
+                <div class="col-lg-4 col-md-6 col-6">
+                    <div class="product-card">
+                        <div class="product-card-image">
+                            <img src="${p.image}" alt="${p.name}" loading="lazy" onerror="this.src='https://placehold.co/400x400/f0f9f4/1a472a?text=TrekNesia'">
+                        </div>
+                        <div class="product-card-body">
+                            <span class="product-card-tag">${p.category}</span>
+                            <h5 class="product-card-title">${p.name}</h5>
+                            <div class="product-card-brand">${p.brand || ''}</div>
+                            <div class="product-card-meta">
+                                <span class="rating"><i class="fas fa-star"></i> ${p.rating}</span>
                             </div>
-                            <h5 class="card-title">${product.name}</h5>
-                            <div class="rating">
-                                <i class="fas fa-star"></i> ${product.rating}
-                            </div>
-                            <div class="price mt-2">${priceFormatted}</div>
-                            <a href="/product/${product.id}" class="btn btn-primary-custom w-100 mt-3">
+                            <div class="product-card-price">${formatRupiah(p.price)}</div>
+                            <a href="/product/${p.id}" class="btn btn-primary-custom btn-sm">
                                 <i class="fas fa-eye"></i> Lihat Detail
                             </a>
                         </div>

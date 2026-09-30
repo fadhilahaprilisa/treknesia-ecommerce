@@ -83,17 +83,35 @@
                 const proof = order.payment_proof || null;
                 
                 let itemsHtml = '';
-                order.items.forEach(item => {
-                    const sizeText = item.size ? ` (${item.size})` : '';
-                    itemsHtml += `
-                        <tr>
-                            <td>${item.product_name}${sizeText}</td>
-                            <td class="text-center">${item.quantity}</td>
-                            <td class="text-end">${formatRupiah(item.price)}</td>
-                            <td class="text-end">${formatRupiah(item.subtotal)}</td>
-                        </tr>
-                    `;
-                });
+order.items.forEach(item => {
+    const sizeText = item.size ? ` (${item.size})` : '';
+    
+    // ✅ Tag bundle
+    const bundleTag = item.bundle_name 
+        ? `<span style="display:inline-block; font-size:0.6rem; background:#dc2626; color:#fff; padding:2px 6px; border-radius:4px; font-weight:700; margin-right:4px;">
+            BUNDLE
+        </span>` 
+        : '';
+    
+    // ✅ Harga asli dicoret (kalau berbeda)
+    const originalPriceHtml = item.original_price && item.original_price !== item.price
+        ? `<div style="font-size:0.72rem; color:var(--trek-text-muted); text-decoration:line-through;">
+            ${formatRupiah(item.original_price)}
+        </div>`
+        : '';
+    
+    itemsHtml += `
+        <tr>
+            <td>${bundleTag}${item.product_name}${sizeText}</td>
+            <td class="text-center">${item.quantity}</td>
+            <td class="text-end">
+                <div>${formatRupiah(item.price)}</div>
+                ${originalPriceHtml}
+            </td>
+            <td class="text-end">${formatRupiah(item.subtotal)}</td>
+        </tr>
+    `;
+});
                 
                 container.innerHTML = `
                     <div class="card shadow-sm mb-3">

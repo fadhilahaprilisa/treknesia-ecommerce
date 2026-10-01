@@ -22,17 +22,13 @@ class AdminController extends Controller
         $orders = $this->dataService->getOrders();
         $users = $this->dataService->getUsers();
 
-        // Statistik
         $totalProducts = count($products);
         $totalOrders = count($orders);
-        $totalRevenue = collect($orders)
-            ->where('status', 'PAID')
-            ->sum('total_amount');
+        $totalRevenue = collect($orders)->where('status', 'PAID')->sum('total_amount');
         $pendingOrders = collect($orders)->where('status', 'PENDING')->count();
         $paidOrders = collect($orders)->where('status', 'PAID')->count();
         $shippedOrders = collect($orders)->where('status', 'SHIPPED')->count();
 
-        // Order terbaru (5 terakhir)
         $recentOrders = collect($orders)
             ->sortByDesc('created_at')
             ->take(5)
@@ -59,6 +55,7 @@ class AdminController extends Controller
         return view('admin.products.create', compact('categories'));
     }
 
+    // ✅ Method storeProduct — tanpa rating
     public function storeProduct(Request $request)
     {
         $validated = $request->validate([
@@ -69,12 +66,27 @@ class AdminController extends Controller
             'stock' => 'required|integer|min:0',
             'description' => 'required|string',
             'brand' => 'nullable|string|max:100',
-            'rating' => 'nullable|numeric|min:0|max:5',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
         ]);
 
-        $validated['rating'] = $validated['rating'] ?? 4.5;
-        $validated['image'] = 'default.jpg';
+        // Set rating default 4.5 untuk produk baru
+        $validated['rating'] = 4.5;
         $validated['specs'] = [];
+
+        // Handle upload gambar
+        if ($request->hasFile('image')) {
+            $uploadPath = public_path('images/products');
+            if (!file_exists($uploadPath)) {
+                mkdir($uploadPath, 0755, true);
+            }
+
+            $file = $request->file('image');
+            $filename = 'product_' . time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
+            $file->move($uploadPath, $filename);
+            $validated['image'] = '/images/products/' . $filename;
+        } else {
+            $validated['image'] = 'https://placehold.co/400x400/0D1C2D/34d399?text=' . urlencode($validated['name']);
+        }
 
         $this->dataService->addProduct($validated);
 
@@ -91,6 +103,7 @@ class AdminController extends Controller
         return view('admin.products.edit', compact('product', 'categories'));
     }
 
+    // ✅ Method updateProduct — HANYA SATU, tanpa rating
     public function updateProduct(Request $request, $id)
     {
         $validated = $request->validate([
@@ -101,8 +114,25 @@ class AdminController extends Controller
             'stock' => 'required|integer|min:0',
             'description' => 'required|string',
             'brand' => 'nullable|string|max:100',
-            'rating' => 'nullable|numeric|min:0|max:5',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
         ]);
+
+        // Rating TIDAK diupdate (biarkan existing)
+
+        // Handle upload gambar baru
+        if ($request->hasFile('image')) {
+            $uploadPath = public_path('images/products');
+            if (!file_exists($uploadPath)) {
+                mkdir($uploadPath, 0755, true);
+            }
+
+            $file = $request->file('image');
+            $filename = 'product_' . time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
+            $file->move($uploadPath, $filename);
+            $validated['image'] = '/images/products/' . $filename;
+        } else {
+            unset($validated['image']);
+        }
 
         $this->dataService->updateProduct($id, $validated);
 
@@ -121,7 +151,6 @@ class AdminController extends Controller
         $orders = $this->dataService->getOrders();
         $orders = collect($orders)->sortByDesc('created_at')->values()->all();
 
-        // Filter status
         if ($request->has('status') && $request->status) {
             $orders = collect($orders)->where('status', $request->status)->values()->all();
         }
@@ -153,7 +182,6 @@ class AdminController extends Controller
     {
         $orders = $this->dataService->getOrders();
         
-        // Filter tanggal
         if ($request->has('from') && $request->from) {
             $orders = collect($orders)->filter(function($o) use ($request) {
                 return $o['created_at'] >= $request->from . ' 00:00:00';
@@ -165,7 +193,6 @@ class AdminController extends Controller
             })->values()->all();
         }
 
-        // Statistik
         $totalRevenue = collect($orders)->where('status', 'PAID')->sum('total_amount');
         $totalOrders = count($orders);
         $paidOrders = collect($orders)->where('status', 'PAID')->count();

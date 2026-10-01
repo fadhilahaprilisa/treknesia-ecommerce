@@ -4,42 +4,42 @@
 
 @section('content')
 
-<div class="container py-5">
+<div class="container py-5" style="max-width: 1280px;">
     <div class="row g-4">
         <!-- Sidebar Filter -->
         <div class="col-lg-3">
-            <div class="card-trek p-4 sticky-top" style="top:90px;">
-                <h6 style="font-size:0.85rem; text-transform:uppercase; letter-spacing:0.05em; color:var(--trek-text-muted); margin-bottom:20px;">
+            <div class="card-trek p-4" style="position:sticky; top:90px;">
+                <h6 style="font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:var(--slate-400); margin-bottom:20px;">
                     <i class="fas fa-filter me-1"></i> Filter
                 </h6>
                 
                 <div class="mb-4">
-                    <h6 style="font-size:0.78rem; font-weight:700; color:var(--trek-dark); margin-bottom:12px;">Kategori</h6>
+                    <h6 style="font-size:0.78rem; font-weight:700; color:var(--slate-100); margin-bottom:12px;">Kategori</h6>
                     <div id="categoryFilters"></div>
                 </div>
                 
                 <div class="mb-4">
-                    <h6 style="font-size:0.78rem; font-weight:700; color:var(--trek-dark); margin-bottom:12px;">Brand</h6>
+                    <h6 style="font-size:0.78rem; font-weight:700; color:var(--slate-100); margin-bottom:12px;">Brand</h6>
                     <div id="brandFilters"></div>
                 </div>
                 
                 <div class="mb-2">
-                    <h6 style="font-size:0.78rem; font-weight:700; color:var(--trek-dark); margin-bottom:12px;">Gender</h6>
+                    <h6 style="font-size:0.78rem; font-weight:700; color:var(--slate-100); margin-bottom:12px;">Gender</h6>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="gender" value="" checked id="allGender">
-                        <label class="form-check-label" for="allGender" style="font-size:0.85rem;">Semua</label>
+                        <label class="form-check-label" for="allGender" style="font-size:0.85rem; color:var(--slate-200);">Semua</label>
                     </div>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="gender" value="Pria" id="maleGender">
-                        <label class="form-check-label" for="maleGender" style="font-size:0.85rem;">Pria</label>
+                        <label class="form-check-label" for="maleGender" style="font-size:0.85rem; color:var(--slate-200);">Pria</label>
                     </div>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="gender" value="Wanita" id="femaleGender">
-                        <label class="form-check-label" for="femaleGender" style="font-size:0.85rem;">Wanita</label>
+                        <label class="form-check-label" for="femaleGender" style="font-size:0.85rem; color:var(--slate-200);">Wanita</label>
                     </div>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="gender" value="Unisex" id="unisexGender">
-                        <label class="form-check-label" for="unisexGender" style="font-size:0.85rem;">Unisex</label>
+                        <label class="form-check-label" for="unisexGender" style="font-size:0.85rem; color:var(--slate-200);">Unisex</label>
                     </div>
                 </div>
             </div>
@@ -49,9 +49,9 @@
         <div class="col-lg-9">
             <div class="section-head">
                 <div>
-                    <h4 style="font-family:Manrope; font-size:1.35rem; font-weight:800;" id="productCount">Memuat...</h4>
+                    <h4 style="font-family:'Plus Jakarta Sans'; font-size:1.35rem; font-weight:800; color:#fff;" id="productCount">Memuat...</h4>
                 </div>
-                <div style="min-width:180px;">
+                <div style="min-width:200px;">
                     <select class="form-select form-select-sm" id="sortSelect">
                         <option value="default">Urutkan: Default</option>
                         <option value="price_asc">Harga Termurah</option>
@@ -67,6 +67,25 @@
 </div>
 
 @endsection
+
+@push('styles')
+<style>
+    /* Fix radio & checkbox warna di dark theme */
+    .form-check-input {
+        background-color: var(--navy-800);
+        border-color: var(--navy-500);
+    }
+    .form-check-input:checked {
+        background-color: var(--brand-500);
+        border-color: var(--brand-500);
+    }
+    .form-check-input:focus {
+        border-color: var(--brand-500);
+        box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
+    }
+    .form-check-label { color: var(--slate-200); }
+</style>
+@endpush
 
 @push('scripts')
 <script>
@@ -165,8 +184,8 @@
         if (products.length === 0) {
             c.innerHTML = `
                 <div class="col-12 text-center py-5">
-                    <i class="fas fa-search fa-3x text-muted mb-3"></i>
-                    <p class="text-muted">Tidak ada produk yang ditemukan</p>
+                    <i class="fas fa-search fa-3x" style="color:var(--slate-500); margin-bottom:16px;"></i>
+                    <p style="color:var(--slate-400);">Tidak ada produk yang ditemukan</p>
                 </div>
             `;
             return;
@@ -178,7 +197,7 @@
                 <div class="col-lg-4 col-md-6 col-6">
                     <div class="product-card">
                         <div class="product-card-image">
-                            <img src="${p.image}" alt="${p.name}" loading="lazy" onerror="this.src='https://placehold.co/400x400/f0f9f4/1a472a?text=TrekNesia'">
+                            <img src="${p.image}" alt="${p.name}" loading="lazy" onerror="this.src='https://placehold.co/400x400/0D1C2D/34d399?text=TrekNesia'">
                         </div>
                         <div class="product-card-body">
                             <span class="product-card-tag">${p.category}</span>
@@ -188,7 +207,7 @@
                                 <span class="rating"><i class="fas fa-star"></i> ${p.rating}</span>
                             </div>
                             <div class="product-card-price">${formatRupiah(p.price)}</div>
-                            <a href="/product/${p.id}" class="btn btn-primary-custom btn-sm">
+                            <a href="/product/${p.id}" class="btn btn-outline-custom btn-sm">
                                 <i class="fas fa-eye"></i> Lihat Detail
                             </a>
                         </div>

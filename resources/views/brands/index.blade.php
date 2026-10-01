@@ -4,9 +4,9 @@
 
 @section('content')
 
-<div class="container py-5">
+<div class="container py-5" style="max-width: 1280px;">
     <div class="text-center mb-5">
-        <div style="display:inline-flex; align-items:center; gap:8px; background:var(--trek-primary-light); color:var(--trek-primary); padding:6px 16px; border-radius:99px; font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:16px;">
+        <div style="display:inline-flex; align-items:center; gap:8px; background:rgba(16, 185, 129, 0.1); color:var(--brand-400); padding:6px 16px; border-radius:99px; font-size:0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:16px; border:1px solid rgba(16, 185, 129, 0.3);">
             <i class="fas fa-tag"></i> Brand Partner
         </div>
         <h2 class="section-title">Brands</h2>
@@ -15,7 +15,7 @@
     
     <div class="row g-3 justify-content-center" id="brandsContainer">
         <div class="col-12 text-center py-5">
-            <i class="fas fa-spinner fa-spin fa-2x" style="color:var(--trek-primary);"></i>
+            <i class="fas fa-spinner fa-spin fa-2x" style="color:var(--brand-400);"></i>
         </div>
     </div>
 </div>
@@ -30,21 +30,21 @@
         align-items: center;
         justify-content: center;
         padding: 28px 16px;
-        background: #fff;
-        border: 1px solid var(--trek-border);
-        border-radius: var(--radius-lg);
+        background: var(--navy-700);
+        border: 1px solid var(--navy-600);
+        border-radius: 14px;
         text-decoration: none;
-        color: var(--trek-text);
+        color: var(--slate-200);
         transition: all 0.2s;
         height: 100%;
-        min-height: 140px;
+        min-height: 150px;
     }
     
     .brand-card:hover {
-        border-color: var(--trek-primary);
+        border-color: var(--brand-500);
+        background: var(--navy-650);
         transform: translateY(-3px);
-        box-shadow: var(--shadow-md);
-        color: var(--trek-primary);
+        box-shadow: 0 12px 32px rgba(0,0,0,0.3);
     }
     
     .brand-avatar {
@@ -54,7 +54,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        font-family: 'Manrope', sans-serif;
+        font-family: 'Plus Jakarta Sans', sans-serif;
         font-weight: 800;
         font-size: 1.4rem;
         color: #fff;
@@ -67,41 +67,32 @@
     }
     
     .brand-name {
-        font-family: 'Manrope', sans-serif;
+        font-family: 'Plus Jakarta Sans', sans-serif;
         font-size: 0.9rem;
         font-weight: 700;
-        color: var(--trek-dark);
+        color: var(--slate-100);
         margin-bottom: 4px;
         text-align: center;
     }
     
     .brand-count {
         font-size: 0.72rem;
-        color: var(--trek-text-muted);
+        color: var(--slate-400);
     }
 </style>
 @endpush
 
 @push('scripts')
 <script>
-    // Warna brand berbeda-beda
     const brandColors = {
-        'PeakStride': '#1a472a',
-        'Northridge': '#2d6a4f',
-        'Wildsphere': '#2f855a',
-        'Altitude': '#276749',
-        'Weatherguard': '#0f5132',
-        'Nordic': '#166534',
-        'TrailReady': '#15803d',
-        'LightPro': '#22c55e',
-        'DreamSleep': '#3b82f6',
-        'HydraPack': '#0ea5e9',
-        'RunTech': '#f59e0b',
-        'BikePro': '#ef4444',
-        'RecoverPro': '#8b5cf6',
-        'CompressTech': '#ec4899',
-        'AeroSafe': '#06b6d4',
-        'ComfortCamp': '#84cc16',
+        'PeakStride': '#10b981', 'Northridge': '#059669',
+        'Wildsphere': '#047857', 'Altitude': '#065F46',
+        'Weatherguard': '#0f5132', 'Nordic': '#166534',
+        'TrailReady': '#15803d', 'LightPro': '#22c55e',
+        'DreamSleep': '#3b82f6', 'HydraPack': '#0ea5e9',
+        'RunTech': '#f59e0b', 'BikePro': '#ef4444',
+        'RecoverPro': '#8b5cf6', 'CompressTech': '#ec4899',
+        'AeroSafe': '#06b6d4', 'ComfortCamp': '#84cc16',
         'Uniqlo': '#dc2626'
     };
     
@@ -113,30 +104,25 @@
         const container = document.getElementById('brandsContainer');
         
         if (brandsData.data.length === 0) {
-            container.innerHTML = '<p class="text-center" style="color:var(--trek-text-muted);">Belum ada brand</p>';
+            container.innerHTML = '<p class="text-center" style="color:var(--slate-400);">Belum ada brand</p>';
             return;
         }
         
-        // Hitung jumlah produk per brand
         const productCount = {};
         productsData.data.forEach(p => {
-            if (p.brand) {
-                productCount[p.brand] = (productCount[p.brand] || 0) + 1;
-            }
+            if (p.brand) productCount[p.brand] = (productCount[p.brand] || 0) + 1;
         });
         
         container.innerHTML = '';
         brandsData.data.forEach(brand => {
-            const color = brandColors[brand] || '#1a472a';
+            const color = brandColors[brand] || '#10b981';
             const initial = brand.charAt(0).toUpperCase();
             const count = productCount[brand] || 0;
             
             container.innerHTML += `
                 <div class="col-lg-3 col-md-4 col-6">
                     <a href="/products?brand=${encodeURIComponent(brand)}" class="brand-card">
-                        <div class="brand-avatar" style="background:${color};">
-                            ${initial}
-                        </div>
+                        <div class="brand-avatar" style="background:${color};">${initial}</div>
                         <div class="brand-name">${brand}</div>
                         <div class="brand-count">${count} produk</div>
                     </a>
@@ -145,10 +131,8 @@
         });
     })
     .catch(err => {
-        console.error('Error:', err);
-        document.getElementById('brandsContainer').innerHTML = `
-            <p class="text-center" style="color:var(--trek-danger);">Gagal memuat brands</p>
-        `;
+        console.error(err);
+        document.getElementById('brandsContainer').innerHTML = '<p class="text-center" style="color:#FCA5A5;">Gagal memuat brands</p>';
     });
 </script>
 @endpush

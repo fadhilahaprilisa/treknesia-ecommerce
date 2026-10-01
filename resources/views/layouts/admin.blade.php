@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,62 +9,59 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --trek-primary: #1a472a;
-            --trek-primary-hover: #2d6a4f;
-            --trek-primary-light: #f0f9f4;
-            --trek-accent: #38a169;
-            --trek-dark: #0f172a;
-            --trek-text: #334155;
-            --trek-text-muted: #64748b;
-            --trek-border: #e2e8f0;
-            --trek-border-soft: #f1f5f9;
-            --trek-bg: #f8fafc;
-            --trek-bg-soft: #f1f5f9;
-            --trek-success: #16a34a;
-            --trek-warning: #ea580c;
-            --trek-danger: #dc2626;
-            --trek-info: #0ea5e9;
-            --radius-sm: 6px;
-            --radius-md: 10px;
-            --radius-lg: 14px;
-            --shadow-xs: 0 1px 2px rgba(15,23,42,0.04);
-            --shadow-sm: 0 1px 3px rgba(15,23,42,0.06), 0 1px 2px rgba(15,23,42,0.04);
-            --shadow-md: 0 4px 12px rgba(15,23,42,0.08);
+            --navy-950: #010B17;
+            --navy-900: #010F1F;
+            --navy-850: #051424;
+            --navy-800: #0D1C2D;
+            --navy-750: #0D1B2B;
+            --navy-700: #122131;
+            --navy-650: #182A3C;
+            --navy-600: #1C3042;
+            --navy-500: #24394D;
+            --brand-400: #34d399;
+            --brand-500: #10b981;
+            --brand-600: #059669;
+            --slate-100: #F8FAFC;
+            --slate-200: #E2E8F0;
+            --slate-300: #CBD5E1;
+            --slate-400: #94A3B8;
+            --slate-500: #64748B;
+            --amber-400: #F59E0B;
+            --rose-500: #EF4444;
         }
         
         * { box-sizing: border-box; }
         
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
             font-size: 14px;
-            background: var(--trek-bg);
-            color: var(--trek-text);
+            background: var(--navy-900);
+            color: var(--slate-200);
             margin: 0;
             -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
         }
         
         h1, h2, h3, h4, h5, h6 {
-            font-family: 'Manrope', 'Inter', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             font-weight: 700;
-            color: var(--trek-dark);
+            color: var(--slate-100);
             letter-spacing: -0.02em;
         }
         
         a { text-decoration: none; }
         
-        /* ============ SIDEBAR ============ */
+        /* SIDEBAR */
         .admin-sidebar {
             position: fixed;
-            top: 0;
-            left: 0;
-            bottom: 0;
+            top: 0; left: 0; bottom: 0;
             width: 240px;
-            background: #fff;
-            border-right: 1px solid var(--trek-border);
+            background: var(--navy-850);
+            border-right: 1px solid var(--navy-600);
             display: flex;
             flex-direction: column;
             z-index: 1000;
@@ -72,26 +69,41 @@
         }
         
         .sidebar-brand {
-            padding: 18px 20px;
-            border-bottom: 1px solid var(--trek-border);
+            padding: 20px;
+            border-bottom: 1px solid var(--navy-600);
             display: flex;
             align-items: center;
             gap: 10px;
         }
         
         .sidebar-brand img {
-            height: 36px;
+            height: 38px;
             width: auto;
         }
         
         .sidebar-brand-text {
-            font-family: 'Manrope', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             font-weight: 800;
-            font-size: 1.05rem;
-            color: var(--trek-primary);
+            font-size: 1.1rem;
+            color: #fff;
+            letter-spacing: -0.02em;
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
+        }
+        
+        .sidebar-brand-text span { color: var(--brand-400); }
+        
+        .sidebar-brand-icon {
+            width: 32px; height: 32px;
+            border-radius: 8px;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--brand-400);
+            font-size: 0.95rem;
         }
         
         .sidebar-menu {
@@ -100,24 +112,24 @@
         }
         
         .sidebar-section-label {
-            font-size: 0.68rem;
+            font-size: 0.65rem;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: var(--trek-text-muted);
-            padding: 8px 12px;
+            letter-spacing: 0.1em;
+            color: var(--slate-500);
+            padding: 12px 12px 6px;
             margin-top: 8px;
         }
         
         .sidebar-menu a {
             display: flex;
             align-items: center;
-            gap: 10px;
-            padding: 9px 12px;
-            color: var(--trek-text);
+            gap: 12px;
+            padding: 10px 14px;
+            color: var(--slate-300);
             font-size: 0.85rem;
             font-weight: 500;
-            border-radius: var(--radius-md);
+            border-radius: 10px;
             margin-bottom: 2px;
             transition: all 0.15s;
         }
@@ -125,51 +137,57 @@
         .sidebar-menu a i {
             width: 18px;
             font-size: 0.9rem;
-            color: var(--trek-text-muted);
+            color: var(--slate-500);
             transition: color 0.15s;
+            text-align: center;
         }
         
         .sidebar-menu a:hover {
-            background: var(--trek-bg-soft);
-            color: var(--trek-primary);
+            background: var(--navy-800);
+            color: #fff;
         }
         
-        .sidebar-menu a:hover i { color: var(--trek-primary); }
+        .sidebar-menu a:hover i { color: var(--brand-400); }
         
         .sidebar-menu a.active {
-            background: var(--trek-primary-light);
-            color: var(--trek-primary);
+            background: rgba(16, 185, 129, 0.12);
+            color: var(--brand-400);
             font-weight: 600;
+            border-left: 3px solid var(--brand-500);
+            padding-left: 11px;
         }
         
-        .sidebar-menu a.active i { color: var(--trek-primary); }
+        .sidebar-menu a.active i { color: var(--brand-400); }
         
         .sidebar-logout {
-            border-top: 1px solid var(--trek-border);
+            border-top: 1px solid var(--navy-600);
             padding: 12px;
         }
         
         .sidebar-logout button {
             display: flex;
             align-items: center;
-            gap: 10px;
-            padding: 9px 12px;
-            color: var(--trek-danger);
+            gap: 12px;
+            padding: 10px 14px;
+            color: #FCA5A5;
             font-size: 0.85rem;
             font-weight: 500;
             border: none;
             background: none;
             width: 100%;
             text-align: left;
-            border-radius: var(--radius-md);
+            border-radius: 10px;
             transition: all 0.15s;
+            font-family: inherit;
         }
         
         .sidebar-logout button:hover {
-            background: #fef2f2;
+            background: rgba(239, 68, 68, 0.1);
         }
         
-        /* ============ MAIN ============ */
+        .sidebar-logout button i { width: 18px; text-align: center; }
+        
+        /* MAIN */
         .admin-main {
             margin-left: 240px;
             min-height: 100vh;
@@ -178,9 +196,9 @@
         }
         
         .admin-topbar {
-            background: #fff;
-            padding: 14px 28px;
-            border-bottom: 1px solid var(--trek-border);
+            background: var(--navy-850);
+            padding: 16px 28px;
+            border-bottom: 1px solid var(--navy-600);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -192,32 +210,33 @@
         .admin-topbar h5 {
             font-size: 1.05rem;
             margin: 0;
-            font-weight: 700;
+            font-weight: 800;
+            color: #fff;
         }
         
         .admin-user {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             font-size: 0.85rem;
         }
         
         .admin-user-name {
             font-weight: 600;
-            color: var(--trek-dark);
+            color: var(--slate-200);
         }
         
         .admin-user-avatar {
-            width: 34px;
-            height: 34px;
+            width: 36px; height: 36px;
             border-radius: 50%;
-            background: var(--trek-primary-light);
-            color: var(--trek-primary);
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--brand-400);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: 700;
-            font-size: 0.85rem;
+            font-weight: 800;
+            font-size: 0.9rem;
+            border: 1px solid rgba(16, 185, 129, 0.3);
         }
         
         .admin-content {
@@ -225,11 +244,11 @@
             flex-grow: 1;
         }
         
-        /* ============ STAT CARDS ============ */
+        /* STAT CARD */
         .stat-card {
-            background: #fff;
-            border: 1px solid var(--trek-border);
-            border-radius: var(--radius-lg);
+            background: var(--navy-700);
+            border: 1px solid var(--navy-600);
+            border-radius: 14px;
             padding: 20px;
             display: flex;
             justify-content: space-between;
@@ -239,55 +258,55 @@
         }
         
         .stat-card:hover {
-            border-color: var(--trek-accent-light);
-            box-shadow: var(--shadow-sm);
+            border-color: rgba(16, 185, 129, 0.4);
+            background: var(--navy-650);
+            transform: translateY(-2px);
         }
         
         .stat-card-label {
-            font-size: 0.75rem;
-            font-weight: 600;
+            font-size: 0.72rem;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--trek-text-muted);
+            letter-spacing: 0.06em;
+            color: var(--slate-400);
             margin-bottom: 10px;
         }
         
         .stat-card-value {
-            font-family: 'Manrope', sans-serif;
-            font-size: 1.5rem;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1.6rem;
             font-weight: 800;
-            color: var(--trek-dark);
+            color: #fff;
             line-height: 1.1;
             letter-spacing: -0.02em;
         }
         
         .stat-card-icon {
-            width: 42px;
-            height: 42px;
-            border-radius: var(--radius-md);
+            width: 44px; height: 44px;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1rem;
+            font-size: 1.05rem;
             flex-shrink: 0;
         }
         
-        .stat-primary { background: var(--trek-primary-light); color: var(--trek-primary); }
-        .stat-warning { background: #fef3c7; color: #92400e; }
-        .stat-success { background: #dcfce7; color: #166534; }
-        .stat-danger  { background: #fee2e2; color: #991b1b; }
+        .stat-primary { background: rgba(16, 185, 129, 0.15); color: var(--brand-400); }
+        .stat-warning { background: rgba(245, 158, 11, 0.15); color: #FCD34D; }
+        .stat-success { background: rgba(16, 185, 129, 0.15); color: var(--brand-400); }
+        .stat-danger  { background: rgba(239, 68, 68, 0.15); color: #FCA5A5; }
         
-        /* ============ TABLE ============ */
+        /* TABLE */
         .table-card {
-            background: #fff;
-            border: 1px solid var(--trek-border);
-            border-radius: var(--radius-lg);
+            background: var(--navy-700);
+            border: 1px solid var(--navy-600);
+            border-radius: 14px;
             overflow: hidden;
         }
         
         .table-card-header {
-            padding: 18px 20px;
-            border-bottom: 1px solid var(--trek-border);
+            padding: 20px 22px;
+            border-bottom: 1px solid var(--navy-600);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -296,10 +315,10 @@
         }
         
         .table-card-title {
-            font-family: 'Manrope', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             font-size: 1rem;
-            font-weight: 700;
-            color: var(--trek-dark);
+            font-weight: 800;
+            color: #fff;
             margin: 0;
         }
         
@@ -314,143 +333,145 @@
             font-size: 0.7rem;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--trek-text-muted);
+            letter-spacing: 0.06em;
+            color: var(--slate-400);
             padding: 12px 20px;
-            border-bottom: 1px solid var(--trek-border);
+            border-bottom: 1px solid var(--navy-600);
             text-align: left;
-            background: var(--trek-bg-soft);
+            background: var(--navy-800);
             white-space: nowrap;
         }
         
         .table-trek td {
             padding: 14px 20px;
-            border-bottom: 1px solid var(--trek-border-soft);
-            color: var(--trek-text);
+            border-bottom: 1px solid var(--navy-750);
+            color: var(--slate-200);
             vertical-align: middle;
         }
         
         .table-trek tr:last-child td { border-bottom: none; }
-        .table-trek tr:hover td { background: var(--trek-bg-soft); }
+        .table-trek tr:hover td { background: var(--navy-650); }
         
-        /* ============ BADGES ============ */
+        /* BADGES */
         .badge-status {
             display: inline-flex;
             align-items: center;
             gap: 4px;
-            font-size: 0.7rem;
+            font-size: 0.68rem;
             font-weight: 700;
             padding: 4px 10px;
             border-radius: 99px;
             text-transform: uppercase;
-            letter-spacing: 0.03em;
+            letter-spacing: 0.04em;
         }
         
-        .badge-pending   { background: #fef3c7; color: #92400e; }
-        .badge-paid      { background: #dcfce7; color: #166534; }
-        .badge-shipped   { background: #dbeafe; color: #1e40af; }
-        .badge-cancelled { background: #fee2e2; color: #991b1b; }
-        .badge-success   { background: #dcfce7; color: #166534; }
-        .badge-warning   { background: #fef3c7; color: #92400e; }
-        .badge-danger    { background: #fee2e2; color: #991b1b; }
-        .badge-muted     { background: var(--trek-bg-soft); color: var(--trek-text); }
+        .badge-pending   { background: rgba(245, 158, 11, 0.15); color: #FCD34D; }
+        .badge-paid      { background: rgba(16, 185, 129, 0.15); color: var(--brand-400); }
+        .badge-shipped   { background: rgba(59, 130, 246, 0.15); color: #93C5FD; }
+        .badge-cancelled { background: rgba(239, 68, 68, 0.15); color: #FCA5A5; }
+        .badge-success   { background: rgba(16, 185, 129, 0.15); color: var(--brand-400); }
+        .badge-warning   { background: rgba(245, 158, 11, 0.15); color: #FCD34D; }
+        .badge-danger    { background: rgba(239, 68, 68, 0.15); color: #FCA5A5; }
+        .badge-muted     { background: var(--navy-600); color: var(--slate-400); }
         
-        /* ============ BUTTONS ============ */
+        /* BUTTONS */
         .btn {
-            font-family: 'Inter', sans-serif;
-            font-weight: 600;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 700;
             font-size: 0.85rem;
-            padding: 9px 16px;
-            border-radius: var(--radius-md);
+            padding: 10px 18px;
+            border-radius: 10px;
             transition: all 0.15s;
-            border: 1.5px solid transparent;
+            border: 1px solid transparent;
             display: inline-flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
             line-height: 1.4;
+            white-space: nowrap;
         }
         
-        .btn-sm { font-size: 0.78rem; padding: 6px 12px; }
+        .btn-sm { font-size: 0.78rem; padding: 8px 14px; }
         
         .btn-primary-custom {
-            background: var(--trek-primary);
-            color: #fff;
-            border-color: var(--trek-primary);
+            background: var(--brand-500);
+            color: var(--navy-950);
+            border-color: var(--brand-500);
         }
         
         .btn-primary-custom:hover {
-            background: var(--trek-primary-hover);
-            color: #fff;
-            box-shadow: 0 4px 12px rgba(26,71,42,0.2);
+            background: var(--brand-400);
+            color: var(--navy-950);
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
         }
         
         .btn-outline-custom {
-            background: #fff;
-            color: var(--trek-primary);
-            border-color: var(--trek-primary);
+            background: var(--navy-800);
+            color: var(--slate-200);
+            border-color: var(--navy-500);
         }
         
-        .btn-outline-custom:hover { background: var(--trek-primary); color: #fff; }
+        .btn-outline-custom:hover {
+            background: var(--navy-700);
+            color: var(--brand-400);
+            border-color: var(--brand-500);
+        }
         
         .btn-icon {
-            width: 32px;
-            height: 32px;
+            width: 34px; height: 34px;
             padding: 0;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            border-radius: var(--radius-md);
-            background: #fff;
-            border: 1px solid var(--trek-border);
-            color: var(--trek-text);
-            font-size: 0.8rem;
+            border-radius: 8px;
+            background: var(--navy-800);
+            border: 1px solid var(--navy-600);
+            color: var(--slate-300);
+            font-size: 0.85rem;
             transition: all 0.15s;
         }
         
-        .btn-icon:hover { border-color: var(--trek-primary); color: var(--trek-primary); }
-        .btn-icon.danger:hover { border-color: var(--trek-danger); color: var(--trek-danger); }
+        .btn-icon:hover {
+            border-color: var(--brand-500);
+            color: var(--brand-400);
+            background: var(--navy-700);
+        }
         
-        /* ============ FORM ============ */
+        .btn-icon.danger:hover {
+            border-color: var(--rose-500);
+            color: #FCA5A5;
+            background: rgba(239, 68, 68, 0.1);
+        }
+        
+        /* FORM */
         .form-control, .form-select {
             font-size: 0.875rem;
             padding: 10px 14px;
-            border-radius: var(--radius-md);
-            border: 1px solid var(--trek-border);
+            border-radius: 10px;
+            border: 1px solid var(--navy-600);
+            background: var(--navy-800);
+            color: var(--slate-200);
             transition: all 0.15s;
-            color: var(--trek-text);
         }
         
         .form-control:focus, .form-select:focus {
-            border-color: var(--trek-primary);
-            box-shadow: 0 0 0 3px rgba(26,71,42,0.1);
+            border-color: var(--brand-500);
+            background: var(--navy-800);
+            color: var(--slate-200);
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
         }
+        
+        .form-control::placeholder { color: var(--slate-500); }
         
         .form-label {
             font-size: 0.8rem;
             font-weight: 600;
-            color: var(--trek-text);
+            color: var(--slate-200);
             margin-bottom: 6px;
         }
         
-        /* ============ ALERT ============ */
-        .alert-trek {
-            padding: 14px 18px;
-            border-radius: var(--radius-md);
-            font-size: 0.875rem;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            border: 1px solid transparent;
-        }
-        
-        .alert-success-trek { background: #dcfce7; color: #166534; border-color: #bbf7d0; }
-        .alert-danger-trek  { background: #fee2e2; color: #991b1b; border-color: #fecaca; }
-        
-        /* ============ RESPONSIVE ============ */
+        /* RESPONSIVE */
         @media (max-width: 992px) {
-            .admin-sidebar { transform: translateX(-100%); transition: transform 0.2s; }
-            .admin-sidebar.open { transform: translateX(0); }
+            .admin-sidebar { transform: translateX(-100%); }
             .admin-main { margin-left: 0; }
         }
         
@@ -465,15 +486,15 @@
 </head>
 <body>
 
-    <!-- SIDEBAR -->
-    <aside class="admin-sidebar" id="adminSidebar">
+    <aside class="admin-sidebar">
         <div class="sidebar-brand">
             @if(file_exists(public_path('images/logo.png')))
                 <img src="{{ asset('images/logo.png') }}" alt="TrekNesia">
             @else
-                <span class="sidebar-brand-text">
-                    <i class="fas fa-mountain"></i> Trek<span style="color:var(--trek-accent)">Nesia</span>
-                </span>
+                <div class="sidebar-brand-text">
+                    <div class="sidebar-brand-icon"><i class="fas fa-mountain"></i></div>
+                    Trek<span>Nesia</span>
+                </div>
             @endif
         </div>
         
@@ -501,33 +522,28 @@
         <div class="sidebar-logout">
             <form action="/logout" method="POST">
                 @csrf
-                <button type="submit">
-                    <i class="fas fa-sign-out-alt"></i> Logout
-                </button>
+                <button type="submit"><i class="fas fa-sign-out-alt"></i> Logout</button>
             </form>
         </div>
     </aside>
 
-    <!-- MAIN -->
     <div class="admin-main">
         <div class="admin-topbar">
             <h5>@yield('page-title', 'Dashboard')</h5>
             <div class="admin-user">
                 <span class="admin-user-name d-none d-md-inline">{{ session('admin_name') }}</span>
-                <div class="admin-user-avatar">
-                    {{ strtoupper(substr(session('admin_name') ?? 'A', 0, 1)) }}
-                </div>
+                <div class="admin-user-avatar">{{ strtoupper(substr(session('admin_name') ?? 'A', 0, 1)) }}</div>
             </div>
         </div>
         
         <div class="admin-content">
             @if(session('success'))
-                <div class="alert-trek alert-success-trek">
+                <div style="padding:14px 18px; border-radius:10px; background:rgba(16,185,129,0.1); border:1px solid rgba(16,185,129,0.3); color:var(--brand-400); font-size:0.85rem; margin-bottom:20px; display:flex; align-items:center; gap:10px;">
                     <i class="fas fa-check-circle"></i> {{ session('success') }}
                 </div>
             @endif
             @if(session('error'))
-                <div class="alert-trek alert-danger-trek">
+                <div style="padding:14px 18px; border-radius:10px; background:rgba(239,68,68,0.1); border:1px solid rgba(239,68,68,0.3); color:#FCA5A5; font-size:0.85rem; margin-bottom:20px; display:flex; align-items:center; gap:10px;">
                     <i class="fas fa-exclamation-circle"></i> {{ session('error') }}
                 </div>
             @endif

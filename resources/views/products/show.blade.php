@@ -4,9 +4,9 @@
 
 @section('content')
 
-<div class="container py-5" id="productDetail">
+<div class="container py-5" style="max-width: 1280px;" id="productDetail">
     <div class="text-center py-5">
-        <i class="fas fa-spinner fa-spin fa-2x" style="color:var(--trek-primary);"></i>
+        <i class="fas fa-spinner fa-spin fa-2x" style="color:var(--brand-400);"></i>
     </div>
 </div>
 
@@ -24,7 +24,6 @@
         }).format(angka);
     }
     
-    // ✅ Hitung harga berdasarkan size
     function getPriceForSize(product, size) {
         if (product.priceBySize && size && product.priceBySize[size]) {
             return product.priceBySize[size];
@@ -41,7 +40,6 @@
             const hasSizes = p.sizes && Array.isArray(p.sizes) && p.sizes.length > 0;
             const hasPriceBySize = p.priceBySize && Object.keys(p.priceBySize).length > 0;
             
-            // Default: pakai size pertama kalau ada priceBySize
             let initialSize = null;
             let initialPrice = p.price;
             if (hasPriceBySize && hasSizes) {
@@ -50,19 +48,17 @@
                 currentSize = initialSize;
             }
             
-            // Specs
             let specsHtml = '';
             if (p.specs && Object.keys(p.specs).length > 0) {
                 specsHtml = '<ul class="list-unstyled" style="font-size:0.85rem; margin:0;">';
                 for (const [key, value] of Object.entries(p.specs)) {
                     if (hasSizes && key.toLowerCase() === 'ukuran') continue;
                     const val = Array.isArray(value) ? value.join(', ') : value;
-                    specsHtml += `<li style="padding:6px 0; border-bottom:1px solid var(--trek-border-soft);"><strong style="color:var(--trek-dark);">${key}:</strong> <span style="color:var(--trek-text-muted);">${val}</span></li>`;
+                    specsHtml += `<li style="padding:10px 0; border-bottom:1px solid var(--navy-600);"><strong style="color:var(--slate-100);">${key}:</strong> <span style="color:var(--slate-400);">${val}</span></li>`;
                 }
                 specsHtml += '</ul>';
             }
             
-            // Sizes dropdown
             let sizesHtml = '';
             if (hasSizes) {
                 const sizeOptions = p.sizes.map(s => {
@@ -73,15 +69,15 @@
                 }).join('');
                 
                 sizesHtml = `
-                    <div class="mb-4 p-3" style="background:var(--trek-bg-soft); border-radius:var(--radius-md); border:1px solid var(--trek-border);">
-                        <label style="font-size:0.8rem; font-weight:700; color:var(--trek-dark); margin-bottom:8px; display:block;">
-                            <i class="fas fa-ruler"></i> Pilih Varian <span style="color:var(--trek-danger)">*</span>
+                    <div class="mb-4 p-4" style="background:var(--navy-800); border-radius:12px; border:1px solid var(--navy-600);">
+                        <label style="font-size:0.8rem; font-weight:700; color:var(--slate-100); margin-bottom:10px; display:block;">
+                            <i class="fas fa-ruler"></i> Pilih Varian <span style="color:var(--rose-500)">*</span>
                         </label>
                         <select class="form-select" id="sizeSelect" onchange="onSizeChange()">
                             ${hasPriceBySize ? '' : '<option value="">-- Pilih Ukuran --</option>'}
                             ${sizeOptions}
                         </select>
-                        ${hasPriceBySize ? '<small style="color:var(--trek-text-muted); font-size:0.75rem; display:block; margin-top:6px;"><i class="fas fa-info-circle"></i> Harga berbeda per varian</small>' : ''}
+                        ${hasPriceBySize ? '<small style="color:var(--slate-400); font-size:0.75rem; display:block; margin-top:8px;"><i class="fas fa-info-circle"></i> Harga berbeda per varian</small>' : ''}
                     </div>
                 `;
             }
@@ -89,43 +85,43 @@
             c.innerHTML = `
                 <div class="row g-5">
                     <div class="col-lg-6">
-                        <div style="background:var(--trek-bg-soft); border-radius:var(--radius-lg); border:1px solid var(--trek-border); padding:40px; aspect-ratio:1; display:flex; align-items:center; justify-content:center; overflow:hidden;">
-                            <img src="${p.image}" alt="${p.name}" style="max-width:100%; max-height:100%; object-fit:contain;" onerror="this.src='https://placehold.co/600x600/f0f9f4/1a472a?text=TrekNesia'">
+                        <div style="background:#ffffff; border-radius:16px; border:1px solid var(--navy-600); aspect-ratio:1; overflow:hidden; position:relative;">
+                            <img src="${p.image}" alt="${p.name}" style="width:100%; height:100%; object-fit:cover; display:block;" onerror="this.src='https://placehold.co/600x600/f0f9f4/1a472a?text=TrekNesia'">
                         </div>
                     </div>
                     <div class="col-lg-6">
-                        <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:14px;">
-                            <span class="badge" style="background:var(--trek-primary-light); color:var(--trek-primary);">${p.category}</span>
-                            <span class="badge" style="background:var(--trek-border-soft); color:var(--trek-text);">${p.gender}</span>
-                            <span class="badge" style="background:#fef3c7; color:#92400e;">
+                        <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:16px;">
+                            <span class="badge" style="background:rgba(16, 185, 129, 0.1); color:var(--brand-400); padding:5px 12px;">${p.category}</span>
+                            <span class="badge" style="background:var(--navy-600); color:var(--slate-200); padding:5px 12px;">${p.gender}</span>
+                            <span class="badge" style="background:rgba(245, 158, 11, 0.15); color:#FCD34D; padding:5px 12px;">
                                 <i class="fas fa-star"></i> ${p.rating}
                             </span>
                         </div>
                         
-                        <h1 style="font-family:Manrope; font-size:1.75rem; font-weight:800; margin-bottom:6px; color:var(--trek-dark); letter-spacing:-0.02em;">${p.name}</h1>
-                        <p style="color:var(--trek-text-muted); font-size:0.875rem; margin-bottom:16px;">${p.brand || 'TrekNesia'}</p>
+                        <h1 style="font-family:'Plus Jakarta Sans'; font-size:1.85rem; font-weight:800; margin-bottom:8px; color:#fff; letter-spacing:-0.02em;">${p.name}</h1>
+                        <p style="color:var(--slate-400); font-size:0.875rem; margin-bottom:20px;">${p.brand || 'TrekNesia'}</p>
                         
-                        <div id="priceDisplay" style="font-family:Manrope; font-size:1.85rem; font-weight:800; color:var(--trek-primary); margin-bottom:24px; letter-spacing:-0.02em;">
+                        <div id="priceDisplay" style="font-family:'Plus Jakarta Sans'; font-size:2rem; font-weight:800; color:var(--brand-400); margin-bottom:24px; letter-spacing:-0.02em;">
                             ${formatRupiah(initialPrice)}
                         </div>
                         
-                        <p style="color:var(--trek-text); font-size:0.9rem; line-height:1.7; margin-bottom:24px;">${p.description}</p>
+                        <p style="color:var(--slate-200); font-size:0.9rem; line-height:1.7; margin-bottom:24px;">${p.description}</p>
                         
                         <div style="margin-bottom:24px;">
-                            <h6 style="font-size:0.8rem; font-weight:700; text-transform:uppercase; letter-spacing:0.05em; color:var(--trek-text-muted); margin-bottom:10px;">Spesifikasi</h6>
+                            <h6 style="font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:var(--slate-400); margin-bottom:12px;">Spesifikasi</h6>
                             ${specsHtml}
                         </div>
                         
                         ${sizesHtml}
                         
-                        <div style="margin-bottom:20px;">
-                            <label style="font-size:0.8rem; font-weight:700; color:var(--trek-dark); margin-bottom:8px; display:block;">Jumlah</label>
-                            <div style="display:inline-flex; align-items:center; border:1px solid var(--trek-border); border-radius:var(--radius-md); overflow:hidden;">
-                                <button type="button" onclick="updateQty(-1)" style="width:38px; height:38px; border:none; background:#fff; color:var(--trek-text);">
+                        <div style="margin-bottom:24px;">
+                            <label style="font-size:0.8rem; font-weight:700; color:var(--slate-100); margin-bottom:10px; display:block;">Jumlah</label>
+                            <div style="display:inline-flex; align-items:center; background:var(--navy-800); border:1px solid var(--navy-600); border-radius:10px; overflow:hidden;">
+                                <button type="button" onclick="updateQty(-1)" style="width:42px; height:42px; border:none; background:transparent; color:var(--slate-200);">
                                     <i class="fas fa-minus" style="font-size:0.75rem;"></i>
                                 </button>
-                                <input type="number" id="qtyInput" value="1" min="1" style="width:50px; height:38px; border:none; text-align:center; font-weight:600; font-size:0.9rem; outline:none;">
-                                <button type="button" onclick="updateQty(1)" style="width:38px; height:38px; border:none; background:#fff; color:var(--trek-text);">
+                                <input type="number" id="qtyInput" value="1" min="1" style="width:56px; height:42px; border:none; background:transparent; text-align:center; font-weight:700; font-size:0.9rem; color:#fff; outline:none;">
+                                <button type="button" onclick="updateQty(1)" style="width:42px; height:42px; border:none; background:transparent; color:var(--slate-200);">
                                     <i class="fas fa-plus" style="font-size:0.75rem;"></i>
                                 </button>
                             </div>
@@ -141,8 +137,8 @@
         .catch(err => {
             document.getElementById('productDetail').innerHTML = `
                 <div class="text-center py-5">
-                    <i class="fas fa-exclamation-triangle fa-3x" style="color:var(--trek-danger);"></i>
-                    <h4 style="margin-top:16px;">Produk tidak ditemukan</h4>
+                    <i class="fas fa-exclamation-triangle fa-3x" style="color:var(--rose-500);"></i>
+                    <h4 style="margin-top:16px; color:#fff;">Produk tidak ditemukan</h4>
                     <a href="/products" class="btn btn-primary-custom mt-3">Kembali</a>
                 </div>
             `;
@@ -151,15 +147,11 @@
     function onSizeChange() {
         const sizeSelect = document.getElementById('sizeSelect');
         if (!sizeSelect || !currentProduct) return;
-        
         const size = sizeSelect.value;
         currentSize = size;
-        
         const price = getPriceForSize(currentProduct, size);
         const priceDisplay = document.getElementById('priceDisplay');
-        if (priceDisplay) {
-            priceDisplay.textContent = formatRupiah(price);
-        }
+        if (priceDisplay) priceDisplay.textContent = formatRupiah(price);
     }
     
     function updateQty(delta) {
@@ -171,7 +163,6 @@
     
     function addToCart() {
         if (!currentProduct) return;
-        
         const p = currentProduct;
         const qty = parseInt(document.getElementById('qtyInput').value);
         const hasSizes = p.sizes && Array.isArray(p.sizes) && p.sizes.length > 0;
@@ -180,16 +171,10 @@
         if (hasSizes) {
             const sel = document.getElementById('sizeSelect');
             size = sel.value;
-            if (!size) {
-                alert('⚠️ Silakan pilih varian terlebih dahulu!');
-                sel.focus();
-                return;
-            }
+            if (!size) { alert('⚠️ Silakan pilih varian terlebih dahulu!'); sel.focus(); return; }
         }
         
-        // ✅ Harga berdasarkan size yang dipilih
         const finalPrice = getPriceForSize(p, size);
-        
         let cart = JSON.parse(localStorage.getItem('treknesia_cart') || '[]');
         const idx = cart.findIndex(item => item.id === p.id && item.size === size);
         
@@ -197,15 +182,9 @@
             cart[idx].quantity += qty;
         } else {
             cart.push({
-                id: p.id, 
-                name: p.name, 
-                price: finalPrice,         // ✅ Harga per size
-                basePrice: p.price,        // Harga dasar
-                category: p.category, 
-                gender: p.gender,
-                image: p.image, 
-                size: size, 
-                quantity: qty
+                id: p.id, name: p.name, price: finalPrice, basePrice: p.price,
+                category: p.category, gender: p.gender, image: p.image,
+                size: size, quantity: qty
             });
         }
         

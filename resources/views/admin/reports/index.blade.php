@@ -5,24 +5,24 @@
 
 @section('content')
 
-<div class="table-card mb-3" style="padding:20px;">
-    <h6 style="font-family:Manrope; font-size:0.95rem; font-weight:700; margin-bottom:14px;">
-        <i class="fas fa-filter" style="color:var(--trek-primary);"></i> Filter Tanggal
+<div class="table-card mb-3" style="padding:22px;">
+    <h6 style="font-family:'Plus Jakarta Sans'; font-size:0.95rem; font-weight:800; color:#fff; margin-bottom:16px;">
+        <i class="fas fa-filter" style="color:var(--brand-400);"></i> Filter Tanggal
     </h6>
-    <form method="GET" class="row g-2 align-items-end">
+    <form method="GET" class="row g-3 align-items-end">
         <div class="col-md-4">
             <label class="form-label">Dari Tanggal</label>
-            <input type="date" name="from" class="form-control form-control-sm" value="{{ request('from') }}">
+            <input type="date" name="from" class="form-control" value="{{ request('from') }}">
         </div>
         <div class="col-md-4">
             <label class="form-label">Sampai Tanggal</label>
-            <input type="date" name="to" class="form-control form-control-sm" value="{{ request('to') }}">
+            <input type="date" name="to" class="form-control" value="{{ request('to') }}">
         </div>
-        <div class="col-md-4 d-flex gap-2">
-            <button type="submit" class="btn btn-primary-custom btn-sm">
+        <div class="col-md-4" style="display:flex; gap:8px;">
+            <button type="submit" class="btn btn-primary-custom">
                 <i class="fas fa-search"></i> Filter
             </button>
-            <a href="/admin/reports" class="btn btn-outline-custom btn-sm">Reset</a>
+            <a href="/admin/reports" class="btn btn-outline-custom">Reset</a>
         </div>
     </form>
 </div>
@@ -32,9 +32,7 @@
         <div class="stat-card">
             <div>
                 <div class="stat-card-label">Pendapatan (PAID)</div>
-                <div class="stat-card-value" style="color:var(--trek-success); font-size:1.15rem;">
-                    Rp {{ number_format($totalRevenue, 0, ',', '.') }}
-                </div>
+                <div class="stat-card-value" style="color:var(--brand-400); font-size:1.3rem;">Rp {{ number_format($totalRevenue, 0, ',', '.') }}</div>
             </div>
             <div class="stat-card-icon stat-success"><i class="fas fa-money-bill-wave"></i></div>
         </div>
@@ -52,7 +50,7 @@
         <div class="stat-card">
             <div>
                 <div class="stat-card-label">Pesanan PAID</div>
-                <div class="stat-card-value" style="color:var(--trek-success);">{{ $paidOrders }}</div>
+                <div class="stat-card-value" style="color:var(--brand-400);">{{ $paidOrders }}</div>
             </div>
             <div class="stat-card-icon stat-success"><i class="fas fa-check"></i></div>
         </div>
@@ -61,7 +59,7 @@
         <div class="stat-card">
             <div>
                 <div class="stat-card-label">Pesanan PENDING</div>
-                <div class="stat-card-value" style="color:var(--trek-warning);">{{ $pendingOrders }}</div>
+                <div class="stat-card-value" style="color:#FCD34D;">{{ $pendingOrders }}</div>
             </div>
             <div class="stat-card-icon stat-warning"><i class="fas fa-clock"></i></div>
         </div>
@@ -92,10 +90,10 @@
                 <tbody>
                     @foreach($orders as $i => $o)
                     <tr>
-                        <td style="color:var(--trek-text-muted);">{{ $i + 1 }}</td>
-                        <td><strong>{{ $o['id'] }}</strong></td>
+                        <td style="color:var(--slate-400);">{{ $i + 1 }}</td>
+                        <td><strong style="color:var(--slate-100);">{{ $o['id'] }}</strong></td>
                         <td>{{ $o['customer_name'] }}</td>
-                        <td style="font-weight:600;">Rp {{ number_format($o['total_amount'], 0, ',', '.') }}</td>
+                        <td style="font-weight:700; color:var(--brand-400);">Rp {{ number_format($o['total_amount'], 0, ',', '.') }}</td>
                         <td>
                             @if($o['status'] === 'PENDING')
                                 <span class="badge-status badge-pending">PENDING</span>
@@ -107,15 +105,15 @@
                                 <span class="badge-status badge-cancelled">{{ $o['status'] }}</span>
                             @endif
                         </td>
-                        <td style="font-size:0.78rem; color:var(--trek-text-muted);">{{ $o['created_at'] }}</td>
+                        <td style="font-size:0.78rem; color:var(--slate-400);">{{ $o['created_at'] }}</td>
                     </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
     @else
-        <div style="text-align:center; padding:60px 20px; color:var(--trek-text-muted);">
-            <i class="fas fa-chart-line" style="font-size:2.5rem; margin-bottom:12px; opacity:0.4;"></i>
+        <div style="text-align:center; padding:60px 20px; color:var(--slate-400);">
+            <i class="fas fa-chart-line" style="font-size:2.5rem; margin-bottom:12px; opacity:0.5;"></i>
             <p style="margin:0;">Tidak ada data untuk periode ini</p>
         </div>
     @endif

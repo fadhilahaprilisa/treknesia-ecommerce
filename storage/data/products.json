@@ -6,62 +6,87 @@
         "gender": "Pria",
         "price": 1299000,
         "description": "Sepatu trail running dengan grip sempurna untuk medan ekstrim. Dilengkapi teknologi anti-slip dan bantalan empuk.",
-        "image": "/images/products/sepatu-trail-running-hd.jpeg",
+        "image": "\/images\/products\/sepatu-trail-running-hd.jpeg",
         "rating": 4.7,
         "stock": 25,
         "brand": "PeakStride",
-        "sizes": ["39", "40", "41", "42", "43", "44"],
+        "sizes": [
+            "39",
+            "40",
+            "41",
+            "42",
+            "43",
+            "44"
+        ],
         "specs": {
             "berat": "280gr",
             "material": "Mesh + Rubber",
-            "warna": ["Hitam", "Merah", "Biru"]
+            "warna": [
+                "Hitam",
+                "Merah",
+                "Biru"
+            ]
         }
     },
     {
-    "id": 2,
-    "name": "Carrier 40L Summit",
-    "category": "Hiking",
-    "gender": "Unisex",
-    "price": 1599000,
-    "description": "Tas carrier 40L dengan frame aluminium ringan. Cocok untuk pendakian 3-5 hari.",
-    "image": "/images/products/carrier-40l-summit-hd.jpeg",
-    "rating": 4.8,
-    "stock": 15,
-    "brand": "Northridge",
-    "sizes": ["40L", "50L", "60L"],
-    "priceBySize": {
-        "40L": 1599000,
-        "50L": 1799000,
-        "60L": 2199000
+        "id": 2,
+        "name": "Carrier 40L Summit",
+        "category": "Hiking",
+        "gender": "Unisex",
+        "price": 1599000,
+        "description": "Tas carrier 40L dengan frame aluminium ringan. Cocok untuk pendakian 3-5 hari.",
+        "image": "\/images\/products\/carrier-40l-summit-hd.jpeg",
+        "rating": 4.8,
+        "stock": 15,
+        "brand": "Northridge",
+        "sizes": [
+            "40L",
+            "50L",
+            "60L"
+        ],
+        "priceBySize": {
+            "40L": 1599000,
+            "50L": 1799000,
+            "60L": 2199000
+        },
+        "specs": {
+            "berat": "1.2kg",
+            "material": "Nylon 210D",
+            "warna": [
+                "Hijau",
+                "Biru",
+                "Hitam"
+            ]
+        }
     },
-    "specs": {
-        "berat": "1.2kg",
-        "material": "Nylon 210D",
-        "warna": ["Hijau", "Biru", "Hitam"]
-    }
-},
     {
-    "id": 3,
-    "name": "Tenda Ultralight 2P",
-    "category": "Camping",
-    "gender": "Unisex",
-    "price": 1999000,
-    "description": "Tenda 2 orang super ringan hanya 1.8kg. Anti air dan mudah dipasang.",
-    "image": "/images/products/tenda-ultralight-2p.jpeg",
-    "rating": 4.6,
-    "stock": 10,
-    "brand": "Wildsphere",
-    "sizes": ["2 Orang", "4 Orang"],
-    "priceBySize": {
-        "2 Orang": 1999000,
-        "4 Orang": 2799000
+        "id": 3,
+        "name": "Tenda Ultralight 2P",
+        "category": "Camping",
+        "gender": "Unisex",
+        "price": 1999000,
+        "description": "Tenda 2 orang super ringan hanya 1.8kg. Anti air dan mudah dipasang.",
+        "image": "\/images\/products\/tenda-ultralight-2p.jpeg",
+        "rating": 4.6,
+        "stock": 10,
+        "brand": "Wildsphere",
+        "sizes": [
+            "2 Orang",
+            "4 Orang"
+        ],
+        "priceBySize": {
+            "2 Orang": 1999000,
+            "4 Orang": 2799000
+        },
+        "specs": {
+            "berat": "1.8kg",
+            "material": "Polyester 20D",
+            "warna": [
+                "Hijau Army",
+                "Orange"
+            ]
+        }
     },
-    "specs": {
-        "berat": "1.8kg",
-        "material": "Polyester 20D",
-        "warna": ["Hijau Army", "Orange"]
-    }
-},
     {
         "id": 4,
         "name": "GPS Watch Altitude",
@@ -69,15 +94,22 @@
         "gender": "Unisex",
         "price": 2499000,
         "description": "Jam tangan GPS dengan altimeter, barometer, dan kompas. Tahan air 100m.",
-        "image": "/images/products/gps-watch-altitude.jpeg",
+        "image": "\/images\/products\/gps-watch-altitude.jpeg",
         "rating": 4.7,
         "stock": 8,
         "brand": "Altitude",
         "specs": {
             "berat": "65gr",
             "baterai": "14 hari",
-            "fitur": ["GPS", "Altimeter", "HR Monitor"],
-            "warna": ["Hitam", "Putih"]
+            "fitur": [
+                "GPS",
+                "Altimeter",
+                "HR Monitor"
+            ],
+            "warna": [
+                "Hitam",
+                "Putih"
+            ]
         }
     },
     {
@@ -87,15 +119,25 @@
         "gender": "Pria",
         "price": 1799000,
         "description": "Jaket anti-angin dan anti-air dengan membran breathable. Ideal untuk cuaca ekstrim.",
-        "image": "/images/products/jaket-hardshell-weatherguard-hd.jpeg",
+        "image": "\/images\/products\/jaket-hardshell-weatherguard-hd.jpeg",
         "rating": 4.7,
         "stock": 12,
         "brand": "Weatherguard",
-        "sizes": ["S", "M", "L", "XL", "XXL"],
+        "sizes": [
+            "S",
+            "M",
+            "L",
+            "XL",
+            "XXL"
+        ],
         "specs": {
             "berat": "450gr",
             "material": "Gore-Tex",
-            "warna": ["Hitam", "Biru Navy", "Merah"]
+            "warna": [
+                "Hitam",
+                "Biru Navy",
+                "Merah"
+            ]
         }
     },
     {
@@ -105,40 +147,57 @@
         "gender": "Wanita",
         "price": 1499000,
         "description": "Sepatu hiking khusus wanita dengan desain ergonomis dan sol anti-slip.",
-        "image": "/images/products/sepatu-hiking-wanita.jpeg",
+        "image": "\/images\/products\/sepatu-hiking-wanita.jpeg",
         "rating": 4.8,
         "stock": 20,
         "brand": "PeakStride",
-        "sizes": ["36", "37", "38", "39", "40"],
+        "sizes": [
+            "36",
+            "37",
+            "38",
+            "39",
+            "40"
+        ],
         "specs": {
             "berat": "320gr",
             "material": "Leather + Rubber",
-            "warna": ["Coklat", "Hitam", "Pink"]
+            "warna": [
+                "Coklat",
+                "Hitam",
+                "Pink"
+            ]
         }
     },
     {
-    "id": 7,
-    "name": "Trekking Pole Carbon",
-    "category": "Hiking",
-    "gender": "Unisex",
-    "price": 899000,
-    "description": "Tongkat trekking karbon ringan dengan grip kayu. Adjustable 100-130cm.",
-    "image": "/images/products/tracking-pole-carbon.jpeg",
-    "rating": 4.5,
-    "stock": 30,
-    "brand": "Nordic",
-    "sizes": ["100cm", "110cm", "120cm"],
-    "priceBySize": {
-        "100cm": 799000,
-        "110cm": 899000,
-        "120cm": 999000
+        "id": 7,
+        "name": "Trekking Pole Carbon",
+        "category": "Hiking",
+        "gender": "Unisex",
+        "price": 899000,
+        "description": "Tongkat trekking karbon ringan dengan grip kayu. Adjustable 100-130cm.",
+        "image": "\/images\/products\/tracking-pole-carbon.jpeg",
+        "rating": 4.5,
+        "stock": 30,
+        "brand": "Nordic",
+        "sizes": [
+            "100cm",
+            "110cm",
+            "120cm"
+        ],
+        "priceBySize": {
+            "100cm": 799000,
+            "110cm": 899000,
+            "120cm": 999000
+        },
+        "specs": {
+            "berat": "220gr\/pcs",
+            "material": "Carbon Fiber",
+            "warna": [
+                "Hitam",
+                "Silver"
+            ]
+        }
     },
-    "specs": {
-        "berat": "220gr/pcs",
-        "material": "Carbon Fiber",
-        "warna": ["Hitam", "Silver"]
-    }
-},
     {
         "id": 8,
         "name": "Running Vest 12L",
@@ -146,16 +205,25 @@
         "gender": "Unisex",
         "price": 799000,
         "description": "Vest running ringan dengan 12L kapasitas. Cocok untuk ultra marathon.",
-        "image": "/images/products/running-vest-12l.jpeg",
+        "image": "\/images\/products\/running-vest-12l.jpeg",
         "rating": 4.6,
         "stock": 18,
         "brand": "TrailReady",
-        "sizes": ["S", "M", "L", "XL"],
+        "sizes": [
+            "S",
+            "M",
+            "L",
+            "XL"
+        ],
         "specs": {
             "berat": "200gr",
             "material": "Nylon",
             "kapasitas": "12L",
-            "warna": ["Hitam", "Biru", "Merah"]
+            "warna": [
+                "Hitam",
+                "Biru",
+                "Merah"
+            ]
         }
     },
     {
@@ -165,16 +233,23 @@
         "gender": "Pria",
         "price": 2499000,
         "description": "Tas carrier besar untuk ekspedisi panjang. Kapasitas 60L dengan frame kuat.",
-        "image": "/images/products/carrier-60l-ekspedisi.jpeg",
+        "image": "\/images\/products\/carrier-60l-ekspedisi.jpeg",
         "rating": 4.9,
         "stock": 7,
         "brand": "Northridge",
-        "sizes": ["40L", "50L", "60L"],
+        "sizes": [
+            "40L",
+            "50L",
+            "60L"
+        ],
         "specs": {
             "berat": "1.8kg",
             "material": "Nylon 420D",
             "kapasitas": "60L",
-            "warna": ["Hijau Army", "Coklat"]
+            "warna": [
+                "Hijau Army",
+                "Coklat"
+            ]
         }
     },
     {
@@ -184,7 +259,7 @@
         "gender": "Unisex",
         "price": 399000,
         "description": "Lampu kepala 1000 lumen dengan baterai tahan lama. 3 mode cahaya.",
-        "image": "/images/products/headlamp-1000-lumen.jpeg",
+        "image": "\/images\/products\/headlamp-1000-lumen.jpeg",
         "rating": 4.5,
         "stock": 40,
         "brand": "LightPro",
@@ -192,32 +267,42 @@
             "berat": "120gr",
             "baterai": "Li-ion 18650",
             "lumen": "1000",
-            "warna": ["Hitam", "Orange"]
+            "warna": [
+                "Hitam",
+                "Orange"
+            ]
         }
     },
     {
-    "id": 11,
-    "name": "Sleeping Bag Winter -5°C",
-    "category": "Camping",
-    "gender": "Unisex",
-    "price": 899000,
-    "description": "Sleeping bag untuk suhu -5°C hingga 10°C. Material down premium.",
-    "image": "/images/products/sleeping-bag-winter-5c.jpeg",
-    "rating": 4.4,
-    "stock": 15,
-    "brand": "DreamSleep",
-    "sizes": ["-5°C", "0°C", "5°C"],
-    "priceBySize": {
-        "-5°C": 1099000,
-        "0°C": 899000,
-        "5°C": 699000
+        "id": 11,
+        "name": "Sleeping Bag Winter -5\u00b0C",
+        "category": "Camping",
+        "gender": "Unisex",
+        "price": 899000,
+        "description": "Sleeping bag untuk suhu -5\u00b0C hingga 10\u00b0C. Material down premium.",
+        "image": "\/images\/products\/sleeping-bag-winter-5c.jpeg",
+        "rating": 4.4,
+        "stock": 15,
+        "brand": "DreamSleep",
+        "sizes": [
+            "-5\u00b0C",
+            "0\u00b0C",
+            "5\u00b0C"
+        ],
+        "priceBySize": {
+            "-5\u00b0C": 1099000,
+            "0\u00b0C": 899000,
+            "5\u00b0C": 699000
+        },
+        "specs": {
+            "berat": "1.5kg",
+            "material": "Nylon + Down",
+            "warna": [
+                "Biru",
+                "Hijau"
+            ]
+        }
     },
-    "specs": {
-        "berat": "1.5kg",
-        "material": "Nylon + Down",
-        "warna": ["Biru", "Hijau"]
-    }
-},
     {
         "id": 12,
         "name": "Hydration Bladder 2L",
@@ -225,14 +310,16 @@
         "gender": "Unisex",
         "price": 299000,
         "description": "Kantong air 2L untuk hiking dan running. BPA-free dan anti-bocor.",
-        "image": "/images/products/hydration-bladder-2l.jpeg",
+        "image": "\/images\/products\/hydration-bladder-2l.jpeg",
         "rating": 4.3,
         "stock": 50,
         "brand": "HydraPack",
         "specs": {
             "kapasitas": "2L",
             "material": "TPU",
-            "warna": ["Transparan"]
+            "warna": [
+                "Transparan"
+            ]
         }
     },
     {
@@ -242,14 +329,23 @@
         "gender": "Pria",
         "price": 299000,
         "description": "Kaos running dengan teknologi quick-dry dan anti-bau.",
-        "image": "/images/products/kaos-running-teknologi.jpeg",
+        "image": "\/images\/products\/kaos-running-teknologi.jpeg",
         "rating": 4.2,
         "stock": 35,
         "brand": "RunTech",
-        "sizes": ["S", "M", "L", "XL"],
+        "sizes": [
+            "S",
+            "M",
+            "L",
+            "XL"
+        ],
         "specs": {
             "material": "Polyester 100%",
-            "warna": ["Hitam", "Biru", "Merah"]
+            "warna": [
+                "Hitam",
+                "Biru",
+                "Merah"
+            ]
         }
     },
     {
@@ -259,14 +355,23 @@
         "gender": "Wanita",
         "price": 499000,
         "description": "Celana hiking stretch untuk wanita. Water-resistant dan cepat kering.",
-        "image": "/images/products/celana-hiking-wanita.jpeg",
+        "image": "\/images\/products\/celana-hiking-wanita.jpeg",
         "rating": 4.6,
         "stock": 22,
         "brand": "TrailReady",
-        "sizes": ["S", "M", "L", "XL"],
+        "sizes": [
+            "S",
+            "M",
+            "L",
+            "XL"
+        ],
         "specs": {
             "material": "Nylon + Spandex",
-            "warna": ["Hitam", "Coklat", "Hijau"]
+            "warna": [
+                "Hitam",
+                "Coklat",
+                "Hijau"
+            ]
         }
     },
     {
@@ -276,14 +381,21 @@
         "gender": "Unisex",
         "price": 199000,
         "description": "Sarung tangan cycling dengan gel padding untuk kenyamanan ekstra.",
-        "image": "/images/products/cycling-gloves-gel.jpeg",
+        "image": "\/images\/products\/cycling-gloves-gel.jpeg",
         "rating": 4.3,
         "stock": 28,
         "brand": "BikePro",
-        "sizes": ["S", "M", "L"],
+        "sizes": [
+            "S",
+            "M",
+            "L"
+        ],
         "specs": {
             "material": "Synthetic Leather",
-            "warna": ["Hitam", "Merah"]
+            "warna": [
+                "Hitam",
+                "Merah"
+            ]
         }
     },
     {
@@ -293,14 +405,17 @@
         "gender": "Unisex",
         "price": 599000,
         "description": "Set foam roller + massage ball untuk pemulihan otot setelah aktivitas.",
-        "image": "/images/products/recovery-roller-set.jpeg",
+        "image": "\/images\/products\/recovery-roller-set.jpeg",
         "rating": 4.7,
         "stock": 12,
         "brand": "RecoverPro",
         "specs": {
             "ukuran": "45cm",
             "material": "EVA Foam",
-            "warna": ["Hitam", "Biru"]
+            "warna": [
+                "Hitam",
+                "Biru"
+            ]
         }
     },
     {
@@ -310,14 +425,21 @@
         "gender": "Pria",
         "price": 149000,
         "description": "Kaos kaki kompresi untuk meningkatkan sirkulasi darah saat olahraga.",
-        "image": "/images/products/compression-socks-pria.jpeg",
+        "image": "\/images\/products\/compression-socks-pria.jpeg",
         "rating": 4.4,
         "stock": 40,
         "brand": "CompressTech",
-        "sizes": ["S", "M", "L"],
+        "sizes": [
+            "S",
+            "M",
+            "L"
+        ],
         "specs": {
             "material": "Nylon + Spandex",
-            "warna": ["Hitam", "Putih"]
+            "warna": [
+                "Hitam",
+                "Putih"
+            ]
         }
     },
     {
@@ -327,16 +449,22 @@
         "gender": "Wanita",
         "price": 699000,
         "description": "Tas daypack 25L desain ergonomis untuk wanita. Cocok untuk one-day hike.",
-        "image": "/images/products/carrier-daypack-25l.jpeg",
+        "image": "\/images\/products\/carrier-daypack-25l.jpeg",
         "rating": 4.5,
         "stock": 20,
         "brand": "Northridge",
-        "sizes": ["25L"],
+        "sizes": [
+            "25L"
+        ],
         "specs": {
             "berat": "450gr",
             "material": "Nylon 210D",
             "kapasitas": "25L",
-            "warna": ["Pink", "Biru Muda", "Hitam"]
+            "warna": [
+                "Pink",
+                "Biru Muda",
+                "Hitam"
+            ]
         }
     },
     {
@@ -346,15 +474,23 @@
         "gender": "Unisex",
         "price": 899000,
         "description": "Helm cycling aerodinamis dengan ventilasi maksimal dan perlindungan MIPS.",
-        "image": "/images/products/cycling-helmet-aero.jpeg",
+        "image": "\/images\/products\/cycling-helmet-aero.jpeg",
         "rating": 4.8,
         "stock": 10,
         "brand": "AeroSafe",
-        "sizes": ["S", "M", "L"],
+        "sizes": [
+            "S",
+            "M",
+            "L"
+        ],
         "specs": {
             "berat": "240gr",
             "material": "Polycarbonate",
-            "warna": ["Hitam", "Putih", "Merah"]
+            "warna": [
+                "Hitam",
+                "Putih",
+                "Merah"
+            ]
         }
     },
     {
@@ -364,7 +500,7 @@
         "gender": "Unisex",
         "price": 599000,
         "description": "Matras camping self-inflating tebal 5cm untuk kenyamanan maksimal.",
-        "image": "/images/products/matras-camping-self-inflating.jpeg",
+        "image": "\/images\/products\/matras-camping-self-inflating.jpeg",
         "rating": 4.5,
         "stock": 15,
         "brand": "ComfortCamp",
@@ -372,7 +508,10 @@
             "berat": "800gr",
             "material": "PU Foam",
             "ukuran": "183 x 51cm",
-            "warna": ["Hijau", "Biru"]
+            "warna": [
+                "Hijau",
+                "Biru"
+            ]
         }
     },
     {
@@ -382,14 +521,23 @@
         "gender": "Wanita",
         "price": 200000,
         "description": "Jaket wanita nyaman & lucu dengan desain modern.",
-        "image": "/images/products/jaket-conquette.jpeg",
+        "image": "\/images\/products\/jaket-conquette.jpeg",
         "rating": 4.4,
         "stock": 10,
         "brand": "Uniqlo",
-        "sizes": ["S", "M", "L", "XL", "XXL"],
+        "sizes": [
+            "S",
+            "M",
+            "L",
+            "XL",
+            "XXL"
+        ],
         "specs": {
             "material": "Polyester",
-            "warna": ["Pink", "Hitam"]
+            "warna": [
+                "Pink",
+                "Hitam"
+            ]
         }
     }
 ]

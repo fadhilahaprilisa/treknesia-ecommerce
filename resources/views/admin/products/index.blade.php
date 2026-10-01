@@ -17,7 +17,7 @@
         <table class="table-trek">
             <thead>
                 <tr>
-                    <th style="width:60px;">ID</th>
+                    <th style="width:70px;">ID</th>
                     <th>Produk</th>
                     <th>Kategori</th>
                     <th>Gender</th>
@@ -29,23 +29,21 @@
             <tbody>
                 @foreach($products as $p)
                 <tr>
-                    <td style="color:var(--trek-text-muted); font-weight:600;">#{{ $p['id'] }}</td>
+                    <td style="color:var(--slate-400); font-weight:600;">#{{ $p['id'] }}</td>
                     <td>
-                        <div style="display:flex; align-items:center; gap:10px;">
-                            <div style="width:40px; height:40px; border-radius:var(--radius-sm); background:var(--trek-bg-soft); overflow:hidden; flex-shrink:0;">
-                                <img src="{{ $p['image'] ?? '' }}" style="width:100%; height:100%; object-fit:cover;" onerror="this.src='https://placehold.co/40x40/f0f9f4/1a472a?text=T'">
+                        <div style="display:flex; align-items:center; gap:12px;">
+                            <div style="width:48px; height:48px; border-radius:8px; background:var(--navy-800); overflow:hidden; flex-shrink:0; padding:4px;">
+                                <img src="{{ $p['image'] ?? '' }}" style="width:100%; height:100%; object-fit:contain;" onerror="this.src='https://placehold.co/48x48/0D1C2D/34d399?text=T'">
                             </div>
                             <div>
-                                <div style="font-weight:600; color:var(--trek-dark);">{{ $p['name'] }}</div>
-                                <div style="font-size:0.75rem; color:var(--trek-text-muted);">{{ $p['brand'] ?? '-' }}</div>
+                                <div style="font-weight:700; color:var(--slate-100);">{{ $p['name'] }}</div>
+                                <div style="font-size:0.75rem; color:var(--slate-400);">{{ $p['brand'] ?? '-' }}</div>
                             </div>
                         </div>
                     </td>
-                    <td>
-                        <span class="badge-status badge-muted">{{ $p['category'] }}</span>
-                    </td>
+                    <td><span class="badge-status badge-muted">{{ $p['category'] }}</span></td>
                     <td>{{ $p['gender'] }}</td>
-                    <td style="font-weight:600;">Rp {{ number_format($p['price'], 0, ',', '.') }}</td>
+                    <td style="font-weight:700; color:var(--brand-400);">Rp {{ number_format($p['price'], 0, ',', '.') }}</td>
                     <td>
                         @if($p['stock'] > 10)
                             <span class="badge-status badge-success">{{ $p['stock'] }}</span>

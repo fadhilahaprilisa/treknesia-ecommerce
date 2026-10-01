@@ -4,14 +4,14 @@
 
 @section('content')
 
-<div class="container py-5">
+<div class="container py-5" style="max-width: 1280px;">
     <h2 class="section-title mb-4">Checkout</h2>
     
     <div class="row g-4">
         <div class="col-lg-7">
             <div class="card-trek p-4 mb-3">
-                <h5 style="font-family:Manrope; font-size:1rem; font-weight:700; margin-bottom:20px;">
-                    <i class="fas fa-truck" style="color:var(--trek-primary);"></i> Informasi Pengiriman
+                <h5 style="font-family:'Plus Jakarta Sans'; font-size:1rem; font-weight:800; margin-bottom:20px; color:#fff;">
+                    <i class="fas fa-truck" style="color:var(--brand-400);"></i> Informasi Pengiriman
                 </h5>
                 
                 <div class="mb-3">
@@ -58,53 +58,53 @@
             </div>
             
             <div class="card-trek p-4">
-                <h5 style="font-family:Manrope; font-size:1rem; font-weight:700; margin-bottom:20px;">
-                    <i class="fas fa-money-bill-wave" style="color:var(--trek-primary);"></i> Metode Pembayaran
+                <h5 style="font-family:'Plus Jakarta Sans'; font-size:1rem; font-weight:800; margin-bottom:20px; color:#fff;">
+                    <i class="fas fa-money-bill-wave" style="color:var(--brand-400);"></i> Metode Pembayaran
                 </h5>
                 
                 <div class="payment-option selected" data-payment="COD" onclick="selectPayment('COD')">
                     <input type="radio" name="payment" value="COD" id="payCOD" checked>
                     <label for="payCOD" class="d-flex align-items-center w-100 m-0" style="cursor:pointer;">
-                        <i class="fas fa-money-bill-wave" style="font-size:1.5rem; color:var(--trek-primary); margin-right:14px;"></i>
+                        <i class="fas fa-money-bill-wave" style="font-size:1.5rem; color:var(--brand-400); margin-right:16px;"></i>
                         <div style="flex-grow:1;">
-                            <div style="font-weight:700; font-size:0.9rem; color:var(--trek-dark);">COD (Bayar di Tempat)</div>
-                            <div style="font-size:0.78rem; color:var(--trek-text-muted);">Bayar saat barang tiba</div>
+                            <div style="font-weight:700; font-size:0.92rem; color:#fff;">COD (Bayar di Tempat)</div>
+                            <div style="font-size:0.78rem; color:var(--slate-400);">Bayar saat barang tiba</div>
                         </div>
-                        <i class="fas fa-check-circle check-icon" style="color:var(--trek-primary); display:none;"></i>
+                        <i class="fas fa-check-circle check-icon" style="color:var(--brand-400); display:none;"></i>
                     </label>
                 </div>
                 
                 <div class="payment-option mt-2" data-payment="QRIS" onclick="selectPayment('QRIS')">
                     <input type="radio" name="payment" value="QRIS" id="payQRIS">
                     <label for="payQRIS" class="d-flex align-items-center w-100 m-0" style="cursor:pointer;">
-                        <i class="fas fa-qrcode" style="font-size:1.5rem; color:var(--trek-primary); margin-right:14px;"></i>
+                        <i class="fas fa-qrcode" style="font-size:1.5rem; color:var(--brand-400); margin-right:16px;"></i>
                         <div style="flex-grow:1;">
-                            <div style="font-weight:700; font-size:0.9rem; color:var(--trek-dark);">QRIS (Scan QR Code)</div>
-                            <div style="font-size:0.78rem; color:var(--trek-text-muted);">Bayar via scan QR - upload bukti</div>
+                            <div style="font-weight:700; font-size:0.92rem; color:#fff;">QRIS (Scan QR Code)</div>
+                            <div style="font-size:0.78rem; color:var(--slate-400);">Bayar via scan QR - upload bukti</div>
                         </div>
-                        <i class="fas fa-check-circle check-icon" style="color:var(--trek-primary); display:none;"></i>
+                        <i class="fas fa-check-circle check-icon" style="color:var(--brand-400); display:none;"></i>
                     </label>
                 </div>
             </div>
         </div>
         
         <div class="col-lg-5">
-            <div class="card-trek p-4 sticky-top" style="top:90px;">
-                <h5 style="font-family:Manrope; font-size:1rem; font-weight:700; margin-bottom:20px;">Ringkasan Pesanan</h5>
+            <div class="card-trek p-4" style="position:sticky; top:90px;">
+                <h5 style="font-family:'Plus Jakarta Sans'; font-size:1rem; font-weight:800; margin-bottom:20px; color:#fff;">Ringkasan Pesanan</h5>
                 <div id="checkoutItems"></div>
-                <hr style="border-color:var(--trek-border-soft); margin:16px 0;">
+                <hr style="border-color:var(--navy-600); margin:16px 0;">
                 <div style="display:flex; justify-content:space-between; font-size:0.85rem; margin-bottom:10px;">
-                    <span style="color:var(--trek-text-muted);">Subtotal</span>
-                    <span id="checkoutSubtotal" style="font-weight:600;">Rp 0</span>
+                    <span style="color:var(--slate-400);">Subtotal</span>
+                    <span id="checkoutSubtotal" style="font-weight:700; color:var(--slate-100);">Rp 0</span>
                 </div>
                 <div style="display:flex; justify-content:space-between; font-size:0.85rem; margin-bottom:16px;">
-                    <span style="color:var(--trek-text-muted);">Ongkir</span>
-                    <span id="checkoutShipping" style="font-weight:600;">Rp 0</span>
+                    <span style="color:var(--slate-400);">Ongkir</span>
+                    <span id="checkoutShipping" style="font-weight:700; color:var(--slate-100);">Rp 0</span>
                 </div>
-                <hr style="border-color:var(--trek-border-soft); margin:16px 0;">
+                <hr style="border-color:var(--navy-600); margin:16px 0;">
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
-                    <span style="font-weight:700; color:var(--trek-dark);">Total</span>
-                    <span id="checkoutTotal" style="font-family:Manrope; font-size:1.2rem; font-weight:800; color:var(--trek-primary);">Rp 0</span>
+                    <span style="font-weight:700; color:var(--slate-100);">Total</span>
+                    <span id="checkoutTotal" style="font-family:'Plus Jakarta Sans'; font-size:1.35rem; font-weight:800; color:var(--brand-400);">Rp 0</span>
                 </div>
                 <button class="btn btn-primary-custom w-100" onclick="submitOrder()" id="submitBtn">
                     <i class="fas fa-check"></i> Buat Pesanan
@@ -119,18 +119,19 @@
 @push('styles')
 <style>
     .payment-option {
-        border: 2px solid var(--trek-border);
-        border-radius: var(--radius-md);
-        padding: 16px;
+        border: 2px solid var(--navy-600);
+        border-radius: 12px;
+        padding: 18px;
         transition: all 0.15s;
         cursor: pointer;
-        background: #fff;
+        background: var(--navy-800);
     }
-    .payment-option:hover { border-color: var(--trek-accent-light); }
+    .payment-option:hover { border-color: rgba(16, 185, 129, 0.5); }
     .payment-option input { display: none; }
     .payment-option.selected {
-        border-color: var(--trek-primary);
-        background: var(--trek-primary-light);
+        border-color: var(--brand-500);
+        background: rgba(16, 185, 129, 0.08);
+        box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
     }
     .payment-option.selected .check-icon { display: block !important; }
 </style>
@@ -138,16 +139,10 @@
 
 @push('scripts')
 <script>
-    function getCart() {
-        return JSON.parse(localStorage.getItem('treknesia_cart') || '[]');
-    }
-    
+    function getCart() { return JSON.parse(localStorage.getItem('treknesia_cart') || '[]'); }
     function formatRupiah(a) {
-        return new Intl.NumberFormat('id-ID', {
-            style: 'currency', currency: 'IDR', minimumFractionDigits: 0
-        }).format(a);
+        return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(a);
     }
-    
     function selectPayment(v) {
         document.querySelectorAll('input[name="payment"]').forEach(el => el.checked = false);
         document.querySelector(`input[name="payment"][value="${v}"]`).checked = true;
@@ -157,20 +152,16 @@
     
     function renderCheckout() {
         const cart = getCart();
-        if (cart.length === 0) {
-            alert('Keranjang kosong!');
-            window.location.href = '/products';
-            return;
-        }
+        if (cart.length === 0) { alert('Keranjang kosong!'); window.location.href = '/products'; return; }
         
         const c = document.getElementById('checkoutItems');
         c.innerHTML = '';
         cart.forEach(item => {
             const sizeText = item.size ? ` (${item.size})` : '';
             c.innerHTML += `
-                <div style="display:flex; justify-content:space-between; font-size:0.85rem; margin-bottom:8px; gap:10px;">
-                    <span style="color:var(--trek-text);">${item.name}${sizeText} <span style="color:var(--trek-text-muted);">×${item.quantity}</span></span>
-                    <span style="font-weight:600; white-space:nowrap;">${formatRupiah(item.price * item.quantity)}</span>
+                <div style="display:flex; justify-content:space-between; font-size:0.85rem; margin-bottom:10px; gap:10px;">
+                    <span style="color:var(--slate-200);">${item.name}${sizeText} <span style="color:var(--slate-400);">×${item.quantity}</span></span>
+                    <span style="font-weight:700; color:var(--slate-100); white-space:nowrap;">${formatRupiah(item.price * item.quantity)}</span>
                 </div>
             `;
         });
@@ -186,7 +177,6 @@
         const city = document.getElementById('customerCity').value;
         const cart = getCart();
         const subtotal = cart.reduce((s, i) => s + (i.price * i.quantity), 0);
-        
         let shipping = 0;
         if (city) {
             if (['Jakarta','Bogor','Depok','Tangerang','Bekasi'].includes(city)) shipping = 20000;
@@ -197,7 +187,7 @@
         document.getElementById('checkoutTotal').textContent = formatRupiah(subtotal + shipping);
     }
     
-        function submitOrder() {
+    function submitOrder() {
         const cart = getCart();
         const name = document.getElementById('customerName').value.trim();
         const wa = document.getElementById('customerWhatsapp').value.trim();
@@ -212,7 +202,6 @@
         btn.disabled = true;
         btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Memproses...';
         
-        // ✅ Kirim harga + bundle info ke backend
         const payload = {
             customer_name: name,
             customer_whatsapp: wa,
@@ -223,9 +212,9 @@
                 product_id: i.id,
                 quantity: i.quantity,
                 size: i.size || null,
-                price: i.price,                       // ✅ Harga dari cart (diskon)
-                original_price: i.originalPrice || null,  // ✅ Harga asli
-                bundle_name: i.bundleName || null     // ✅ Tag bundle
+                price: i.price,
+                original_price: i.originalPrice || null,
+                bundle_name: i.bundleName || null
             }))
         };
         

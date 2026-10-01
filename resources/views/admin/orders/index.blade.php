@@ -37,16 +37,14 @@
                 <tbody>
                     @foreach($orders as $o)
                     <tr>
-                        <td><strong>{{ $o['id'] }}</strong></td>
+                        <td><strong style="color:var(--slate-100);">{{ $o['id'] }}</strong></td>
                         <td>
-                            <div style="font-weight:600; color:var(--trek-dark);">{{ $o['customer_name'] }}</div>
-                            <div style="font-size:0.75rem; color:var(--trek-text-muted);">{{ $o['customer_whatsapp'] }}</div>
+                            <div style="font-weight:600; color:var(--slate-100);">{{ $o['customer_name'] }}</div>
+                            <div style="font-size:0.75rem; color:var(--slate-400);">{{ $o['customer_whatsapp'] }}</div>
                         </td>
                         <td>{{ $o['customer_city'] }}</td>
-                        <td style="font-weight:600;">Rp {{ number_format($o['total_amount'], 0, ',', '.') }}</td>
-                        <td>
-                            <span class="badge-status badge-muted">{{ $o['payment_method'] ?? 'COD' }}</span>
-                        </td>
+                        <td style="font-weight:700; color:var(--brand-400);">Rp {{ number_format($o['total_amount'], 0, ',', '.') }}</td>
+                        <td><span class="badge-status badge-muted">{{ $o['payment_method'] ?? 'COD' }}</span></td>
                         <td>
                             @if($o['status'] === 'PENDING')
                                 <span class="badge-status badge-pending">PENDING</span>
@@ -58,11 +56,9 @@
                                 <span class="badge-status badge-cancelled">{{ $o['status'] }}</span>
                             @endif
                         </td>
-                        <td style="font-size:0.78rem; color:var(--trek-text-muted);">{{ $o['created_at'] }}</td>
+                        <td style="font-size:0.78rem; color:var(--slate-400);">{{ $o['created_at'] }}</td>
                         <td style="text-align:right;">
-                            <a href="/admin/orders/{{ $o['id'] }}" class="btn-icon">
-                                <i class="fas fa-eye"></i>
-                            </a>
+                            <a href="/admin/orders/{{ $o['id'] }}" class="btn-icon"><i class="fas fa-eye"></i></a>
                         </td>
                     </tr>
                     @endforeach
@@ -70,8 +66,8 @@
             </table>
         </div>
     @else
-        <div style="text-align:center; padding:60px 20px; color:var(--trek-text-muted);">
-            <i class="fas fa-inbox" style="font-size:2.5rem; margin-bottom:12px; opacity:0.4;"></i>
+        <div style="text-align:center; padding:60px 20px; color:var(--slate-400);">
+            <i class="fas fa-inbox" style="font-size:2.5rem; margin-bottom:12px; opacity:0.5;"></i>
             <p style="margin:0;">Belum ada pesanan</p>
         </div>
     @endif
